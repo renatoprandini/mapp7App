@@ -1,0 +1,136 @@
+<!--
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register User</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>    
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" #email required></ion-input>
+    </ion-item> 
+
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" #password required></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col> 
+      <ion-button type="submit" (click)="signUp(email, password)" expand="block">Register</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>
+-->
+
+<ion-content class="ion-padding swiper-no-swiping">
+  <br />
+  <h1 class="ion-text-center logo-white">
+    Mapp7
+  </h1>
+  <br />
+  <ion-list lines="none">
+    <form [formGroup]="userForm">
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input
+          type="text"
+          #email
+          required
+          formControlName="email"
+          minlength="5"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Senha</ion-label>
+        <ion-input
+          type="password"
+          #password
+          required
+          minlength="6"
+          maxLength="25"
+        ></ion-input>
+      </ion-item>
+      <ion-grid class="ion-no-padding">
+        <ion-row>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="stacked">Primeiro Nome</ion-label>
+              <ion-input
+                type="text"
+                #primeiroNome
+                required
+                formControlName="primeiroNome"
+                maxlength="20"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="stacked">Último Nome</ion-label>
+              <ion-input
+                type="text"
+                #ultimoNome
+                required
+                formControlName="ultimoNome"
+                maxlength="20"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-item>
+        <input
+          type="radio"
+          id="cliente"
+          value="cliente"
+          formControlName="tipo"
+          required
+          ngModel
+          #tipo
+        />
+        <label position="stacked" for="cliente">Cliente</label><br />
+      </ion-item>
+      <ion-item>
+        <input
+          type="radio"
+          id="mecanico"
+          value="mecanico"
+          formControlName="tipo"
+          required
+          ngModel
+          #tipo
+        />
+        <label position="stacked" for="mecanico">Mecânico</label>
+        <br /><br />
+      </ion-item>
+    </form>
+  </ion-list>
+  <br />
+  <ion-button
+    ion-item
+    color="dark"
+    fill="outline"
+    shape="round"
+    expand="full"
+    size="medium"
+    type="submit"
+    (click)="signUp(email, password)"
+  >
+    Cadastrar
+  </ion-button>
+  <br />
+  <ion-button
+    ion-item
+    color="dark"
+    fill="clear"
+    expand="full"
+    routerLink="/login"
+  >
+    Já sou cadastrado
+  </ion-button>
+</ion-content>

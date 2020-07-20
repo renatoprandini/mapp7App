@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="cinza" class="ion-padding-horizontal">
+    <ion-thumbnail slot="start">
+      <img src="../../../assets/logotcc.png" />
+    </ion-thumbnail>
+    <ion-title slot="end" color="vermelho">Olá, {{userInfo['primeiroNome']}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="cinza" [fullscreen]="true">
+  <ion-list lines="none">
+    <ion-item color="cinza" *ngFor="let post of Posts">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title
+            class="ion-text-center ion-padding"
+            *ngIf="post.urgente == 'naourgente'"
+            >{{post.titulo}}</ion-card-title
+          >
+
+          <ion-grid *ngIf="post.urgente == 'urgente'">
+            <ion-row>
+              <ion-col size="10" class="ion-text-center">
+                <ion-card-title>{{post.titulo}}</ion-card-title>
+              </ion-col>
+              <ion-col size="2" class="ion-text-center">
+                <ion-icon name="alert-circle"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="4">
+                <img
+                  src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+                />
+              </ion-col>
+              <ion-col size="8">
+                <span>
+                  {{post.descricao}}
+                </span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+
+        <ion-buttons>
+          <ion-icon *ngIf="post.emailUsuario == userLocal.email" slot="icon-only" name="trash" (click)="deletePost(post.$key)">
+          </ion-icon>
+          <span slot="end">Ver Mais</span>
+          <ion-button [routerLink]="['/update-post/', post.$key]">
+            <ion-icon slot="icon-only" name="arrow-forward" style="zoom: 0.8;">
+            </ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button color="vermelho" routerLink="/post">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

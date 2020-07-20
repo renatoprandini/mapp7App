@@ -1,0 +1,56 @@
+<!--
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sign in User</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>    
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" #email required></ion-input>
+    </ion-item> 
+
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" #password required></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col> 
+      <ion-button type="submit" (click)="logIn(email, password)" expand="block">Login</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>
+-->
+
+<ion-content class="ion-padding" swipeEnabled="false">
+  <br><br>
+  <h1 class="ion-text-center logo-white">
+    Mapp7
+  </h1>
+  <br>
+  <br>
+  <ion-list lines="none">
+    <form>
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input type="text" #email required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Senha</ion-label>
+        <ion-input type="password" #password required></ion-input>
+      </ion-item>
+    </form>
+  </ion-list>
+  <br>
+  <ion-button ion-item color="dark" fill="outline" shape="round" expand="full" size="medium" type="submit" (click)="logIn(email, password)">
+    Entrar
+  </ion-button>
+  <br>
+  <ion-button ion-item color="dark" fill="clear" expand="full" routerLink="/signup">
+    Ainda não sou cadastrado!
+  </ion-button>
+</ion-content>
