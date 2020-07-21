@@ -1,5 +1,4 @@
 import { Injectable, NgZone } from '@angular/core';
-import { auth } from 'firebase/app';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -134,4 +133,7 @@ export class AuthService {
   deleteUsuario(userId) {
     this.firestore.doc(this.collectionName + '/' + userId).delete();
   }
+
+  
+
 }
