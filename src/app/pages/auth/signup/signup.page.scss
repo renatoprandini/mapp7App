@@ -1,0 +1,59 @@
+.photoL {
+    max-width: 125px;
+    max-height: 125px;
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.backgroundC {
+    position: relative;
+    width: 375px;
+    height: 667px;
+
+    background-color: radial-gradient(50% 50% at 50% 50%, #BDBFC1 21.88%, #E02041 100%);
+}
+
+.magic {
+    display: flex;
+    margin: auto;
+}
+
+ion-radio {
+    --color: #E02041;
+}
+
+ion-input {
+    display: flex;
+    margin: auto;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #000;
+    --placeholder-font-style: 'Roboto', sans-serif;
+}
+
+ion-list {
+    -webkit-box-shadow: 17px 20px 22px 1px rgba(189,191,197,0.75);
+    -moz-box-shadow: 17px 20px 22px 1px rgba(189,191,197,0.75);
+    box-shadow: 17px 20px 22px 1px rgba(189,191,197,0.75);
+}
+
+
+.magicT {
+    display: flex;
+    margin: auto;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #E02041;
+}
+
+.textT {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #E02041;
+}

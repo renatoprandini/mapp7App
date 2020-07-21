@@ -27,56 +27,94 @@
 -->
 
 <ion-content class="ion-padding swiper-no-swiping">
-  <br />
-  <h1 class="ion-text-center logo-white">
-    Mapp7
-  </h1>
-  <br />
+
+  <ion-row>
+    <ion-col>
+      <div></div>
+    </ion-col>
+    <ion-col col-6>
+      <div>
+        <img class="photoL" src="../../../../assets/logotcc.png">
+      </div>
+    </ion-col>
+    <ion-col>
+      <div></div>
+    </ion-col>
+  </ion-row>
+
   <ion-list lines="none">
     <form [formGroup]="userForm">
-      <ion-item>
-        <ion-label position="stacked">Email</ion-label>
-        <ion-input type="text" #email required formControlName="email" minlength="5"></ion-input>
-      </ion-item>
 
-      <ion-item>
-        <ion-label position="stacked">Senha</ion-label>
-        <ion-input type="password" #password required minlength="6" maxLength="25"></ion-input>
-      </ion-item>
+
+      <ion-input position="floating" clearInput placeholder="Email" type="text" #email required formControlName="email" minlength="5"></ion-input>
+      <!--! Cadastrar nome de usuario -->
+
+      <!--! <ion-input position="floating" clearInput placeholder="Nome de Usuário" type="text" #email required formControlName="email" minlength="5"></ion-input> -->
+      
+      <ion-input placeholder="Senha" type="password" #password required minlength="6" maxLength="25"></ion-input>
+
       <ion-grid class="ion-no-padding">
+
         <ion-row>
+
           <ion-col size="6">
-            <ion-item>
-              <ion-label position="stacked">Primeiro Nome</ion-label>
-              <ion-input type="text" #primeiroNome required formControlName="primeiroNome" maxlength="20"></ion-input>
-            </ion-item>
+
+            <ion-input clearInput placeholder="Nome" type="text" #primeiroNome required formControlName="primeiroNome"
+              maxlength="20"></ion-input>
+
           </ion-col>
+
           <ion-col size="6">
+
+            <ion-input clearInput placeholder="Sobrenome" type="text" #ultimoNome required formControlName="ultimoNome"
+              maxlength="20"></ion-input>
+          </ion-col>
+
+        </ion-row>
+
+      </ion-grid>
+
+      <ion-grid>
+        <p class="magicT"> Tipo de Conta: </p>
+
+        <ion-row>
+
+          <ion-col size="6">
+
             <ion-item>
-              <ion-label position="stacked">Último Nome</ion-label>
-              <ion-input type="text" #ultimoNome required formControlName="ultimoNome" maxlength="20"></ion-input>
+              <input type="radio" id="cliente" value="cliente" formControlName="tipo" required ngModel #tipo />
+              <p class="magicT"> Cliente </p>
+              <br />
             </ion-item>
+
+          </ion-col>
+
+          <ion-col size="6">
+
+            <ion-item>
+              <input type="radio" id="mecanico" value="mecanico" formControlName="tipo" required ngModel #tipo />
+              <p class="magicT"> Mecânico </p>
+              <br />
+            </ion-item>
+
+
           </ion-col>
         </ion-row>
       </ion-grid>
-      <ion-item>
-        <input type="radio" id="cliente" value="cliente" formControlName="tipo" required ngModel #tipo />
-        <label position="stacked" for="cliente">Cliente</label><br />
-      </ion-item>
-      <ion-item>
-        <input type="radio" id="mecanico" value="mecanico" formControlName="tipo" required ngModel #tipo />
-        <label position="stacked" for="mecanico">Mecânico</label>
-        <br /><br />
-      </ion-item>
+
+
     </form>
   </ion-list>
-  <br />
-  <ion-button ion-item color="dark" fill="outline" shape="round" expand="full" size="medium" type="submit"
-    (click)="signUp(email, password)">
+
+
+  <ion-button class="textT" color="vermelho" shape="round" expand="full" size="medium" type="submit"
+    (click)="signUp(email, password, primeiroNome, ultimoNome, tipo)">
     Cadastrar
   </ion-button>
+
   <br />
-  <ion-button ion-item color="dark" fill="clear" expand="full" routerLink="/login">
+
+  <ion-button class="textT" ion-item color="dark" fill="clear" expand="full" routerLink="/login">
     Já sou cadastrado
   </ion-button>
 </ion-content>

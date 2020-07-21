@@ -1,17 +1,27 @@
 <ion-content class="ion-padding" swipeEnabled="false">
-  <div class="backlogin">
-    <br>
-    <h1 class="ion-text-center logo-white">
-      Mapp7
-    </h1>
-    <br>
-    <br>
+
+  <ion-row>
+    <ion-col>
+      <div></div>
+    </ion-col>
+    <ion-col col-6>
+      <div>
+        <img class="photoL" src="../../../../assets/logotcc.png">
+      </div>
+    </ion-col>
+    <ion-col>
+      <div></div>
+    </ion-col>
+  </ion-row>
+
     <ion-list lines="none">
       <form>
+
         <ion-item>
           <ion-label position="stacked">Email</ion-label>
           <ion-input type="text" #email required></ion-input>
         </ion-item>
+        
         <ion-item>
           <ion-label position="stacked">Senha</ion-label>
           <ion-input type="password" #password required></ion-input>
@@ -28,7 +38,6 @@
       Ainda não sou cadastrado!
     </ion-button>
 
-  </div>
 </ion-content>
 
 <!--
