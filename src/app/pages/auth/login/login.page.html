@@ -14,29 +14,32 @@
     </ion-col>
   </ion-row>
 
+  <ion-card color="light">
     <ion-list lines="none">
       <form>
 
-        <ion-item>
-          <ion-label position="stacked">Email</ion-label>
-          <ion-input type="text" #email required></ion-input>
-        </ion-item>
-        
-        <ion-item>
-          <ion-label position="stacked">Senha</ion-label>
-          <ion-input type="password" #password required></ion-input>
-        </ion-item>
+
+        <ion-input position="floating" clearInput placeholder="Email" type="text" #email required></ion-input>
+        <br>
+        <ion-input position="floating" clearInput placeholder="Senha" type="password" #password required></ion-input>
+
       </form>
+
     </ion-list>
-    <br>
-    <ion-button ion-item color="dark" fill="outline" shape="round" expand="full" size="medium" type="submit"
-      (click)="logIn(email, password)">
-      Entrar
-    </ion-button>
-    <br>
-    <ion-button ion-item color="dark" fill="clear" expand="full" routerLink="/signup">
-      Ainda não sou cadastrado!
-    </ion-button>
+  </ion-card>
+  <br>
+
+
+  <ion-button class="textT" color="vermelho" shape="round" expand="full" size="medium" type="submit"
+    (click)="logIn(email, password)">
+    Entrar
+  </ion-button>
+
+  <br>
+
+  <ion-button class="textT" fill="clear" expand="full" routerLink="/signup">
+    Ainda não sou cadastrado!
+  </ion-button>
 
 </ion-content>
 

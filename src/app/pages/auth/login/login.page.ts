@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/user.model';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, ToastController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -19,11 +19,22 @@ export class LoginPage implements OnInit {
     public router: Router,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
+    private alertCtrl: AlertController,
   ) {}
 
   ngOnInit(
     
   ) {}
+
+  // async presentAlert() {
+  //   const alert = await this.alertCtrl.create({
+  //     header: 'Alerta',
+  //     message: 'Insira os campos que estão faltando!',
+  //     buttons: ['OK']
+  //   });
+
+  //   await alert.present();
+  // }
 
   logIn(email, password) {
     this.authService.SignIn(email.value, password.value)

@@ -42,69 +42,75 @@
     </ion-col>
   </ion-row>
 
-  <ion-list lines="none">
-    <form [formGroup]="userForm">
+  <ion-card color="light">
+    <ion-list lines="none">
+      <form [formGroup]="userForm">
 
 
-      <ion-input position="floating" clearInput placeholder="Email" type="text" #email required formControlName="email" minlength="5"></ion-input>
-      <!--! Cadastrar nome de usuario -->
+        <ion-input position="floating" clearInput placeholder="Email" type="text" #email required
+          formControlName="email" minlength="5"></ion-input>
+        <!--! Cadastrar nome de usuario -->
 
-      <!--! <ion-input position="floating" clearInput placeholder="Nome de Usuário" type="text" #email required formControlName="email" minlength="5"></ion-input> -->
-      
-      <ion-input placeholder="Senha" type="password" #password required minlength="6" maxLength="25"></ion-input>
+        <!--! <ion-input position="floating" clearInput placeholder="Nome de Usuário" type="text" #email required formControlName="email" minlength="5"></ion-input> -->
 
-      <ion-grid class="ion-no-padding">
+        <ion-input placeholder="Senha" type="password" #password required minlength="6" maxLength="25"></ion-input>
 
-        <ion-row>
+        <ion-grid class="ion-no-padding">
 
-          <ion-col size="6">
+          <ion-row>
 
-            <ion-input clearInput placeholder="Nome" type="text" #primeiroNome required formControlName="primeiroNome"
-              maxlength="20"></ion-input>
+            <ion-col size="6">
 
-          </ion-col>
+              <ion-input clearInput placeholder="Nome" type="text" #primeiroNome required formControlName="primeiroNome"
+                maxlength="20"></ion-input>
 
-          <ion-col size="6">
+            </ion-col>
 
-            <ion-input clearInput placeholder="Sobrenome" type="text" #ultimoNome required formControlName="ultimoNome"
-              maxlength="20"></ion-input>
-          </ion-col>
+            <ion-col size="6">
 
-        </ion-row>
+              <ion-input clearInput placeholder="Sobrenome" type="text" #ultimoNome required
+                formControlName="ultimoNome" maxlength="20"></ion-input>
+            </ion-col>
 
-      </ion-grid>
+          </ion-row>
 
-      <ion-grid>
-        <p class="magicT"> Tipo de Conta: </p>
+        </ion-grid>
 
-        <ion-row>
+        <ion-grid>
+          <p class="magicT"> Tipo de Conta: </p>
 
-          <ion-col size="6">
+          <ion-row>
 
-            <ion-item>
-              <input type="radio" id="cliente" value="cliente" formControlName="tipo" required ngModel #tipo />
-              <p class="magicT"> Cliente </p>
-              <br />
-            </ion-item>
+            <ion-col size="6">
 
-          </ion-col>
+              <ion-item>
+                <input type="radio" id="cliente" value="cliente" formControlName="tipo" required ngModel #tipo />
+                <p class="magicT"> Cliente </p>
+                <br />
+              </ion-item>
 
-          <ion-col size="6">
+            </ion-col>
 
-            <ion-item>
-              <input type="radio" id="mecanico" value="mecanico" formControlName="tipo" required ngModel #tipo />
-              <p class="magicT"> Mecânico </p>
-              <br />
-            </ion-item>
+            <ion-col size="6">
 
-
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+              <ion-item>
+                <input type="radio" id="mecanico" value="mecanico" formControlName="tipo" required ngModel #tipo />
+                <p class="magicT"> Mecânico </p>
+                <br />
+              </ion-item>
 
 
-    </form>
-  </ion-list>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+
+      </form>
+    </ion-list>
+  </ion-card>
+
+
+  <br />
 
 
   <ion-button class="textT" color="vermelho" shape="round" expand="full" size="medium" type="submit"
@@ -114,7 +120,7 @@
 
   <br />
 
-  <ion-button class="textT" ion-item color="dark" fill="clear" expand="full" routerLink="/login">
+  <ion-button class="textT" color="vermelho" fill="clear" expand="full" routerLink="/login">
     Já sou cadastrado
   </ion-button>
 </ion-content>

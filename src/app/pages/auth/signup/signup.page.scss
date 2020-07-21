@@ -7,14 +7,6 @@
     flex-wrap: wrap;
 }
 
-.backgroundC {
-    position: relative;
-    width: 375px;
-    height: 667px;
-
-    background-color: radial-gradient(50% 50% at 50% 50%, #BDBFC1 21.88%, #E02041 100%);
-}
-
 .magic {
     display: flex;
     margin: auto;
@@ -34,10 +26,10 @@ ion-input {
     --placeholder-font-style: 'Roboto', sans-serif;
 }
 
-ion-list {
-    -webkit-box-shadow: 17px 20px 22px 1px rgba(189,191,197,0.75);
-    -moz-box-shadow: 17px 20px 22px 1px rgba(189,191,197,0.75);
-    box-shadow: 17px 20px 22px 1px rgba(189,191,197,0.75);
+ion-card {
+    -webkit-box-shadow: 2px 27px 44px 27px rgba(189, 191, 193, 0.79);
+    -moz-box-shadow: 2px 27px 44px 27px rgba(189, 191, 193, 0.79);
+    box-shadow: 2px 27px 44px 27px rgba(189, 191, 193, 0.79);
 }
 
 
