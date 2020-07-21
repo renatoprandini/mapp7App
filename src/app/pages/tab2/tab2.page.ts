@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 
 @Component({
   selector: 'app-tab2',
@@ -7,12 +9,17 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  public userInfo = {};
-  Posts = [];
-  userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
+
 
   constructor(
     public authService: AuthService,
+    public firestore: AngularFirestore,
     ) {}
+
+    ngOnInit() {
+    }
+
+
+
 
 }

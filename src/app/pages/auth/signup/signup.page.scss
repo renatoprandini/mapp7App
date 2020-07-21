@@ -13,7 +13,7 @@
 }
 
 ion-radio {
-    --color: #E02041;
+    --color-checked: #E02041;
 }
 
 ion-input {
@@ -48,4 +48,8 @@ ion-card {
     font-size: 15px;
     font-weight: bolder;
     color: #E02041;
+}
+
+.rad {
+    --color-checked: #E02041;
 }
