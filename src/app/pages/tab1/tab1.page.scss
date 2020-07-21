@@ -1,3 +1,11 @@
+.alignT {
+  font-size: 15px;
+  font-weight: bolder;
+  color: #E02041;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
 ion-header,
 ion-content {
   --background-color: #f0f0f5;
@@ -6,6 +14,7 @@ ion-content {
 ion-card-title {
   color: #e02041 !important;
   font-weight: 600;
+  font-size: 20px;
 }
 
 ion-card-content {
@@ -67,6 +76,6 @@ ion-card {
   }
 }
 
-ion-thumbnail{
-  position: absolute;
+.showMore {
+  font-size: 10px;
 }

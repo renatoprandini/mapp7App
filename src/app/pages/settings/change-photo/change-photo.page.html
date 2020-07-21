@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="vermelho">
+    <ion-title>Alterar foto</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button>
+
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item (click)="openGalery();presentLoading()" lines="none" color="vermelho" class="alignButton">
+    Escolher foto
+    <ion-buttons slot="end">
+      <ion-icon color="light" name="chevron-forward-outline"></ion-icon>
+    </ion-buttons>
+  </ion-item>
+
+  <ion-item class="textT" lines="none">
+    <ion-text class="textT">
+      Progresso do upload: {{ uploadPercent | async }}%
+    </ion-text>
+  </ion-item>
+
+  <img [src]="downloadUrl | async" *ngIf="downloadUrl | async" class="photo">
+
+
+  <ion-button expand="block" size="large" color="vermelho" class="alignButton">
+    Definir como foto de perfil
+  </ion-button>
+
+</ion-content>

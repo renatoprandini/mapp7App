@@ -36,101 +36,47 @@
     <form [formGroup]="userForm">
       <ion-item>
         <ion-label position="stacked">Email</ion-label>
-        <ion-input
-          type="text"
-          #email
-          required
-          formControlName="email"
-          minlength="5"
-        ></ion-input>
+        <ion-input type="text" #email required formControlName="email" minlength="5"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Senha</ion-label>
-        <ion-input
-          type="password"
-          #password
-          required
-          minlength="6"
-          maxLength="25"
-        ></ion-input>
+        <ion-input type="password" #password required minlength="6" maxLength="25"></ion-input>
       </ion-item>
       <ion-grid class="ion-no-padding">
         <ion-row>
           <ion-col size="6">
             <ion-item>
               <ion-label position="stacked">Primeiro Nome</ion-label>
-              <ion-input
-                type="text"
-                #primeiroNome
-                required
-                formControlName="primeiroNome"
-                maxlength="20"
-              ></ion-input>
+              <ion-input type="text" #primeiroNome required formControlName="primeiroNome" maxlength="20"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="6">
             <ion-item>
               <ion-label position="stacked">Último Nome</ion-label>
-              <ion-input
-                type="text"
-                #ultimoNome
-                required
-                formControlName="ultimoNome"
-                maxlength="20"
-              ></ion-input>
+              <ion-input type="text" #ultimoNome required formControlName="ultimoNome" maxlength="20"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
       </ion-grid>
       <ion-item>
-        <input
-          type="radio"
-          id="cliente"
-          value="cliente"
-          formControlName="tipo"
-          required
-          ngModel
-          #tipo
-        />
+        <input type="radio" id="cliente" value="cliente" formControlName="tipo" required ngModel #tipo />
         <label position="stacked" for="cliente">Cliente</label><br />
       </ion-item>
       <ion-item>
-        <input
-          type="radio"
-          id="mecanico"
-          value="mecanico"
-          formControlName="tipo"
-          required
-          ngModel
-          #tipo
-        />
+        <input type="radio" id="mecanico" value="mecanico" formControlName="tipo" required ngModel #tipo />
         <label position="stacked" for="mecanico">Mecânico</label>
         <br /><br />
       </ion-item>
     </form>
   </ion-list>
   <br />
-  <ion-button
-    ion-item
-    color="dark"
-    fill="outline"
-    shape="round"
-    expand="full"
-    size="medium"
-    type="submit"
-    (click)="signUp(email, password)"
-  >
+  <ion-button ion-item color="dark" fill="outline" shape="round" expand="full" size="medium" type="submit"
+    (click)="signUp(email, password)">
     Cadastrar
   </ion-button>
   <br />
-  <ion-button
-    ion-item
-    color="dark"
-    fill="clear"
-    expand="full"
-    routerLink="/login"
-  >
+  <ion-button ion-item color="dark" fill="clear" expand="full" routerLink="/login">
     Já sou cadastrado
   </ion-button>
 </ion-content>

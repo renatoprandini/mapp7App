@@ -1,13 +1,14 @@
 <ion-header>
-  <ion-toolbar class="ion-padding-horizontal" color="cinza">
-    <ion-thumbnail slot="start">
-      <img src="../../../assets/logotcc.png">
+  <ion-toolbar color="cinza" class="ion-padding-horizontal">
+    <ion-thumbnail>
+      <img src="../../../assets/logotcc.png" />
     </ion-thumbnail>
-      <ion-title slot="end" color="vermelho">Olá, Usuário</ion-title>
+    <ion-title class="alignT" slot="end">
+      Olá, {{userLocal['primeiroNome']}}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content  color="cinza" [fullscreen]="true">
   
-  <ion-button type="submit" (click)="authService.SignOut()" expand="block">Logout</ion-button>
 </ion-content>

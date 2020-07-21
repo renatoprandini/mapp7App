@@ -1,0 +1,146 @@
+ion-avatar {
+    padding: 5px;
+}
+
+.alignContent{
+    width: 100%;
+    height: 100%;
+}
+.photoUser {
+    display: flex;
+    position: relative;
+    max-width: 150px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+}
+
+.alignT {
+    font-size: 17px;
+    font-weight: bolder;
+    color: #E02041;
+    font-family: 'Roboto', sans-serif;
+}
+
+.nomeT {
+    font-size: 20px;
+    font-weight: bolder;
+    color: #E02041;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    position: inherit;
+}
+
+.usuarioT {
+    font-size: 15px;
+    font-weight: bolder;
+    color: #E02041;
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+    position: inherit;
+}
+
+
+.buttonConfig {
+    display: flex;
+    width: 300px;
+    height: 50px;
+    max-width: auto;
+    max-height: auto;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 1;
+}
+
+.buttonConfig:hover {
+    transition: 1s;
+    opacity: 0.5;
+    background:#BDBFC1;
+}
+
+
+.buttonT {
+    font-size: 15px;
+    font-weight: bolder;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+ion-icon {
+    font-size: 16px;
+    font-weight: bolder;
+  }
+
+.configI {
+    font-size: 30px;
+    font-weight: bolder;
+    color: #E02041;
+    margin: auto;
+    margin-right: auto;
+    margin-left: 5px;
+}
+
+.perfil {
+    margin-left: 13px;
+    margin-right: 15px;
+    width: auto;
+    height: 250px;
+    max-width: 350px;
+    max-height: 250px;
+}
+
+
+
+.div-center {
+    display: block;
+    position: relative;
+    margin-left: 75px;
+    width: 50%;
+    height: auto;
+    padding: 8px;
+}
+
+.nomeN {
+    font-size: 15px;
+    font-weight: bolder;
+    color: #E02041;
+    font-family: 'Roboto', sans-serif;
+    text-align: center !important;
+}
+.nomeU {
+    font-size: 13px;
+    font-weight: bolder;
+    color: #E02041;
+    font-family: 'Roboto', sans-serif;
+    text-align: center !important;
+}
+
+.optionT {
+    font-size: 15px;
+    color: #E02041;
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+}
+
+.answerT {
+    font-size: 13px;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+}
+
+.itemAlign {
+    align-items: center;
+}
+ion-item {
+    --border-color: #fff;
+}
+ion-content ion-item {
+    border: 1px solid #BDBFC1;
+}
+
+.borderNone {
+    --border-color: #fff;
+}

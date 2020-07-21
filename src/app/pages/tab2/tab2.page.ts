@@ -7,7 +7,12 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  public userInfo = {};
+  Posts = [];
+  userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
 
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    ) {}
 
 }

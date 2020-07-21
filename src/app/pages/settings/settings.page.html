@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="vermelho">
+    <ion-title>Configurações</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button>
+
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="graymp">
+  
+
+  <ion-item-group>
+
+    <ion-text class="titleT"> Conta </ion-text>
+
+      <ion-item class="optionT" routerLink="/change-name">
+        Alterar nome
+        <ion-buttons slot="end">
+          <ion-icon color="vermelho" name="chevron-forward-outline"></ion-icon>
+        </ion-buttons>
+      </ion-item>
+
+      <ion-item class="optionT" routerLink="/change-photo">
+        Alterar foto
+        <ion-buttons slot="end">
+          <ion-icon color="vermelho" name="chevron-forward-outline"></ion-icon>
+        </ion-buttons>
+      </ion-item>
+
+  </ion-item-group>
+
+  <ion-item-group>
+
+    <ion-text class="titleT"> Preferências </ion-text>
+
+      <ion-item class="optionT" routerLink="/notifications">
+        Notificações
+        <ion-buttons slot="end">
+          <ion-icon color="vermelho" name="chevron-forward-outline"></ion-icon>
+        </ion-buttons>
+      </ion-item>
+
+      <ion-item class="optionT" routerLink="/faq">
+        Perguntas frequentes
+        <ion-buttons slot="end">
+          <ion-icon color="vermelho" name="chevron-forward-outline"></ion-icon>
+        </ion-buttons>
+      </ion-item>
+
+      <ion-item class="optionT" routerLink="/about">
+        Sobre
+        <ion-buttons slot="end">
+          <ion-icon color="vermelho" name="chevron-forward-outline"></ion-icon>
+        </ion-buttons>
+      </ion-item>
+      
+      <ion-item class="optionT" (click)="authService.SignOut()">
+        Sair
+        <ion-buttons slot="end">
+          <ion-icon color="vermelho" name="log-out-outline"></ion-icon>
+        </ion-buttons>
+      </ion-item>
+
+  </ion-item-group>
+
+</ion-content>

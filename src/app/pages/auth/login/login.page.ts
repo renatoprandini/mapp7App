@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/user.model';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -9,14 +10,20 @@ import { User } from '../../../models/user.model';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  private loading: any;
+
 
 
   constructor(
     public authService: AuthService,
-    public router: Router
-  ) { }
+    public router: Router,
+    private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController,
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit(
+    
+  ) {}
 
   logIn(email, password) {
     this.authService.SignIn(email.value, password.value)
@@ -31,6 +38,8 @@ export class LoginPage implements OnInit {
       }).catch((error) => {
         window.alert(error.message);
       });
-  } s
+  }
 
 }
+
+
