@@ -1,28 +1,59 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Edit Appointment
-    </ion-title>
+  <ion-toolbar color="cinza">
+    <ion-title color="vermelho" class="textT">Editar post</ion-title>
+    <ion-buttons slot="start" class="red">
+      <ion-back-button>
+
+      </ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list lines="full">
     <form [formGroup]="updatePostForm" (ngSubmit)="updatePost()">
+
       <ion-item>
-        <ion-label position="floating">Título</ion-label>
-        <ion-input formControlName="titulo" type="text" required></ion-input>
+        <ion-input class="inputT" position="floating" clearInput placeholder="Título" formControlName="titulo" type="text" required></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating">Descrição</ion-label>
-        <ion-input formControlName="descricao" type="text" required>
+        <ion-input class="inputT" position="floating" clearInput placeholder="Descrição" formControlName="descricao" type="text" required>
         </ion-input>
       </ion-item>
 
+      <!-- <ion-item>
+        <ion-input class="inputT" position="floating" clearInput placeholder="Localização" formControlName="localizacao" type="text" required>
+        </ion-input>
+      </ion-item> -->
+
+      <ion-row>
+
+        <ion-col size="6">
+
+          <ion-item>
+            <input type="radio" id="urgente" value="urgente" formControlName="urgente" required ngModel />
+            <p class="magicT" for="urgente"> Urgente </p>
+            <br />
+          </ion-item>
+
+        </ion-col>
+
+        <ion-col size="6">
+
+          <ion-item>
+            <input type="radio" id="naourgente" value="naourgente" formControlName="urgente" required ngModel />
+            <p class="magicT" for="naourgente"> Não Urgente </p>
+            <br />
+          </ion-item>
+
+
+        </ion-col>
+      </ion-row>
+
       <ion-row>
         <ion-col>
-          <ion-button type="submit" color="primary" shape="full" expand="block">Update Post</ion-button>
+          <ion-button class="textT" color="vermelho" type="submit" shape="full" expand="block">Atualizar Post</ion-button>
         </ion-col>
       </ion-row>
     </form>

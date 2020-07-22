@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-update-post',
   templateUrl: './update-post.page.html',
@@ -25,7 +26,9 @@ export class UpdatePostPage implements OnInit {
   ngOnInit() {
     this.updatePostForm = this.fb.group({
       titulo: [''],
-      descricao: ['']
+      descricao: [''],
+      localizacao: [''],
+      urgente: [''],
     })
     console.log(this.updatePostForm.value)
   }
