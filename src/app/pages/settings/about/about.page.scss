@@ -1,3 +1,59 @@
 ion-title {
     font-family: 'Roboto', sans-serif;
 }
+
+.titleT {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    font-weight: bolder;
+    color: #E02041;
+    margin-left: 10px;
+}
+
+.optionT {
+    font-size: 15px;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+}
+
+.alignContent{
+    width: 100%;
+    height: 100%;
+}
+.photoUser {
+    max-width: 150px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+}
+
+.div-center {
+    display: block;
+    position: relative;
+    margin-left: 50px;
+    width: 50%;
+    height: auto;
+}
+
+.optionT {
+    font-size: 15px;
+    color: #E02041;
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+}
+
+.answerT {
+    font-size: 13px;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+}
+
+.itemAlign {
+    align-items: center;
+}
+
+.borderNone {
+    --border-color: #fff;
+}
