@@ -4,7 +4,7 @@ export class User {
         public primeiroNome: string = '',
         public ultimoNome: string = '',
         public email: string = '',
-        public foto: string = '',
+        public foto: any = '',
         public tipo: string = '',
     ) {
 

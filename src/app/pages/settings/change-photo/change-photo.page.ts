@@ -61,7 +61,7 @@ export class ChangePhotoPage implements OnInit {
   }
 
   uploadPicture( blob: Blob ) {
-    const ref = this.afStorage.ref('images/ionic.jpg');
+    const ref = this.afStorage.ref('images/perfil.jpg');
     const task = ref.put(blob);
 
     this.uploadPercent = task.percentageChanges();

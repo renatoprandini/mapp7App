@@ -25,7 +25,7 @@
         <ion-col>
           <div class="ion-text-center">
             <ion-avatar>
-              <img class="photoUser" src="../../../assets/circleperson.png" />
+              <img [src]="downloadUrl | async" *ngIf="downloadUrl | async" class="photoUser">
             </ion-avatar>
 
             <br>
