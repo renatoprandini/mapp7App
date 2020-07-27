@@ -13,8 +13,8 @@ const routes: Routes = [
     loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
   },
   {
-    path: 'change-data',
-    loadChildren: () => import('./change-data/change-data.module').then( m => m.ChangeDataPageModule)
+    path: 'change-name',
+    loadChildren: () => import('./change-name/change-name.module').then( m => m.ChangeNamePageModule)
   },
   {
     path: 'change-photo',
