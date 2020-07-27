@@ -10,6 +10,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class Tab2Page {
 
+  public userInfo = {};
+  userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
+
 
   constructor(
     public authService: AuthService,
@@ -17,9 +20,15 @@ export class Tab2Page {
     ) {}
 
     ngOnInit() {
+      this.fetchUsersByEmail();
     }
 
-
+    fetchUsersByEmail() {
+      // Pega os valores do caminho os subscreve no 'res'
+      this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe(res => {
+        this.userInfo = res;
+      });
+    }
 
 
 }

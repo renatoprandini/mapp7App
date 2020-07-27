@@ -31,6 +31,8 @@ export class Tab3Page implements OnInit {
       this.userInfo2 = res;
     });
   }
+
+  
   
 
 }
