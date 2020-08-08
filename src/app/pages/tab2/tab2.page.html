@@ -3,12 +3,88 @@
     <ion-thumbnail>
       <img src="../../../assets/logotcc.png" />
     </ion-thumbnail>
-    <ion-title class="alignT" slot="end">
-      Olá, {{userInfo['primeiroNome']}}
-    </ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="cinza" [fullscreen]="true">
-  
+  <ion-card *ngFor="let mecanico of Users ; let i = index">
+    <span *ngIf="!mecanico.isRate; else elseBlock">
+      <ion-item-sliding>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img [src]="d">
+          </ion-avatar>
+          <ion-label>
+            <h2 id="titulo">{{mecanico.primeiroNome }}</h2>
+            <ion-chip outline color="dark">
+              <ion-icon name="medal-outline"></ion-icon>
+              <ion-label>{{i + 1}}º</ion-label>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <div *ngIf="i+1 === 1">
+                <ion-icon name="trophy" color="warning"></ion-icon>
+              </div>
+
+              <div *ngIf="i+1 === 2">
+                <ion-icon name="trophy" color="tertiary"></ion-icon>
+              </div>
+
+              <div *ngIf="i+1 === 3">
+                <ion-icon name="trophy" color="secondary"></ion-icon>
+              </div>
+
+              <div *ngIf="i+1 > 3">
+                <ion-icon name="medal-outline" color="danger"></ion-icon>
+              </div>
+
+              <ion-label>&nbsp;{{mecanico.avaliacao}}</ion-label>
+            </ion-chip>
+          </ion-label>
+        </ion-item>
+
+
+        <ion-item-options side="end">
+          <ion-button shape="round" color="secondary" size="small" (click)="initAvaliacao(mecanico)">
+            <ion-icon size="small" slot="icon-only" name="star"></ion-icon>
+          </ion-button>
+        </ion-item-options>
+      </ion-item-sliding>
+
+    </span>
+    <ng-template #elseBlock>
+      <ion-card-header>
+        <ion-card-title>
+          Avalie agora mesmo
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <div class="estrelas" id="icones">
+            <input type="radio" checked id="cm_wrench-empty" name="fb" />
+            <label for="cm_wrench-1"><i class="fa"></i></label>
+            <input type="radio" id="cm_wrench-1" name="fb" class="valor" (click)="adicionarValor(1)" />
+
+            <label for="cm_wrench-2"><i class="fa"></i></label>
+            <input type="radio" id="cm_wrench-2" name="fb" class="valor" (click)="adicionarValor(2)" />
+
+            <label for="cm_wrench-3"><i class="fa"></i></label>
+            <input type="radio" id="cm_wrench-3" name="fb" class="valor" (click)="adicionarValor(3)" />
+
+            <label for="cm_wrench-4"><i class="fa"></i></label>
+            <input type="radio" id="cm_wrench-4" name="fb" class="valor" (click)="adicionarValor(4)" />
+
+            <label for="cm_wrench-5"><i class="fa"></i></label>
+            <input type="radio" id="cm_wrench-5" name="fb" (click)="adicionarValor(5)" />
+          </div>
+
+        </ion-item>
+        <ion-button fill="solid" color="medium" size="small" (click)="mecanico.isRate = false">
+          X
+        </ion-button>
+        <ion-button fill="solid" color="success" size="small" (click)="avaliarMecanico(mecanico)">
+          >>>
+        </ion-button>
+      </ion-card-content>
+    </ng-template>
+  </ion-card>
 </ion-content>

@@ -6,6 +6,7 @@ export class User {
         public email: string = '',
         public foto: any = '',
         public tipo: string = '',
+        public avaliacao: number = 0
     ) {
 
     }

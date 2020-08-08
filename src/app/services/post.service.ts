@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../models/post.model';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @Injectable({
@@ -15,7 +15,7 @@ export class PostService {
 
   constructor(
     public firestore: AngularFirestore,
-    public db: AngularFireDatabase,
+    public db: AngularFireDatabase
   ) { }
 
 

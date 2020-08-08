@@ -100,7 +100,8 @@ export class AuthService {
       primeiroNome: user.primeiroNome,
       ultimoNome: user.ultimoNome,
       tipo: user.tipo,
-      foto: user.foto
+      foto: user.foto,
+      avaliacao: user.avaliacao
     }
     return userRef.set(userData, {
       merge: true
@@ -117,7 +118,7 @@ export class AuthService {
 
 
   readUsuarioList() {
-    this.userListRef = this.db.list(`/users`);
+    this.userListRef = this.db.list('/users');
     return this.userListRef;
   }
 
@@ -133,7 +134,4 @@ export class AuthService {
   deleteUsuario(userId) {
     this.firestore.doc(this.collectionName + '/' + userId).delete();
   }
-
-  
-
 }

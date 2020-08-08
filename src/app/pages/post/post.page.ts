@@ -38,11 +38,11 @@ export class PostPage implements OnInit {
       imagem: [''],
       localizacao: [''],
       urgente: [''],
-      emailUsuario: this.userEmail.email,
+      emailUsuario: this.userEmail.email
     });
   }
 
-   formSubmit() {
+  formSubmit() {
     if (!this.postForm.valid) {
       return false;
     } else {

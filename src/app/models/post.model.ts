@@ -5,8 +5,8 @@ export class Post {
         public imagem: string = '',
         public descricao: string = '',
         public localizacao: string = '',
-        public urgente: string= '',
-        public emailUsuario: string = '',
+        public urgente: string = '',
+        public emailUsuario: string = ''
     ) {
 
     }
