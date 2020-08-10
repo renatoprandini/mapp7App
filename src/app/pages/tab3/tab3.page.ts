@@ -41,16 +41,10 @@ export class Tab3Page implements OnInit {
   }
 
   
-  uploadPicture( blob: Blob ) {
-    const ref = this.afStorage.ref('images/perfil.jpg');
-    const task = ref.put(blob);
 
-    task.snapshotChanges().pipe(
-      finalize(() => this.downloadUrl = ref.getDownloadURL())
-    ).subscribe();
   }
 
   
   
 
-}
+

@@ -61,7 +61,7 @@ export class ChangePhotoPage implements OnInit {
   }
 
   uploadPicture( blob: Blob ) {
-    const ref = this.afStorage.ref('images/perfil.jpg');
+    const ref = this.afStorage.ref('users/profile.jpg');
     const task = ref.put(blob);
 
     this.uploadPercent = task.percentageChanges();
@@ -69,6 +69,14 @@ export class ChangePhotoPage implements OnInit {
     task.snapshotChanges().pipe(
       finalize(() => this.downloadUrl = ref.getDownloadURL())
     ).subscribe();
+
+    task.snapshotChanges().pipe(
+      finalize(() => {
+          ref.getDownloadURL().subscribe(data => {
+              console.log(`URL: ${data}`);
+          });
+      })
+  ).subscribe();
   }
 
   
