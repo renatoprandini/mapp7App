@@ -12,7 +12,7 @@
 <ion-content>
 
   <ion-item (click)="openGalery();presentLoading()" lines="none" color="vermelho" class="alignButton">
-    Escolher foto
+    Escolher foto para perfil
     <ion-buttons slot="end">
       <ion-icon color="light" name="chevron-forward-outline"></ion-icon>
     </ion-buttons>
@@ -27,13 +27,9 @@
   <img [src]="downloadUrl | async" *ngIf="downloadUrl | async" class="photo">
 
 
-  <ion-button expand="block" size="large" color="vermelho" class="alignButton">
-    Definir como foto de perfil
-  </ion-button>
-
 
 <ion-item>
-  <ion-text class="ion-text-wrap"> URL de Download: {{ downloadUrl | async}}</ion-text>
+  <ion-text class="ion-text-wrap textT"> URL de Download: {{ downloadUrl | async}}</ion-text>
 </ion-item>
 
 </ion-content>
