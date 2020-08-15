@@ -5,6 +5,8 @@ import { File } from '@ionic-native/file/ngx';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+// import { User } from '../../../models/user.model';
+// import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-change-photo',
@@ -22,11 +24,28 @@ export class ChangePhotoPage implements OnInit {
     private platform: Platform,
     private file: File,
     private afStorage: AngularFireStorage,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    // public afStore: AngularFirestore,
   ) { }
 
   ngOnInit() {
   }
+
+  // SetUserData(user) {
+  //   const userRef: AngularFirestoreDocument<any> = this.afStore.doc(`Usuarios/${user.uid}`);
+  //   const userData: User = {
+  //     id: user.id,
+  //     email: user.email,
+  //     primeiroNome: user.primeiroNome,
+  //     ultimoNome: user.ultimoNome,
+  //     tipo: user.tipo,
+  //     foto: user.foto,
+  //     avaliacao: user.avaliacao
+  //   }
+  //   return userRef.set(userData, {
+  //     merge: true
+  //   })
+  // }
 
 
   async openGalery() {
@@ -61,14 +80,24 @@ export class ChangePhotoPage implements OnInit {
   }
 
   uploadPicture( blob: Blob ) {
-    const ref = this.afStorage.ref('images/perfil.jpg');
+    const ref = this.afStorage.ref('users/profile.jpg');
     const task = ref.put(blob);
 
     this.uploadPercent = task.percentageChanges();
 
+    // task.snapshotChanges().pipe(
+    //   finalize(() => this.downloadUrl = ref.getDownloadURL())
+    // ).subscribe();
+
     task.snapshotChanges().pipe(
-      finalize(() => this.downloadUrl = ref.getDownloadURL())
-    ).subscribe();
+      finalize(() => {
+          ref.getDownloadURL().subscribe(data => {
+              console.log(`URL: ${data}`);
+          });
+      })
+  ).subscribe();
+
+      
   }
 
   
