@@ -15,11 +15,11 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
-
+import { OptionsComponent } from './components/options/options.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, OptionsComponent],
+  entryComponents: [OptionsComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -36,7 +36,7 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera,
     File,
-    Keyboard,
+    Keyboard
   ],
   bootstrap: [AppComponent]
 })

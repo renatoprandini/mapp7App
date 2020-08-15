@@ -6,7 +6,9 @@ export class Post {
         public descricao: string = '',
         public localizacao: string = '',
         public urgente: string = '',
-        public emailUsuario: string = ''
+        public emailUsuario: string = '',
+        public dataPost: any = null,
+        public timePost: any = null
     ) {
 
     }

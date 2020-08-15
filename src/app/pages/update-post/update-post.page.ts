@@ -29,6 +29,8 @@ export class UpdatePostPage implements OnInit {
       descricao: [''],
       localizacao: [''],
       urgente: [''],
+	  dataPost: new Date().toLocaleDateString(),
+      timePost: new Date().toLocaleTimeString()
     })
     console.log(this.updatePostForm.value)
   }

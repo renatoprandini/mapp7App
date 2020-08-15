@@ -49,7 +49,9 @@ export class PostService {
       imagem: pst.imagem,
       localizacao: pst.localizacao,
       urgente: pst.urgente,
-      emailUsuario: pst.emailUsuario
+      emailUsuario: pst.emailUsuario,
+      dataPost: pst.dataPost,
+      timePost: pst.timePost
     })
   }
 
@@ -71,10 +73,10 @@ export class PostService {
     return this.postRef.update({
       titulo: pst.titulo,
       descricao: pst.descricao,
-      imagem: pst.imagem,
       localizacao: pst.localizacao,
       urgente: pst.urgente,
-      emailUsuario: pst.emailUsuario
+      dataPost: pst.dataPost,
+      timePost: pst.timePost
     })
   }
 
@@ -83,6 +85,5 @@ export class PostService {
     this.postRef = this.db.object('/post/' + id);
     this.postRef.remove();
   }
-
 
 }

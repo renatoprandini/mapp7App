@@ -1,29 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { Tab1Page } from '../../pages/tab1/tab1.page';
 import { PostService } from '../../services/post.service';
 import { AuthService } from '../../services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Post } from '../../models/post.model';
-import { OptionsComponent } from '../../components/options/options.component';
-import { PopoverController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-options',
+  templateUrl: './options.component.html',
+  styleUrls: ['./options.component.scss'],
 })
-export class Tab1Page implements OnInit {
-
+export class OptionsComponent implements OnInit {
+  
   public userInfo = {};
   Posts = [];
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
   
-  
   constructor(
     private pstService: PostService,
     private authService: AuthService,
-    public firestore: AngularFirestore,
-    private popoverCtrl:PopoverController
-
+    public firestore: AngularFirestore
   ) { }
 
   ngOnInit() {
@@ -39,21 +35,6 @@ export class Tab1Page implements OnInit {
         this.Posts.push(a as Post);
       });
     });
-
-
-    /* this.pstService.readProblema().subscribe(data => {
-      this.postList = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          isEdit: false,
-          titulo: e.payload.doc.data()['titulo'],
-          descricao: e.payload.doc.data()['descricao'],
-          urgente: e.payload.doc.data()['urgente'],
-          emailUsuario: e.payload.doc.data()['emailUsuario'],
-        };
-      });
-      console.log(this.postList);
-    }); */
   }
 
   deletePost(id) {
@@ -64,28 +45,13 @@ export class Tab1Page implements OnInit {
   }
 
   fetchUsersByEmail() {
-    // Pega os valores do caminho os subscreve no 'res'
     this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe(res => {
       this.userInfo = res;
-      console.log(res);
     });
   }
-
+  
   fetchPosts() {
     this.pstService.getPostList().valueChanges().subscribe(res => {
-      console.log(res);
     });
   }
- 
-
-  async options(ev: any) {
-    const popover = await this.popoverCtrl.create({
-        component: OptionsComponent,
-        event: ev,
-        animated: true,
-        showBackdrop: true
-    });
-    return await popover.present();
-}
-
 }

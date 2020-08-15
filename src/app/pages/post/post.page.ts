@@ -20,7 +20,7 @@ export class PostPage implements OnInit {
   postForm: FormGroup;
   userData: User;
   userEmail = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
-
+  
   constructor(
     private pstService: PostService,
     private router: Router,
@@ -38,7 +38,9 @@ export class PostPage implements OnInit {
       imagem: [''],
       localizacao: [''],
       urgente: [''],
-      emailUsuario: this.userEmail.email
+      emailUsuario: this.userEmail.email,
+      dataPost: new Date().toLocaleDateString(),
+      timePost: new Date().toLocaleTimeString()
     });
   }
 
