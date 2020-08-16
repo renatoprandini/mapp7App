@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'tab1',
-    loadChildren: () => import('./pages/tab1/tab1.module').then(m => m.Tab1PageModule)
+    canActivate: [AuthGuard], loadChildren: () => import('./pages/tab1/tab1.module').then(m => m.Tab1PageModule)
   },
   {
     path: 'tab2',
-    loadChildren: () => import('./pages/tab2/tab2.module').then(m => m.Tab2PageModule)
+    canActivate: [AuthGuard], loadChildren: () => import('./pages/tab2/tab2.module').then(m => m.Tab2PageModule)
   },
   {
     path: 'tab3',
-    loadChildren: () => import('./pages/tab3/tab3.module').then(m => m.Tab3PageModule)
+    canActivate: [AuthGuard], loadChildren: () => import('./pages/tab3/tab3.module').then(m => m.Tab3PageModule)
   },
   {
     path: '',
@@ -41,7 +42,7 @@ const routes: Routes = [
   },
   {
     path: 'settings',
-    loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule)
+   loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule)
   },
   {
     path: 'about',
@@ -57,11 +58,11 @@ const routes: Routes = [
   },
   {
     path: 'faq',
-    loadChildren: () => import('./pages/settings/faq/faq.module').then(m => m.FaqPageModule)
+   loadChildren: () => import('./pages/settings/faq/faq.module').then(m => m.FaqPageModule)
   },
   {
     path: 'notifications',
-    loadChildren: () => import('./pages/settings/notifications/notifications.module').then(m => m.NotificationsPageModule)
+   loadChildren: () => import('./pages/settings/notifications/notifications.module').then(m => m.NotificationsPageModule)
   }
 
 ];
