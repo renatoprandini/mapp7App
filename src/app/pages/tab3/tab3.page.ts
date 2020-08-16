@@ -7,6 +7,7 @@ import { finalize } from 'rxjs/operators';
 
 
 
+
 @Component({
   selector: 'app-tab3',
   templateUrl: './tab3.page.html',
@@ -16,10 +17,11 @@ export class Tab3Page implements OnInit {
 
   public userInfo = {};
   public userInfo2= {};
-  public photo= {};
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
+  public photo = {};
 
-  public downloadUrl: Observable<string>;
+
+  
   
 
   constructor(
@@ -30,6 +32,7 @@ export class Tab3Page implements OnInit {
 
   ngOnInit() {
     this.fetchUsersByEmail();
+
   }
 
   fetchUsersByEmail() {
@@ -37,8 +40,22 @@ export class Tab3Page implements OnInit {
     this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe(res => {
       this.userInfo = res;
       this.userInfo2 = res;
+      this.photo = res;
     });
   }
+
+
+
+ 
+
+
+
+
+
+
+
+
+
 
   
 

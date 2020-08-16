@@ -16,6 +16,8 @@ export class Tab1Page implements OnInit {
   public userInfo = {};
   Posts = [];
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
+  public userInfo2= {};
+  public photo = {};
   
   
   constructor(
@@ -67,7 +69,8 @@ export class Tab1Page implements OnInit {
     // Pega os valores do caminho os subscreve no 'res'
     this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe(res => {
       this.userInfo = res;
-      console.log(res);
+      this.userInfo2 = res;
+      this.photo = res;
     });
   }
 
