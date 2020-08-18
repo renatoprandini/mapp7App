@@ -12,17 +12,20 @@ import { PopoverController } from '@ionic/angular';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
-
+  public key: any;
+  public email: any;
   public userInfo = {};
   Posts = [];
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
-  
+
+
+  options = false;
   
   constructor(
     private pstService: PostService,
     private authService: AuthService,
     public firestore: AngularFirestore,
-    private popoverCtrl:PopoverController
+    private popoverCtrl: PopoverController
 
   ) { }
 
@@ -76,16 +79,24 @@ export class Tab1Page implements OnInit {
       console.log(res);
     });
   }
- 
 
-  async options(ev: any) {
+/*
+  async options(ev: any, id: string, email: string) {
+    id = this.Posts["$key"];
+    this.key = id;
+
+    email = this.Posts["emailUsuario"];
+    this.email = email;
+
     const popover = await this.popoverCtrl.create({
-        component: OptionsComponent,
-        event: ev,
-        animated: true,
-        showBackdrop: true
+      component: OptionsComponent,
+      event: ev,
+      animated: true,
+      showBackdrop: true
     });
     return await popover.present();
-}
+  }
+  
+  */
 
 }

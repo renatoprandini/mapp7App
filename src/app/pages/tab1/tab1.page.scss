@@ -79,3 +79,12 @@ ion-label{
 .line{
   border-bottom: 1px solid red;
 }
+
+.options{
+  z-index:99999;
+  display: block;
+  position: absolute;
+  border:1px solid black;
+  box-shadow:2px;
+  margin-left:10px;
+}

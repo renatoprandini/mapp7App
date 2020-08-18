@@ -20,11 +20,32 @@
 			<ion-label>
                 <h6>{{post.emailUsuario}}</h6>
                 <p class="data">{{post.dataPost}} {{post.timePost}}</p>
-				<ion-icon name="ellipsis-horizontal" color="light"  (click)="options($event)"></ion-icon>
+				<ion-icon name="ellipsis-horizontal" color="light"  (click)="options=!options"></ion-icon>
 			</ion-label>
             
           </ion-item>
         </ion-card-header>
+		    <div class="options" [hidden]="!options">
+			  <ion-list>
+  <ion-item>
+    Compartilhar<ion-icon name="share-social" color="vermelho"></ion-icon>
+  </ion-item>
+  
+  <ion-item *ngIf="post.emailUsuario === userLocal.email" [routerLink]="['/update-post/', post.$key]">
+	  Editar<ion-icon name="pencil" color="vermelho"></ion-icon>
+  </ion-item>
+
+  <ion-item *ngIf="post.emailUsuario === userLocal.email" (click)="deletePost(post.$key)">
+    Excluir <ion-icon name="trash" color="vermelho"></ion-icon>
+  </ion-item>
+  
+  <ion-item *ngIf="post.emailUsuario != userLocal.email">
+    Reportar <ion-icon name="warning" color="vermelho"></ion-icon>
+  </ion-item>
+</ion-list>
+			
+			
+			</div>
         <ion-card-header>
           <ion-card-title class="ion-text-center ion-padding" *ngIf="post.urgente == 'naourgente'">{{post.titulo}}
           </ion-card-title>
@@ -40,7 +61,7 @@
             </ion-row>
           </ion-grid>
         </ion-card-header>
-        <ion-card-content *ngIf="post.emailUsuario == userLocal.email" [routerLink]="['/update-post/', post.$key]">
+        <ion-card-content>
           <img src="https://boschpereirabarreto.com.br/wp-content/uploads/2018/09/carro-quebrado.jpg" />
 		  <div class="line">&nbsp;</div>
           <p class="ion-description">{{post.descricao}}</p>
