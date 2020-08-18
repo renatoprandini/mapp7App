@@ -27,6 +27,7 @@ export class SignupPage implements OnInit {
       primeiroNome: [''],
       ultimoNome: [''],
       tipo: [''],
+      foto: ['https://firebasestorage.googleapis.com/v0/b/tcc-mapp7.appspot.com/o/users%2Fprofile.png?alt=media&token=79fd7bc1-e427-4527-a9a2-3cead5447e33'],
     });
   }
 

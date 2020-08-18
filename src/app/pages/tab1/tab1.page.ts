@@ -3,8 +3,6 @@ import { PostService } from '../../services/post.service';
 import { AuthService } from '../../services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Post } from '../../models/post.model';
-import { OptionsComponent } from '../../components/options/options.component';
-import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -18,14 +16,15 @@ export class Tab1Page implements OnInit {
   Posts = [];
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
 
-
   options = false;
+  
+  public userInfo2= {};
+  public photo = {};
   
   constructor(
     private pstService: PostService,
     private authService: AuthService,
-    public firestore: AngularFirestore,
-    private popoverCtrl: PopoverController
+    public firestore: AngularFirestore
 
   ) { }
 
@@ -70,7 +69,8 @@ export class Tab1Page implements OnInit {
     // Pega os valores do caminho os subscreve no 'res'
     this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe(res => {
       this.userInfo = res;
-      console.log(res);
+      this.userInfo2 = res;
+      this.photo = res;
     });
   }
 
@@ -79,24 +79,5 @@ export class Tab1Page implements OnInit {
       console.log(res);
     });
   }
-
-/*
-  async options(ev: any, id: string, email: string) {
-    id = this.Posts["$key"];
-    this.key = id;
-
-    email = this.Posts["emailUsuario"];
-    this.email = email;
-
-    const popover = await this.popoverCtrl.create({
-      component: OptionsComponent,
-      event: ev,
-      animated: true,
-      showBackdrop: true
-    });
-    return await popover.present();
-  }
-  
-  */
 
 }

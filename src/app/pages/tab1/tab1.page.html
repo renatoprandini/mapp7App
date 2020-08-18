@@ -3,7 +3,6 @@
     <ion-thumbnail>
       <img src="../../../assets/logotcc.png" />
     </ion-thumbnail>
-
   </ion-toolbar>
 </ion-header>
 
@@ -14,8 +13,7 @@
         <ion-card-header color="vermelho">
           <ion-item class="user-bar">
             <ion-avatar slot="start">
-              <img
-                src="https://www.infomoney.com.br/wp-content/uploads/2019/06/homer-simpson.jpg?fit=900%2C734&quality=75&strip=all">
+              <img [src]="userInfo['foto']">
             </ion-avatar>
 			<ion-label>
                 <h6>{{post.emailUsuario}}</h6>

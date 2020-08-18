@@ -5,8 +5,8 @@ import { File } from '@ionic-native/file/ngx';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-// import { User } from '../../../models/user.model';
-// import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { User } from '../../../models/user.model';
+
 
 @Component({
   selector: 'app-change-photo',
@@ -25,27 +25,10 @@ export class ChangePhotoPage implements OnInit {
     private file: File,
     private afStorage: AngularFireStorage,
     public loadingController: LoadingController,
-    // public afStore: AngularFirestore,
   ) { }
 
   ngOnInit() {
   }
-
-  // SetUserData(user) {
-  //   const userRef: AngularFirestoreDocument<any> = this.afStore.doc(`Usuarios/${user.uid}`);
-  //   const userData: User = {
-  //     id: user.id,
-  //     email: user.email,
-  //     primeiroNome: user.primeiroNome,
-  //     ultimoNome: user.ultimoNome,
-  //     tipo: user.tipo,
-  //     foto: user.foto,
-  //     avaliacao: user.avaliacao
-  //   }
-  //   return userRef.set(userData, {
-  //     merge: true
-  //   })
-  // }
 
 
   async openGalery() {
@@ -91,8 +74,8 @@ export class ChangePhotoPage implements OnInit {
 
     task.snapshotChanges().pipe(
       finalize(() => {
-          ref.getDownloadURL().subscribe(data => {
-              console.log(`URL: ${data}`);
+          ref.getDownloadURL().subscribe(foto=> {
+              console.log(`URL: ${foto}`);
           });
       })
   ).subscribe();
@@ -108,9 +91,7 @@ export class ChangePhotoPage implements OnInit {
       duration: 2000
     });
     await loading.present();
-
-    const { role, data } = await loading.onDidDismiss();
-    console.log('Carregamento cancelado!');
   }
+
 
 }
