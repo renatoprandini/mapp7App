@@ -4,33 +4,62 @@ import { AuthService } from '../../services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Post } from '../../models/post.model';
 
+import * as firebase from 'firebase';
+
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
+
+  text: string;
+  chatRef: any;
+  uid: string;
+
   public key: any;
   public email: any;
   public userInfo = {};
   Posts = [];
-  userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
 
+  userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
   options = false;
-  
-  public userInfo2= {};
+
+
+
+  public userInfo2 = {};
   public photo = {};
-  
+
   constructor(
     private pstService: PostService,
     private authService: AuthService,
     public firestore: AngularFirestore
 
-  ) { }
+  ) {
+
+    this.uid = localStorage.getItem('userid');
+    this.chatRef = this.firestore.collection('chats', ref => ref.orderBy('Timestamp')).valueChanges();
+
+
+  }
+
+  send() {
+    if (this.text != '') {
+      this.firestore.collection('chats').add({
+        name: this.userInfo['primeiroNome'],
+        message: this.text,
+        userId: this.userLocal.email,
+        Timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      });
+    }
+    this.text = '';
+  }
 
   ngOnInit() {
     this.fetchUsersByEmail();
     this.fetchPosts();
+
 
     const postRes = this.pstService.getPostList();
     postRes.snapshotChanges().subscribe(res => {
@@ -41,24 +70,9 @@ export class Tab1Page implements OnInit {
         this.Posts.push(a as Post);
       });
     });
-
-
-    /* this.pstService.readProblema().subscribe(data => {
-      this.postList = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          isEdit: false,
-          titulo: e.payload.doc.data()['titulo'],
-          descricao: e.payload.doc.data()['descricao'],
-          urgente: e.payload.doc.data()['urgente'],
-          emailUsuario: e.payload.doc.data()['emailUsuario'],
-        };
-      });
-      console.log(this.postList);
-    }); */
   }
 
-  deletePost(id) {
+  deletePost(id: string) {
     console.log(id);
     if (window.confirm('Do you really want to delete?')) {
       this.pstService.deletePost(id);
@@ -79,5 +93,4 @@ export class Tab1Page implements OnInit {
       console.log(res);
     });
   }
-
 }

@@ -1,4 +1,7 @@
+import { User } from './../../models/user.model';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePage implements OnInit {
 
-  constructor() { }
+  private user:User;
+  private id: string = '';
+
+  constructor(private activeRoute: ActivatedRoute, private authService: AuthService) {
+
+     this.id = this.activeRoute.snapshot.params['email'];
+
+     if(this.id) this.userProfile();
+   }
 
   ngOnInit() {
+  }
+
+  userProfile(){
+    this.authService.readUsuarioById(this.id).valueChanges().subscribe(data =>{
+      this.user = data;
+    });
   }
 
 }

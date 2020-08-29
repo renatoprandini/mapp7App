@@ -126,6 +126,11 @@ export class AuthService {
     this.userRef = this.db.object(`/users/${userEmail}`);
     return this.userRef;
   }
+
+  readUsuarioById(userId) {
+    this.userRef = this.db.object(`/users/${userId}`);
+    return this.userRef;
+  }
   
   updateUsuario(userId, user) {
     this.firestore.doc(this.collectionName + '/' + userId).update(user);

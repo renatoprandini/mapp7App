@@ -9,29 +9,29 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="cinza">
+  <ion-card>
   <ion-list lines="full">
-    <form [formGroup]="updatePostForm" (ngSubmit)="updatePost()">
+    <form [formGroup]="updatePostForm">
 
-      <ion-item>
-        <ion-input class="inputT" position="floating" clearInput placeholder="Título" formControlName="titulo" type="text" required></ion-input>
+      <ion-item lines="none">
+        <ion-input class="inputT" position="floating" clearInput placeholder="Título" formControlName="titulo"
+          type="text" required></ion-input>
       </ion-item>
 
-      <ion-item>
-        <ion-input class="inputT" position="floating" clearInput placeholder="Descrição" formControlName="descricao" type="text" required>
+      <ion-item lines="none">
+        <ion-input class="inputT" position="floating" clearInput placeholder="Descrição" formControlName="descricao"
+          type="text" required>
         </ion-input>
       </ion-item>
 
-      <!-- <ion-item>
-        <ion-input class="inputT" position="floating" clearInput placeholder="Localização" formControlName="localizacao" type="text" required>
-        </ion-input>
-      </ion-item> -->
+
 
       <ion-row>
 
         <ion-col size="6">
 
-          <ion-item>
+          <ion-item lines="none">
             <input type="radio" id="urgente" value="urgente" formControlName="urgente" required ngModel />
             <p class="magicT" for="urgente"> Urgente </p>
             <br />
@@ -41,7 +41,7 @@
 
         <ion-col size="6">
 
-          <ion-item>
+          <ion-item lines="none">
             <input type="radio" id="naourgente" value="naourgente" formControlName="urgente" required ngModel />
             <p class="magicT" for="naourgente"> Não Urgente </p>
             <br />
@@ -53,9 +53,12 @@
 
       <ion-row>
         <ion-col>
-          <ion-button class="textT" color="vermelho" type="submit" shape="full" expand="block">Atualizar Post</ion-button>
+          <ion-button class="textT" color="vermelho" type="submit" shape="full" fill="outline" expand="block" (click)="updatePosts()">
+            <ion-icon name="save-outline"></ion-icon>
+          </ion-button>
         </ion-col>
       </ion-row>
     </form>
   </ion-list>
+  </ion-card>
 </ion-content>

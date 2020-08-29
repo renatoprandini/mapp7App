@@ -10,45 +10,47 @@
 <ion-content color="cinza" [fullscreen]="true">
   <ion-card *ngFor="let mecanico of Users ; let i = index">
     <span *ngIf="!mecanico.isRate; else elseBlock">
-      <ion-item-sliding>
-        <ion-item>
-          <ion-avatar slot="start">
-            <img [src]="">
-          </ion-avatar>
-          <ion-label>
-            <h2 id="titulo">{{mecanico.primeiroNome }}</h2>
-            <ion-chip outline color="dark">
-              <ion-icon name="medal-outline"></ion-icon>
-              <ion-label>{{i + 1}}º</ion-label>
-              &nbsp;&nbsp;&nbsp;&nbsp;
-              <div *ngIf="i+1 === 1">
-                <ion-icon name="trophy" color="warning"></ion-icon>
-              </div>
+      <ion-item lines="none" [routerLink]="['/profile',mecanico.id]">
+        <ion-avatar slot="start">
+          <img [src]="mecanico.foto">
+        </ion-avatar>
+        <ion-label>
+          <h2 id="titulo">{{mecanico.primeiroNome}} {{mecanico.ultimoNome }}</h2>
+          <ion-chip outline color="dark">
+            <ion-icon name="medal-outline"></ion-icon>
+            <ion-label>{{i + 1}}º</ion-label>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <div *ngIf="i+1 === 1">
+              <ion-icon name="trophy" color="warning"></ion-icon>
+            </div>
 
-              <div *ngIf="i+1 === 2">
-                <ion-icon name="trophy" color="tertiary"></ion-icon>
-              </div>
+            <div *ngIf="i+1 === 2">
+              <ion-icon name="trophy" color="tertiary"></ion-icon>
+            </div>
 
-              <div *ngIf="i+1 === 3">
-                <ion-icon name="trophy" color="secondary"></ion-icon>
-              </div>
+            <div *ngIf="i+1 === 3">
+              <ion-icon name="trophy" color="secondary"></ion-icon>
+            </div>
 
-              <div *ngIf="i+1 > 3">
-                <ion-icon name="medal-outline" color="danger"></ion-icon>
-              </div>
+            <div *ngIf="i+1 > 3">
+              <ion-icon name="medal-outline" color="danger"></ion-icon>
+            </div>
 
-              <ion-label>&nbsp;{{mecanico.avaliacao}}</ion-label>
-            </ion-chip>
-          </ion-label>
-        </ion-item>
+            <ion-label>&nbsp;{{mecanico.avaliacao}}</ion-label>
+          </ion-chip>
+        </ion-label>
 
-
-        <ion-item-options side="end">
-          <ion-button shape="round" color="secondary" size="small" (click)="initAvaliacao(mecanico)">
+        <div *ngIf="userInfo['tipo'] === 'cliente'">
+          <ion-button shape="round" color="vermelho" size="small" (click)="initAvaliacao(mecanico)">
             <ion-icon size="small" slot="icon-only" name="star"></ion-icon>
           </ion-button>
-        </ion-item-options>
-      </ion-item-sliding>
+        </div>
+
+      </ion-item>
+
+
+
+
 
     </span>
     <ng-template #elseBlock>
@@ -79,10 +81,10 @@
 
         </ion-item>
         <ion-button fill="solid" color="medium" size="small" (click)="mecanico.isRate = false">
-          X
+          <ion-icon name="close-outline"></ion-icon>
         </ion-button>
         <ion-button fill="solid" color="success" size="small" (click)="avaliarMecanico(mecanico)">
-          >>>
+          <ion-icon name="star-outline"></ion-icon>
         </ion-button>
       </ion-card-content>
     </ng-template>

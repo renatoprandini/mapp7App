@@ -3,7 +3,8 @@ import { PostService } from 'src/app/services/post.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 
 @Component({
@@ -15,35 +16,46 @@ export class UpdatePostPage implements OnInit {
   updatePostForm: FormGroup;
   id: any;
 
+
+
+
+  postId: string;
+
   constructor(
     private pstService: PostService,
     private authService: AuthService,
     public firestore: AngularFirestore,
     public fb: FormBuilder,
     private router: Router,
-  ) { }
+    private activeRoute: ActivatedRoute
+  ) {
+
+    this.postId = this.activeRoute.snapshot.params['$key'];
+  
+
+  }
 
   ngOnInit() {
     this.updatePostForm = this.fb.group({
       titulo: [''],
       descricao: [''],
-      localizacao: [''],
       urgente: [''],
-	  dataPost: new Date().toLocaleDateString(),
+      dataPost: new Date().toLocaleDateString(),
       timePost: new Date().toLocaleTimeString()
     })
-    console.log(this.updatePostForm.value)
+    console.log(this.updatePostForm.value);
+	
   }
 
   deleteProblema(id) {
     console.log(id);
     if (window.confirm('Do you really want to delete?')) {
-      this.pstService.deletePost(id);
+      this.pstService.deletePost(this.postId);
     }
   }
 
-  updatePost() {
-    this.pstService.updatePost(this.id, this.updatePostForm.value)
+  updatePosts() {
+    this.pstService.updatePost(this.postId, this.updatePostForm.value)
       .then(() => {
         this.router.navigate(['/home']);
       })

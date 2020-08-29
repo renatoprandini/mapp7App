@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { Camera } from '@ionic-native/camera/ngx';
@@ -36,7 +36,8 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera,
     File,
-    Keyboard
+    Keyboard,
+    AngularFireDatabase
   ],
   bootstrap: [AppComponent]
 })

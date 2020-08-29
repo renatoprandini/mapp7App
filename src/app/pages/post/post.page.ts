@@ -36,7 +36,6 @@ export class PostPage implements OnInit {
       titulo: [''],
       descricao: [''],
       imagem: [''],
-      localizacao: [''],
       urgente: [''],
       emailUsuario: this.userEmail.email,
       dataPost: new Date().toLocaleDateString(),

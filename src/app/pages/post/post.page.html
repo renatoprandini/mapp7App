@@ -11,53 +11,56 @@
 
 <ion-content>
   <ion-list lines="full">
-    <form [formGroup]="postForm">
 
-      <ion-item>
-        <ion-input class="inputT" position="floating" clearInput placeholder="Título" formControlName="titulo" minlength="5"
-          maxlength="20" type="text" required></ion-input>
-      </ion-item>
+    <ion-card>
+      <div class="titulo">
+        <h5>Seu problema pode ser resolvido com poucos cliques :)</h5>
+      </div>
 
-      <ion-item>
-        <ion-textarea class="inputT" type="text" clearInput placeholder="Descrição" formControlName="descricao" rows="6" cols="20"
-          minlength="10" maxlength="150" required></ion-textarea>
-      </ion-item>
+      <form [formGroup]="postForm">
+        <ion-item lines="none">
+          <ion-input class="inputT" position="floating" clearInput placeholder="Título" formControlName="titulo"
+            minlength="5" maxlength="20" type="text" required></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-input class="inputT" type="text" clearInput placeholder="Localização" formControlName="localizacao" rows="6" cols="20"
-          minlength="10" maxlength="150" required></ion-input>
-      </ion-item>
+        <ion-item lines="none">
+          <ion-textarea class="inputT" type="text" clearInput placeholder="Descrição" formControlName="descricao"
+            rows="6" cols="20" minlength="10" maxlength="150" required></ion-textarea>
+        </ion-item>
 
-      <ion-row>
+        <ion-row>
 
-        <ion-col size="6">
+          <ion-col size="6">
 
-          <ion-item>
-            <input type="radio" id="urgente" value="urgente" formControlName="urgente" required ngModel />
-            <p class="magicT" for="urgente"> Urgente </p>
-            <br />
-          </ion-item>
+            <ion-item lines="none">
+              <input type="radio" id="urgente" value="urgente" formControlName="urgente" required ngModel />
+              <p class="magicT" for="urgente"> Urgente </p>
+              <br />
+            </ion-item>
 
-        </ion-col>
+          </ion-col>
 
-        <ion-col size="6">
+          <ion-col size="6">
 
-          <ion-item>
-            <input type="radio" id="naourgente" value="naourgente" formControlName="urgente" required ngModel />
-            <p class="magicT" for="naourgente"> Não Urgente </p>
-            <br />
-          </ion-item>
+            <ion-item lines="none">
+              <input type="radio" id="naourgente" value="naourgente" formControlName="urgente" required ngModel />
+              <p class="magicT" for="naourgente"> Não Urgente </p>
+              <br />
+            </ion-item>
 
 
-        </ion-col>
-      </ion-row>
+          </ion-col>
+        </ion-row>
 
-      <ion-row>
-        <ion-col>
-          <ion-button color="vermelho" shape="full" expand="block" (click)="formSubmit()" [disabled]="!postForm.valid">
-            Postar</ion-button>
-        </ion-col>
-      </ion-row>
-    </form>
+        <ion-row>
+          <ion-col>
+            <ion-button color="vermelho" shape="full" fill="outline" expand="block" (click)="formSubmit()"
+              [disabled]="!postForm.valid">
+              <ion-icon name="send-outline"></ion-icon> Enviar
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-card>
   </ion-list>
 </ion-content>

@@ -42,8 +42,8 @@ ion-list {
 }
 
 ion-card {
-  min-width: 278px;
-
+  min-width: 350px;
+  max-width: 350px;
   ::first-letter {
     text-transform: capitalize !important;
   }

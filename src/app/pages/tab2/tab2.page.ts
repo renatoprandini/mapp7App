@@ -29,17 +29,12 @@ export class Tab2Page implements OnInit {
       this.Users = [];
       res.forEach(item => {
         let teste = item.payload.toJSON();
-
         if (teste['tipo'] === 'mecanico') {
-
           this.Users.sort(sortBy('-avaliacao'));
           this.Users.push(teste as User);
-
         } else {
           return
         }
-
-
       });
     });
 

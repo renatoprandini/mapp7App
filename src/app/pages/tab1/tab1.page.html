@@ -1,8 +1,21 @@
 <ion-header>
   <ion-toolbar color="cinza" class="ion-padding-horizontal">
-    <ion-thumbnail>
-      <img src="../../../assets/logotcc.png" />
-    </ion-thumbnail>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-thumbnail>
+            <img src="../../../assets/logotcc.png" />
+          </ion-thumbnail>
+
+        </ion-col>
+        <ion-col size="6">
+          <ion-button color="dark" fill="outline" routerLink="/post">
+            <ion-icon name="add-outline"></ion-icon>
+            Criar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 
@@ -15,35 +28,35 @@
             <ion-avatar slot="start">
               <img [src]="userInfo['foto']">
             </ion-avatar>
-			<ion-label>
-                <h6>{{post.emailUsuario}}</h6>
-                <p class="data">{{post.dataPost}} {{post.timePost}}</p>
-				<ion-icon name="ellipsis-horizontal" color="light"  (click)="options=!options"></ion-icon>
-			</ion-label>
-            
+            <ion-label>
+              <h6>{{post.emailUsuario}}</h6>
+              <p class="data">{{post.dataPost}} {{post.timePost}}</p>
+              <ion-icon name="ellipsis-horizontal" color="light" (click)="options=!options"></ion-icon>
+            </ion-label>
+
           </ion-item>
         </ion-card-header>
-		    <div class="options" [hidden]="!options">
-			  <ion-list>
-  <ion-item>
-    Compartilhar<ion-icon name="share-social" color="vermelho"></ion-icon>
-  </ion-item>
-  
-  <ion-item *ngIf="post.emailUsuario === userLocal.email" [routerLink]="['/update-post/', post.$key]">
-	  Editar<ion-icon name="pencil" color="vermelho"></ion-icon>
-  </ion-item>
+        <div class="options" [hidden]="!options">
+          <ion-list>
+            <ion-item>
+              Compartilhar<ion-icon name="share-social" color="vermelho"></ion-icon>
+            </ion-item>
 
-  <ion-item *ngIf="post.emailUsuario === userLocal.email" (click)="deletePost(post.$key)">
-    Excluir <ion-icon name="trash" color="vermelho"></ion-icon>
-  </ion-item>
-  
-  <ion-item *ngIf="post.emailUsuario != userLocal.email">
-    Reportar <ion-icon name="warning" color="vermelho"></ion-icon>
-  </ion-item>
-</ion-list>
-			
-			
-			</div>
+            <ion-item *ngIf="post.emailUsuario === userLocal.email" [routerLink]="['/update-post/', post.$key]">
+              Editar<ion-icon name="pencil" color="vermelho"></ion-icon>
+            </ion-item>
+
+            <ion-item *ngIf="post.emailUsuario === userLocal.email" (click)="deletePost(post.$key)">
+              Excluir <ion-icon name="trash" color="vermelho"></ion-icon>
+            </ion-item>
+
+            <ion-item *ngIf="post.emailUsuario != userLocal.email">
+              Reportar <ion-icon name="warning" color="vermelho"></ion-icon>
+            </ion-item>
+          </ion-list>
+
+
+        </div>
         <ion-card-header>
           <ion-card-title class="ion-text-center ion-padding" *ngIf="post.urgente == 'naourgente'">{{post.titulo}}
           </ion-card-title>
@@ -60,17 +73,29 @@
           </ion-grid>
         </ion-card-header>
         <ion-card-content>
-          <img src="https://boschpereirabarreto.com.br/wp-content/uploads/2018/09/carro-quebrado.jpg" />
-		  <div class="line">&nbsp;</div>
+
           <p class="ion-description">{{post.descricao}}</p>
         </ion-card-content>
+
+        <div *ngFor="let chat of chatRef | async">
+          <div *ngIf="uid == chat.userId">
+            {{chat.message}}
+          </div>
+
+          <div *ngIf="uid != chat.UserId">
+            <span> {{chat.name}} {{chat.Timestamp}}</span>
+            {{chat.message}}
+          </div>
+        </div>
+
+        <ion-item lines="none">
+          <ion-input [(ngModel)]="text"> </ion-input>
+          <ion-button (click)="send()">
+            <ion-icon name="send"></ion-icon>
+          </ion-button>
+        </ion-item>
+
       </ion-card>
     </ion-item>
   </ion-list>
-
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button color="vermelho" routerLink="/post">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>

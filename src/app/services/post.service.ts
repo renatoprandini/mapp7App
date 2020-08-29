@@ -47,7 +47,6 @@ export class PostService {
       titulo: pst.titulo,
       descricao: pst.descricao,
       imagem: pst.imagem,
-      localizacao: pst.localizacao,
       urgente: pst.urgente,
       emailUsuario: pst.emailUsuario,
       dataPost: pst.dataPost,
@@ -73,7 +72,6 @@ export class PostService {
     return this.postRef.update({
       titulo: pst.titulo,
       descricao: pst.descricao,
-      localizacao: pst.localizacao,
       urgente: pst.urgente,
       dataPost: pst.dataPost,
       timePost: pst.timePost
