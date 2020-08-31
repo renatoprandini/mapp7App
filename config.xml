@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Mapp7</name>
-    <description></description>
-    <author email="hi@ionicframework.com" href="http://ionicframework.com/">Leonardo, Renato e Vinicius</author>
-    <content original-src="index.html" src="http://localhost:8100" />
+    <name>MyApp</name>
+    <description>An awesome Ionic/Cordova app.</description>
+    <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -102,5 +102,4 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <allow-navigation href="http://localhost:8100" sessionid="4c714e69" />
 </widget>
