@@ -60,11 +60,10 @@ export class LoginPage implements OnInit {
       });
   }
 
-  // Função para ir a página de Singup
   async goToSignup() {
-    // Navega para a página 'singup'
     this.navCtrl.navigateForward('signup');
   }
+
   logIn(email, password) {
     this.authService.SignIn(email.value, password.value)
       .then((res) => {

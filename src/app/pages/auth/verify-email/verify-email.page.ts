@@ -11,7 +11,7 @@ export class VerifyEmailPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private fireAuth: AngularFireAuth
+    private ngFireAuth: AngularFireAuth
   ) { }
 
   ngOnInit() {
@@ -22,8 +22,8 @@ export class VerifyEmailPage implements OnInit {
     this.navCtrl.navigateForward('login');
   }
 
-  verificationMail() {
-    this.fireAuth.auth.currentUser.sendEmailVerification();
+  async verificationMail() {
+     (await this.ngFireAuth.currentUser).sendEmailVerification()
   }
 
 }

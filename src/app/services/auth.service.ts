@@ -56,6 +56,13 @@ export class AuthService {
       });
   }
 
+  async SendVerificationMail() {
+    return (await this.ngFireAuth.currentUser).sendEmailVerification()
+      .then(() => {
+        this.router.navigate(['verify-email']);
+      });
+  }
+
   // Recover password
   PasswordRecover(passwordResetEmail) {
     return this.ngFireAuth.sendPasswordResetEmail(passwordResetEmail)
@@ -97,6 +104,7 @@ export class AuthService {
     const userData: User = {
       id: user.id,
       email: user.email,
+      emailVerified: user.emailVerified,
       primeiroNome: user.primeiroNome,
       ultimoNome: user.ultimoNome,
       tipo: user.tipo,
