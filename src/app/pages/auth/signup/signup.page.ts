@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { User } from '../../../models/user.model';
 
 @Component({
@@ -11,7 +11,10 @@ import { User } from '../../../models/user.model';
 })
 export class SignupPage implements OnInit {
   userData: User;
+
   userForm: FormGroup;
+  error = '';
+  success = '';
 
   constructor(
     public authService: AuthService,

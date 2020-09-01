@@ -14,42 +14,64 @@
     </ion-col>
   </ion-row>
 
+  <form class="form" [formGroup]="validations" (ngSubmit)="logIn(validations.value)">
   <ion-card color="light">
     <ion-list lines="none">
-      <form>
 
-
-        <ion-input position="floating" clearInput placeholder="Email" type="text" #email required></ion-input>
+        <ion-item>
+          <ion-input position="floating" formControlName="email" clearInput placeholder="Email" type="text" #email required></ion-input>
+          <ng-container *ngFor="let validation of validationsMSG.email">
+            <div class="error-message"
+              *ngIf="validations.get('email').hasError(validation.type) && (validations.get('email').dirty || validations.get('email').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </ion-item>
+        
         <br>
-        <ion-input position="floating" clearInput placeholder="Senha" type="password" #password required></ion-input>
 
-      </form>
+        <ion-item>
+          <ion-input position="floating" formControlName="password" clearInput placeholder="Senha" type="password" #password required></ion-input>
+          <ng-container *ngFor="let validation of validationsMSG.password">
+            <div class="error-message"
+              *ngIf="validations.get('password').hasError(validation.type) && (validations.get('password').dirty || validations.get('password').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </ion-item>
+        
+
 
     </ion-list>
   </ion-card>
   <br>
 
 
-  <ion-button class="textT" color="vermelho" shape="round" expand="full" size="medium" type="submit"
+  <ion-button [disabled]="!validations.valid" class="textT" color="vermelho" shape="round" expand="full" size="medium" type="submit"
     (click)="logIn(email, password)">
     Entrar
   </ion-button>
-
+</form>
   <br>
 
-  <!-- <ion-button class="textB" color="vermelho" shape="round" expand="full" size="medium" type="submit"
-  (click)="logInWithGoogle()">
-  <ion-icon slot="start" name="logo-google"d></ion-icon>
-  <ion-text class="textB">Login com Google</ion-text>
-</ion-button> -->
 
 <br>
 
-  <ion-button class="textT" fill="clear" expand="full" routerLink="/signup">
+  <ion-button class="textT" fill="clear" expand="full" (click)="goToSignup()">
     Ainda não sou cadastrado!
   </ion-button>
 
 </ion-content>
+
+
+
+
+
+
+
+
+
+
 
 <!--
 <ion-header>
@@ -78,3 +100,10 @@
   </form>
 </ion-content>
 -->
+
+
+  <!-- <ion-button class="textB" color="vermelho" shape="round" expand="full" size="medium" type="submit"
+  (click)="logInWithGoogle()">
+  <ion-icon slot="start" name="logo-google"d></ion-icon>
+  <ion-text class="textB">Login com Google</ion-text>
+</ion-button> -->
