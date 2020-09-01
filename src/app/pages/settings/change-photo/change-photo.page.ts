@@ -73,17 +73,19 @@ export class ChangePhotoPage implements OnInit {
 
     this.uploadPercent = task.percentageChanges();
 
-    task.snapshotChanges().pipe(
-      finalize(() => this.downloadUrl = ref.getDownloadURL())
-    ).subscribe();
+    // task.snapshotChanges().pipe(
+    //   finalize(() => this.downloadUrl = ref.getDownloadURL())
+    // ).subscribe();
 
-  //   task.snapshotChanges().pipe(
-  //     finalize(() => {
-  //         ref.getDownloadURL().subscribe(foto=> {
-  //             console.log(`URL: ${this.userLocal.foto}`);
-  //         });
-  //     })
-  // ).subscribe();
+    task.snapshotChanges().pipe(
+      finalize(() => {
+          ref.getDownloadURL().subscribe(foto=> {
+              console.log(`URL: ${foto}`);
+              this.userLocal.foto = this.downloadUrl;
+
+          });
+      })
+  ).subscribe();
 
   }
 
@@ -96,6 +98,7 @@ export class ChangePhotoPage implements OnInit {
   }
 
   submitPhoto() {
+    const ref = this.afStorage.ref('users/profile.jpg');
     this.userLocal.foto = this.downloadUrl;
   }
 
