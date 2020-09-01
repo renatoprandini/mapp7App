@@ -61,21 +61,20 @@ export class LoginPage implements OnInit {
   }
 
   async goToSignup() {
-    this.navCtrl.navigateForward('signup');
+    this.navCtrl.navigateBack('signup');
   }
 
   logIn(email, password) {
     this.authService.SignIn(email.value, password.value)
       .then((res) => {
-        this.router.navigate(['/tabs/tab1']);
          if (this.authService.isEmailVerified) {
-          this.router.navigate(['tabs']);
+          this.router.navigate(['/tabs/tab1']);
         } else {
           window.alert('Email não verificado');
           return false;
         } 
       }).catch((error) => {
-        if (error.message === 'Cannot read property \'emailVerified\' of null') {
+        if (error.message === 'O email não foi verificado! Verifique sua caixa de entrada') {
           this.logIn(email.value, password.value);
         }
         console.log(error.message);

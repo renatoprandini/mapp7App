@@ -14,7 +14,7 @@
     </ion-col>
   </ion-row>
 
-  <form class="form" [formGroup]="validations" (ngSubmit)="logIn(validations.value)">
+  <form class="form" [formGroup]="validations" (ngSubmit)="logIn(user.email, user.password)">
   <ion-card color="light">
     <ion-list lines="none">
 

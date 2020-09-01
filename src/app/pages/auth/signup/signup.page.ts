@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { User } from '../../../models/user.model';
+import { NavController, ToastController } from '@ionic/angular';
+import { ComparacaoValidator } from '../../../validators/comparacao-validator';
 
 @Component({
   selector: 'app-signup',
@@ -10,23 +12,59 @@ import { User } from '../../../models/user.model';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
-  userData: User;
 
   userForm: FormGroup;
   error = '';
   success = '';
 
+  validationsMSG = {
+    email: [
+      { type: 'required', message: 'O campo email é obrigatório' },
+      { type: 'pattern', message: 'Insira um email válido.' }
+    ],
+    password: [
+      { type: 'required', message: 'O campo senha é obrigatório' },
+      { type: 'minlength', message: 'A senha deve ter pelo menos 5 caracteres' }
+    ],
+    confirm: [
+      { type: 'required', message: 'O campo confirmar senha é obrigatório'},
+      { type: 'minlength', message: 'A senha deve ter pelo menos 5 caracteres'},
+      { type: 'comparacao', message: 'As senhas devem ser iguais' }
+    ],
+    primeiroNome: [
+      { type: 'required', message: 'Insira seu nome' },
+      { type: 'maxlength', message: 'O nome pode ter no máximo 15 caracteres.' }
+    ],
+    ultimoNome: [
+      { type: 'required', message: 'Insira seu sobrenome' },
+      { type: 'maxlength', message: 'O sobrenome pode ter no máximo 15 caracteres.' }
+    ]
+  };
+
   constructor(
     public authService: AuthService,
     public router: Router,
     public fb: FormBuilder,
+    private navCtrl: NavController,
+    private toastCtrl: ToastController,
   ) {
-    this.userData = {} as User;
+
+    this.userForm = fb.group({
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+      confirm: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+      primeiroNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
+      ultimoNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
+    }, {
+      validator: ComparacaoValidator('password', 'confirm')
+    });
   }
 
   ngOnInit(){
     this.userForm = this.fb.group({
       email: [''],
+      password: [''],
+      confirm: [''],
       primeiroNome: [''],
       ultimoNome: [''],
       tipo: [''],
@@ -34,16 +72,27 @@ export class SignupPage implements OnInit {
     });
   }
 
+  async showMessage(message: string) {
+    await this.toastCtrl.create({ message: message, duration: 3000 })
+      .then((toastData) => {
+        console.log(toastData);
+        toastData.present();
+      });
+  }
+
+
   signUp(email, password){
     this.authService.RegisterUser(email.value, password.value, this.userForm.value)
     .then((res) => {
-      this.userForm.reset();
-      this.router.navigate(['login']);
+      this.authService.SendVerificationMail();
+      this.router.navigate(['verify-email']);
     }).catch((error) => {
-      console.log(error);
-      window.alert(error.message);
-    })
-}
+      const delay = 500;
+        setTimeout(() => {
+          this.showMessage(error.message);
+        }, delay);
+      });
+  }
 
 
 
