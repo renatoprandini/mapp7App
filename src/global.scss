@@ -31,3 +31,19 @@ ion-title{
     font-weight: 800;  
 }
 
+.toastError {
+    --background: #e02041;
+    --color: #FFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.errorMSG {
+        font-size: 11px;
+        color: #e02041;
+        font-family: 'Roboto', sans-serif;
+    }
+
+

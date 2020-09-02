@@ -19,24 +19,24 @@ export class SignupPage implements OnInit {
 
   validationsMSG = {
     email: [
-      { type: 'required', message: 'O campo email é obrigatório' },
-      { type: 'pattern', message: 'Insira um email válido.' }
+      { type: 'required', message: '* Obrigatório' },
+      { type: 'pattern', message: 'Insira um email valido.' }
     ],
     password: [
-      { type: 'required', message: 'O campo senha é obrigatório' },
+      { type: 'required', message: '* Obrigatório' },
       { type: 'minlength', message: 'A senha deve ter pelo menos 5 caracteres' }
     ],
     confirm: [
-      { type: 'required', message: 'O campo confirmar senha é obrigatório'},
+      { type: 'required', message: '* Obrigatório'},
       { type: 'minlength', message: 'A senha deve ter pelo menos 5 caracteres'},
       { type: 'comparacao', message: 'As senhas devem ser iguais' }
     ],
     primeiroNome: [
-      { type: 'required', message: 'Insira seu nome' },
+      { type: 'required', message: '* Obrigatório' },
       { type: 'maxlength', message: 'O nome pode ter no máximo 15 caracteres.' }
     ],
     ultimoNome: [
-      { type: 'required', message: 'Insira seu sobrenome' },
+      { type: 'required', message: '* Obrigatório' },
       { type: 'maxlength', message: 'O sobrenome pode ter no máximo 15 caracteres.' }
     ]
   };
@@ -47,33 +47,33 @@ export class SignupPage implements OnInit {
     public fb: FormBuilder,
     private navCtrl: NavController,
     private toastCtrl: ToastController,
-  ) {
-
-    this.userForm = fb.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      confirm: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      primeiroNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
-      ultimoNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
-    }, {
-      validator: ComparacaoValidator('password', 'confirm')
-    });
-  }
+  ) {} 
 
   ngOnInit(){
+
+
     this.userForm = this.fb.group({
-      email: [''],
-      password: [''],
-      confirm: [''],
-      primeiroNome: [''],
-      ultimoNome: [''],
+      email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
+      password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
+      confirm: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
+      primeiroNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
+      ultimoNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
       tipo: [''],
       foto: ['https://firebasestorage.googleapis.com/v0/b/tcc-mapp7.appspot.com/o/users%2Fprofile.png?alt=media&token=79fd7bc1-e427-4527-a9a2-3cead5447e33'],
-    });
+    },
+    {
+      validator: ComparacaoValidator('password', 'confirm')
+    },);
+
+    
   }
 
   async showMessage(message: string) {
-    await this.toastCtrl.create({ message: message, duration: 3000 })
+    await this.toastCtrl.create({ 
+      message: message, 
+      duration: 5000,
+      cssClass: "toastError"  
+    })
       .then((toastData) => {
         console.log(toastData);
         toastData.present();
@@ -89,7 +89,7 @@ export class SignupPage implements OnInit {
     }).catch((error) => {
       const delay = 500;
         setTimeout(() => {
-          this.showMessage(error.message);
+          this.showMessage('Email não disponível<br/>O email inserido já está em uso!!');
         }, delay);
       });
   }

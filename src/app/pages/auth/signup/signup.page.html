@@ -47,9 +47,10 @@
       <form class="form" [formGroup]="userForm">
 
         <ion-item>
-          <ion-input position="floating" formControlName="email" clearInput placeholder="Email" type="text" #email required></ion-input>
+          <ion-input position="floating" formControlName="email" placeholder="Email" type="text" #email
+            required></ion-input>
           <ng-container *ngFor="let validation of validationsMSG.email">
-            <div class="error-message"
+            <div class="errorMSG"
               *ngIf="userForm.get('email').hasError(validation.type) && (userForm.get('email').dirty || userForm.get('email').touched)">
               {{ validation.message }}
             </div>
@@ -57,9 +58,10 @@
         </ion-item>
 
         <ion-item>
-          <ion-input position="floating" clearInput placeholder="Senha" type="password" #password></ion-input>
+          <ion-input position="floating" formControlName="password" placeholder="Senha" type="password" #password
+            required minlength="5"></ion-input>
           <ng-container *ngFor="let validation of validationsMSG.password">
-            <div class="error-message"
+            <div class="errorMSG"
               *ngIf="userForm.get('password').hasError(validation.type) && (userForm.get('password').dirty || userForm.get('password').touched)">
               {{ validation.message }}
             </div>
@@ -67,9 +69,10 @@
         </ion-item>
 
         <ion-item>
-          <ion-input position="floating" clearInput placeholder="Confirme a senha" type="password" #confirm></ion-input>
+          <ion-input position="floating" formControlName="confirm" placeholder="Confirme a senha" type="password"
+            #confirm required minlength="5"></ion-input>
           <ng-container *ngFor="let validation of validationsMSG.confirm">
-            <div class="error-message"
+            <div class="errorMSG"
               *ngIf="userForm.get('confirm').hasError(validation.type) && (userForm.get('confirm').dirty || userForm.get('confirm').touched)">
               {{ validation.message }}
             </div>
@@ -77,40 +80,28 @@
         </ion-item>
 
 
-        <ion-grid class="ion-no-padding">
+        <ion-item>
+          <ion-input position="floating" placeholder="Nome" type="text" #primeiroNome required
+            formControlName="primeiroNome"></ion-input>
+          <ng-container *ngFor="let validation of validationsMSG.primeiroNome">
+            <div class="errorMSG"
+              *ngIf="userForm.get('primeiroNome').hasError(validation.type) && (userForm.get('primeiroNome').dirty || userForm.get('primeiroNome').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </ion-item>
 
-          <ion-row>
 
-            <ion-col size="6">
-
-              <ion-item>
-                <ion-input position="floating" clearInput placeholder="Nome" type="text" #primeiroNome required formControlName="primeiroNome"></ion-input>
-                <ng-container *ngFor="let validation of validationsMSG.primeiroNome">
-                  <div class="error-message"
-                    *ngIf="userForm.get('primeiroNome').hasError(validation.type) && (userForm.get('primeiroNome').dirty || userForm.get('primeiroNome').touched)">
-                    {{ validation.message }}
-                  </div>
-                </ng-container>
-              </ion-item>
-
-            </ion-col>
-
-            <ion-col size="6">
-
-              <ion-item>
-                <ion-input position="floating" clearInput placeholder="Sobrenome" type="text" #ultimoNome required formControlName="ultimoNome"></ion-input>
-                <ng-container *ngFor="let validation of validationsMSG.ultimoNome">
-                  <div class="error-message"
-                    *ngIf="userForm.get('ultimoNome').hasError(validation.type) && (userForm.get('ultimoNome').dirty || userForm.get('ultimoNome').touched)">
-                    {{ validation.message }}
-                  </div>
-                </ng-container>
-              </ion-item>
-            </ion-col>
-
-          </ion-row>
-
-        </ion-grid>
+        <ion-item>
+          <ion-input position="floating" placeholder="Sobrenome" type="text" #ultimoNome required
+            formControlName="ultimoNome"></ion-input>
+          <ng-container *ngFor="let validation of validationsMSG.ultimoNome">
+            <div class="errorMSG"
+              *ngIf="userForm.get('ultimoNome').hasError(validation.type) && (userForm.get('ultimoNome').dirty || userForm.get('ultimoNome').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </ion-item>
 
         <ion-grid>
           <p class="magicT"> Tipo de Conta: </p>
@@ -149,8 +140,8 @@
   <br />
 
 
-  <ion-button [disabled]="!userForm.valid" class="textT" color="vermelho" shape="round" expand="full" size="medium" type="submit"
-    (click)="signUp(email, password, primeiroNome, ultimoNome, tipo)">
+  <ion-button [disabled]="!userForm.valid" class="textT" color="vermelho" shape="round" expand="full" size="medium"
+    type="submit" (click)="signUp(email, password, primeiroNome, ultimoNome, tipo)">
     Cadastrar
   </ion-button>
 

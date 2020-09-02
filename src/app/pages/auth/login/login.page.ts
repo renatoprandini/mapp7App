@@ -18,12 +18,12 @@ export class LoginPage implements OnInit {
 
   validationsMSG = {
     email: [
-      { type: 'required', message: 'O campo email é obrigatório' },
+      { type: 'required', message: '* Obrigatório' },
       { type: 'pattern', message: 'Insira um email válido.' }
     ],
     password: [
-      { type: 'required', message: 'O campo senha é obrigatório' },
-      { type: 'minlength', message: 'É obrigatório a senha com mais de 5 caracteres.' }
+      { type: 'required', message: '* Obrigatório' },
+      { type: 'minlength', message: '* Obrigatório: acima de 5 caracteres.' }
     ]
   };
 
@@ -46,14 +46,29 @@ export class LoginPage implements OnInit {
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
       password: new FormControl('', Validators.compose([
-        Validators.minLength(5),
         Validators.required
       ])),
     });
+
+    this.verifyLogin();
+  }
+
+  private async verifyLogin() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    if (this.user !== null && this.user.emailVerified === true) {
+      const loading = await this.loadingCtrl.create({ message: 'Aguarde um momento...' });
+      loading.present();
+      this.navCtrl.navigateRoot('tabs/tab1');
+      loading.dismiss();
+    }
   }
 
   async showMessage(message: string) {
-    await this.toastCtrl.create({ message: message, duration: 4000 })
+    await this.toastCtrl.create({ 
+      message: message, 
+      duration: 5000,
+      cssClass: "toastError"  
+    })
       .then((toastData) => {
         console.log(toastData);
         toastData.present();
@@ -70,13 +85,14 @@ export class LoginPage implements OnInit {
          if (this.authService.isEmailVerified) {
           this.router.navigate(['/tabs/tab1']);
         } else {
-          window.alert('Email não verificado');
+          this.showMessage('Email não verificado<br/>Verifique sua caixa de entrada!');
           return false;
         } 
       }).catch((error) => {
-        if (error.message === 'O email não foi verificado! Verifique sua caixa de entrada') {
+        if (error.message === 'Email não verificado<br/>Verifique sua caixa de entrada!') {
           this.logIn(email.value, password.value);
         }
+        this.showMessage('Senha inválida<br/>Verifique se você digitou corretamente!');
         console.log(error.message);
       });
   }

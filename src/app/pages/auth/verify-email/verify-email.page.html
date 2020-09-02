@@ -1,24 +1,52 @@
-<ion-content>
+<ion-content swipeEnabled="false">
+
+<br>
+
+  <ion-row>
+    <ion-col>
+      <div></div>
+    </ion-col>
+    <ion-col col-6>
+      <div>
+        <img class="photoL" src="../../../../assets/logotcc.png">
+      </div>
+    </ion-col>
+    <ion-col>
+      <div></div>
+    </ion-col>
+  </ion-row>
+  
   <br>
 
-  <ion-text>
-    Seu cadastro será concluído após a verificação do email.
+ <ion-card color="light">
+
+  <br>
+
+  <ion-text class="titleCard">
+    <p>Seu cadastro será concluído após a verificação do email.</p>
   </ion-text>
 
-  <ion-text class="ion-text-center">
-    Verifique sua caixa de entrada!!!
+  <ion-text class="textCard">
+    <p>Verifique sua caixa de entrada</p>
+    <p>e seu lixo eletrônico.</p>
   </ion-text>
 
   <br>
 
-  <ion-button color="vermelho" expand="full" (click)="verificationMail()">
-    Reenviar email de verificação
+  <ion-button class="textButton2" shape="round" color="vermelho" expand="block" (click)="verificationMail()">
+    Enviar novamente
   </ion-button>
 
   <br>
 
-  <ion-button fill="outline" shape="round" ion-item color="vermelho" expand="full" (click)="goToLogin()">
+  <ion-button class="textButton" fill="clear" shape="round" color="vermelho" expand="block" (click)="goToLogin()">
     Voltar ao Login
   </ion-button>
+
+  
+  <br>
+  <br>
+
+</ion-card>
   
 </ion-content>

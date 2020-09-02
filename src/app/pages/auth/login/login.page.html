@@ -19,9 +19,9 @@
     <ion-list lines="none">
 
         <ion-item>
-          <ion-input position="floating" formControlName="email" clearInput placeholder="Email" type="text" #email required></ion-input>
+          <ion-input position="floating" formControlName="email" placeholder="Email" type="text" #email required></ion-input>
           <ng-container *ngFor="let validation of validationsMSG.email">
-            <div class="error-message"
+            <div class="errorMSG"
               *ngIf="validations.get('email').hasError(validation.type) && (validations.get('email').dirty || validations.get('email').touched)">
               {{ validation.message }}
             </div>
@@ -31,9 +31,9 @@
         <br>
 
         <ion-item>
-          <ion-input position="floating" formControlName="password" clearInput placeholder="Senha" type="password" #password required></ion-input>
+          <ion-input position="floating" formControlName="password" placeholder="Senha" type="password" #password required></ion-input>
           <ng-container *ngFor="let validation of validationsMSG.password">
-            <div class="error-message"
+            <div class="errorMSG"
               *ngIf="validations.get('password').hasError(validation.type) && (validations.get('password').dirty || validations.get('password').touched)">
               {{ validation.message }}
             </div>
