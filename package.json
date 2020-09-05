@@ -24,6 +24,7 @@
     "@ionic-native/core": "^5.0.7",
     "@ionic-native/file": "^5.27.0",
     "@ionic-native/keyboard": "^5.27.0",
+    "@ionic-native/screen-orientation": "^5.28.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.0.0",
@@ -52,9 +53,11 @@
     "codelyzer": "^5.1.2",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-webview": "^4.2.1",
+    "cordova-plugin-screen-orientation": "^3.0.2",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-whitelist": "^1.3.3",
+    "es6-promise-plugin": "^4.2.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~5.0.0",
@@ -79,7 +82,8 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
-      }
+      },
+      "cordova-plugin-screen-orientation": {}
     },
     "platforms": [
       "android",

@@ -15,6 +15,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 
 
@@ -28,7 +29,8 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+
   ],
   providers: [
     StatusBar,
@@ -37,7 +39,8 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
     Camera,
     File,
     Keyboard,
-    AngularFireDatabase
+    AngularFireDatabase,
+    ScreenOrientation,
   ],
   bootstrap: [AppComponent]
 })
