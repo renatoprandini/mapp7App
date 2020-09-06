@@ -39,7 +39,8 @@ export class PostPage implements OnInit {
       urgente: [''],
       emailUsuario: this.userEmail.email,
       dataPost: new Date().toLocaleDateString(),
-      timePost: new Date().toLocaleTimeString()
+      timePost: new Date().toLocaleTimeString(),
+	  options: null
     });
   }
 

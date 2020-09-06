@@ -15,6 +15,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -28,7 +29,8 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    BrowserAnimationsModule
   ],
   providers: [
     StatusBar,

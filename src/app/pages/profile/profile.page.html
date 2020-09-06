@@ -1,16 +1,44 @@
 <ion-header>
   <ion-toolbar color="vermelho">
     <ion-buttons>
-	 <ion-back-button></ion-back-button>
-	</ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="cinza">
-  <img [src]="user.foto">
+  <div *ngFor="let chat of chatRef | async">
 
-  <h4 [(ngModel)]="user.primeiroNome"></h4>
+    <div *ngIf="chat.chat === teste">
+      <div *ngIf="userLocal.email == chat.userId" class="enviada" (click)="chat.options = !chat.options">
+        <ion-chip color="vermelho">{{chat.name}}</ion-chip>
+        {{chat.message}}
+
+        <div *ngIf="chat.options == true" class="details">
+          <ion-icon name="calendar-outline"></ion-icon> {{chat.data}} &nbsp;
+          <ion-icon name="time-outline"></ion-icon> {{chat.hora}} &nbsp;
+          <ion-icon name="trash" (click)="deleteMsg()"></ion-icon> Deletar
+        </div>
+      </div>
+
+      <div *ngIf="userLocal.email != chat.userId" class="recebida" (click)="chat.options = !chat.options">
+        <ion-chip color="success">{{chat.name}}</ion-chip>
+        {{chat.message}}
+        <div *ngIf="chat.options == true" class="details">
+          <ion-icon name="calendar-outline"></ion-icon> {{chat.data}} &nbsp;
+          <ion-icon name="time-outline"></ion-icon> {{chat.hora}} &nbsp;
+          <ion-icon name="trash" (click)="deleteMsg()"></ion-icon>Deletar
+        </div>
+      </div>
+    </div>
+  </div>
 
 
+  <ion-item lines="none">
+    <ion-input [(ngModel)]="text"></ion-input>
+    <ion-button (click)="send()" color="tertiary">
+      <ion-icon name="send"></ion-icon>
+    </ion-button>
+  </ion-item>
 </ion-content>

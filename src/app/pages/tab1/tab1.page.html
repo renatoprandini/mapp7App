@@ -21,7 +21,7 @@
 
 <ion-content color="cinza" [fullscreen]="true">
   <ion-list lines="none">
-    <ion-item color="cinza" *ngFor="let post of Posts">
+    <ion-item color="cinza" *ngFor="let post of Posts" #users>
       <ion-card>
         <ion-card-header color="vermelho">
           <ion-item class="user-bar">
@@ -31,12 +31,12 @@
             <ion-label>
               <h6>{{post.emailUsuario}}</h6>
               <p class="data">{{post.dataPost}} {{post.timePost}}</p>
-              <ion-icon name="ellipsis-horizontal" color="light" (click)="options=!options"></ion-icon>
+              <ion-icon name="ellipsis-horizontal" color="light" (click)="post.options = !post.options"></ion-icon>
             </ion-label>
 
           </ion-item>
         </ion-card-header>
-        <div class="options" [hidden]="!options">
+        <div class="options" *ngIf="post.options == true">
           <ion-list>
             <ion-item>
               Compartilhar<ion-icon name="share-social" color="vermelho"></ion-icon>
@@ -54,8 +54,6 @@
               Reportar <ion-icon name="warning" color="vermelho"></ion-icon>
             </ion-item>
           </ion-list>
-
-
         </div>
         <ion-card-header>
           <ion-card-title class="ion-text-center ion-padding" *ngIf="post.urgente == 'naourgente'">{{post.titulo}}
@@ -72,29 +70,11 @@
             </ion-row>
           </ion-grid>
         </ion-card-header>
-        <ion-card-content>
 
+        <ion-card-content>
           <p class="ion-description">{{post.descricao}}</p>
         </ion-card-content>
-
-        <div *ngFor="let chat of chatRef | async">
-          <div *ngIf="uid == chat.userId">
-            {{chat.message}}
-          </div>
-
-          <div *ngIf="uid != chat.UserId">
-            <span> {{chat.name}} {{chat.Timestamp}}</span>
-            {{chat.message}}
-          </div>
-        </div>
-
-        <ion-item lines="none">
-          <ion-input [(ngModel)]="text"> </ion-input>
-          <ion-button (click)="send()">
-            <ion-icon name="send"></ion-icon>
-          </ion-button>
-        </ion-item>
-
+		<ion-button color="dark" fill="outline" expand="block" [routerLink]="['/profile/', post.$key]"> Iniciar Conversa &nbsp; <ion-icon name="chatbubbles-outline"></ion-icon></ion-button>
       </ion-card>
     </ion-item>
   </ion-list>

@@ -95,7 +95,7 @@ export class AuthService {
   SetUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afStore.doc(`Usuarios/${user.uid}`);
     const userData: User = {
-      id: user.id,
+	  id: user.id,
       email: user.email,
       primeiroNome: user.primeiroNome,
       ultimoNome: user.ultimoNome,
