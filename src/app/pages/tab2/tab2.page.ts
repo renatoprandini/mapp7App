@@ -29,6 +29,7 @@ export class Tab2Page implements OnInit {
       this.Users = [];
       res.forEach(item => {
         let teste = item.payload.toJSON();
+        teste['$key'] = item.key;
         if (teste['tipo'] === 'mecanico') {
           this.Users.sort(sortBy('-avaliacao'));
           this.Users.push(teste as User);
@@ -66,7 +67,7 @@ export class Tab2Page implements OnInit {
   avaliarMecanico(userId) {
     let avaliado = {};
     avaliado['avaliacao'] = userId.Avaliar + this.avaliar;
-    this.authService.updateUsuario(userId.id, avaliado);
+    this.authService.updateUsuario(userId.email, avaliado);
     userId.isRate = false;
   }
 }

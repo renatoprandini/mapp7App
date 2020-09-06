@@ -36,7 +36,7 @@ export class LoginPage implements OnInit {
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(
   ) {
@@ -65,10 +65,10 @@ export class LoginPage implements OnInit {
   }
 
   async showMessage(message: string) {
-    await this.toastCtrl.create({ 
-      message: message, 
+    await this.toastCtrl.create({
+      message: message,
       duration: 5000,
-      cssClass: "toastError"  
+      cssClass: "toastError"
     })
       .then((toastData) => {
         console.log(toastData);
@@ -83,12 +83,12 @@ export class LoginPage implements OnInit {
   logIn(email, password) {
     this.authService.SignIn(email.value, password.value)
       .then((res) => {
-         if (this.authService.isEmailVerified) {
+        if (this.authService.isEmailVerified) {
           this.router.navigate(['/tabs/tab1']);
         } else {
           this.showMessage('Email não verificado<br/>Verifique sua caixa de entrada!');
           return false;
-        } 
+        }
       }).catch((error) => {
         if (error.message === 'Email não verificado<br/>Verifique sua caixa de entrada!') {
           this.logIn(email.value, password.value);

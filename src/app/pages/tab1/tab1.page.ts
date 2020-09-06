@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PostService } from '../../services/post.service';
 import { AuthService } from '../../services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Post } from '../../models/post.model';
 
 import * as firebase from 'firebase';
+
 import { User } from 'src/app/models/user.model';
 import { ToastController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+// import { Chat } from 'src/app/models/chat.model';
+
 
 
 @Component({
@@ -16,10 +20,14 @@ import { ToastController } from '@ionic/angular';
 })
 export class Tab1Page implements OnInit {
 
+
   text: string;
   chatRef: any;
   uid: string;
   user: User;
+
+ 
+
 
   public key: any;
   public email: any;
@@ -27,38 +35,23 @@ export class Tab1Page implements OnInit {
   Posts = [];
 
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
-  options = false;
-
-
-
+  // chat: Chat;
   public userInfo2 = {};
   public photo = {};
 
+  @ViewChild('users', { static: true }) test;
   constructor(
     private pstService: PostService,
     private authService: AuthService,
     public firestore: AngularFirestore,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private activeRoute: ActivatedRoute,
+
 
   ) {
-
-    this.uid = localStorage.getItem('userid');
-    this.chatRef = this.firestore.collection('chats', ref => ref.orderBy('Timestamp')).valueChanges();
-
-
+    
   }
 
-  send() {
-    if (this.text != '') {
-      this.firestore.collection('chats').add({
-        name: this.userInfo['primeiroNome'],
-        message: this.text,
-        userId: this.userLocal.email,
-        Timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      });
-    }
-    this.text = '';
-  }
 
   ngOnInit() {
     this.fetchUsersByEmail();
@@ -76,6 +69,7 @@ export class Tab1Page implements OnInit {
     });
   }
 
+
   deletePost(id: string) {
     console.log(id);
     if (window.confirm('Do you really want to delete?')) {
@@ -92,6 +86,7 @@ export class Tab1Page implements OnInit {
       console.log(res);
     });
   }
+
 
   fetchPosts() {
     this.pstService.getPostList().valueChanges().subscribe(res => {

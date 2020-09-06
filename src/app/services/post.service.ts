@@ -50,7 +50,8 @@ export class PostService {
       urgente: pst.urgente,
       emailUsuario: pst.emailUsuario,
       dataPost: pst.dataPost,
-      timePost: pst.timePost
+      timePost: pst.timePost,
+      options: pst.options
     })
   }
 

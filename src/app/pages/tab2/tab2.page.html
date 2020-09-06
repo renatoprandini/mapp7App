@@ -10,7 +10,7 @@
 <ion-content color="cinza" [fullscreen]="true">
   <ion-card *ngFor="let mecanico of Users ; let i = index">
     <span *ngIf="!mecanico.isRate; else elseBlock">
-      <ion-item lines="none" [routerLink]="['/profile',mecanico.id]">
+      <ion-item lines="none">
         <ion-avatar slot="start">
           <img [src]="mecanico.foto">
         </ion-avatar>

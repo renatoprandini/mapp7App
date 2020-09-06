@@ -7,7 +7,8 @@ export class Post {
         public urgente: string = '',
         public emailUsuario: string = '',
         public dataPost: any = null,
-        public timePost: any = null
+        public timePost: any = null,
+		public options: boolean = false
     ) {
 
     }

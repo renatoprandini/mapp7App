@@ -53,9 +53,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/settings/change-photo/change-photo.module').then(m => m.ChangePhotoPageModule)
   },
   {
-    path: 'profile',
+    path: 'profile/:id',
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule)
-  },  {
+  },
+  {
     path: 'verify-email',
     loadChildren: () => import('./pages/auth/verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
   }

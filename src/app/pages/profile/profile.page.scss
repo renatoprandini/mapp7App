@@ -1,0 +1,52 @@
+.enviada{
+ text-align:right;
+ align-items:right;
+ margin:15px;
+ padding:15px;
+}
+
+.recebida{
+ text-align:left;
+ align-items:left;
+ margin:15px;
+ padding:15px;
+}
+
+ion-item{
+ margin:10px;
+ padding:5px;
+ border-radius:10px;
+}
+
+.details{
+  margin-top:5px;
+  background-color:white;
+  border-radius:20px;
+  display:flex;
+ 
+ ion-icon{
+  padding:5px;
+ }
+
+}
+
+cdk-virtual-scroll-viewport {
+  height: 100vh;
+
+  li {
+    height: 100px;
+  }
+
+  // Bonus points
+  &::-webkit-scrollbar {
+    width: 1em;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(238, 169, 79);
+  }
+}
