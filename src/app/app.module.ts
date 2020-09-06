@@ -16,6 +16,8 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+
 
 
 
@@ -39,7 +41,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     Camera,
     File,
     Keyboard,
-    AngularFireDatabase
+    AngularFireDatabase,
+    ScreenOrientation
   ],
   bootstrap: [AppComponent]
 })

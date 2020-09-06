@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { Platform, LoadingController } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 import { File } from '@ionic-native/file/ngx';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { User } from '../../../models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -17,17 +18,21 @@ export class ChangePhotoPage implements OnInit {
 
   public uploadPercent: Observable<number>;
   public downloadUrl: Observable<string>;
+  userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
+  public userInfo = {};
 
 
   constructor(
+    public authService: AuthService,
     private camera: Camera,
     private platform: Platform,
     private file: File,
     private afStorage: AngularFireStorage,
-    public loadingController: LoadingController,
+
   ) { }
 
   ngOnInit() {
+    this.fetchUsersByEmail();
   }
 
 
@@ -76,22 +81,27 @@ export class ChangePhotoPage implements OnInit {
       finalize(() => {
           ref.getDownloadURL().subscribe(foto=> {
               console.log(`URL: ${foto}`);
+              this.userLocal.foto = this.downloadUrl;
+
           });
       })
   ).subscribe();
 
-      
   }
 
-  
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      cssClass: 'textT',
-      message: 'Aguarde...',
-      duration: 2000
+  fetchUsersByEmail() {
+    // Pega os valores do caminho os subscreve no 'res'
+    this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe(res => {
+      this.userInfo = res;
     });
-    await loading.present();
   }
+
+  submitPhoto() {
+    const ref = this.afStorage.ref('users/profile.jpg');
+    this.userLocal.foto = this.downloadUrl;
+  }
+
+
 
 
 }

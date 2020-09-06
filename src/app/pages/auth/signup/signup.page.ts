@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { User } from '../../../models/user.model';
+import { NavController, ToastController } from '@ionic/angular';
+import { ComparacaoValidator } from '../../../validators/comparacao-validator';
 
 @Component({
   selector: 'app-signup',
@@ -10,37 +12,87 @@ import { User } from '../../../models/user.model';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
-  userData: User;
+
   userForm: FormGroup;
+  error = '';
+  success = '';
+
+  validationsMSG = {
+    email: [
+      { type: 'required', message: '* Obrigatório' },
+      { type: 'pattern', message: 'Insira um email valido.' }
+    ],
+    password: [
+      { type: 'required', message: '* Obrigatório' },
+      { type: 'minlength', message: 'A senha deve ter pelo menos 5 caracteres' }
+    ],
+    confirm: [
+      { type: 'required', message: '* Obrigatório'},
+      { type: 'minlength', message: 'A senha deve ter pelo menos 5 caracteres'},
+      { type: 'comparacao', message: 'As senhas devem ser iguais' }
+    ],
+    primeiroNome: [
+      { type: 'required', message: '* Obrigatório' },
+      { type: 'maxlength', message: 'O nome pode ter no máximo 15 caracteres.' }
+    ],
+    ultimoNome: [
+      { type: 'required', message: '* Obrigatório' },
+      { type: 'maxlength', message: 'O sobrenome pode ter no máximo 15 caracteres.' }
+    ]
+  };
 
   constructor(
     public authService: AuthService,
     public router: Router,
     public fb: FormBuilder,
-  ) {
-    this.userData = {} as User;
-  }
+    private navCtrl: NavController,
+    private toastCtrl: ToastController,
+  ) {} 
 
   ngOnInit(){
+
+
     this.userForm = this.fb.group({
-      email: [''],
-      primeiroNome: [''],
-      ultimoNome: [''],
+      email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
+      password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
+      confirm: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
+      primeiroNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
+      ultimoNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
       tipo: [''],
-      foto: ['https://firebasestorage.googleapis.com/v0/b/tcc-mapp7.appspot.com/o/users%2Fprofile.png?alt=media&token=79fd7bc1-e427-4527-a9a2-3cead5447e33'],
-    });
+      foto: ['assets/profile.png'],
+    },
+    {
+      validator: ComparacaoValidator('password', 'confirm')
+    },);
+
+    
   }
+
+  async showMessage(message: string) {
+    await this.toastCtrl.create({ 
+      message: message, 
+      duration: 5000,
+      cssClass: "toastError"  
+    })
+      .then((toastData) => {
+        console.log(toastData);
+        toastData.present();
+      });
+  }
+
 
   signUp(email, password){
     this.authService.RegisterUser(email.value, password.value, this.userForm.value)
     .then((res) => {
-      this.userForm.reset();
-      this.router.navigate(['login']);
+      this.authService.SendVerificationMail();
+      this.router.navigate(['verify-email']);
     }).catch((error) => {
-      console.log(error);
-      window.alert(error.message);
-    })
-}
+      const delay = 500;
+        setTimeout(() => {
+          this.showMessage('Email não disponível<br/>O email inserido já está em uso!!');
+        }, delay);
+      });
+  }
 
 
 

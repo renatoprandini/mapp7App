@@ -11,12 +11,9 @@
 
 <ion-content>
 
-  <ion-item (click)="openGalery();presentLoading()" lines="none" color="vermelho" class="alignButton">
+  <ion-button shape="round" color="vermelho" expand="block" (click)="openGalery()" class="alignButton">
     Escolher foto para perfil
-    <ion-buttons slot="end">
-      <ion-icon color="light" name="chevron-forward-outline"></ion-icon>
-    </ion-buttons>
-  </ion-item>
+  </ion-button>
 
   <ion-item class="textT" lines="none">
     <ion-text class="textT">
@@ -24,12 +21,19 @@
     </ion-text>
   </ion-item>
 
-  <img [src]="downloadUrl | async" *ngIf="downloadUrl | async" class="photo">
+ 
+<!-- <ion-item>
+  <ion-label class="ion-text-wrap textT"> URL de Download: {{ downloadUrl | async }}</ion-label>
+</ion-item> -->
 
 
+<ion-card>
+<img [src]="downloadUrl | async" *ngIf="downloadUrl | async" class="photo">
+</ion-card>
 
-<ion-item>
-  <ion-text class="ion-text-wrap textT"> URL de Download: {{ downloadUrl | async}}</ion-text>
-</ion-item>
-
+<ion-button shape="round" color="vermelho" expand="block" (click)="submitPhoto()">
+  Salvar
+  <ion-buttons slot="end">
+  </ion-buttons>
+</ion-button>
 </ion-content>
