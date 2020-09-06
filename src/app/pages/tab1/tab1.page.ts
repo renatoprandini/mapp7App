@@ -5,6 +5,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Post } from '../../models/post.model';
 
 import * as firebase from 'firebase';
+import { User } from 'src/app/models/user.model';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -17,6 +19,7 @@ export class Tab1Page implements OnInit {
   text: string;
   chatRef: any;
   uid: string;
+  user: User;
 
   public key: any;
   public email: any;
@@ -34,7 +37,8 @@ export class Tab1Page implements OnInit {
   constructor(
     private pstService: PostService,
     private authService: AuthService,
-    public firestore: AngularFirestore
+    public firestore: AngularFirestore,
+    private toastCtrl: ToastController
 
   ) {
 
@@ -85,6 +89,7 @@ export class Tab1Page implements OnInit {
       this.userInfo = res;
       this.userInfo2 = res;
       this.photo = res;
+      console.log(res);
     });
   }
 
@@ -92,5 +97,17 @@ export class Tab1Page implements OnInit {
     this.pstService.getPostList().valueChanges().subscribe(res => {
       console.log(res);
     });
+  }
+
+  async showMessage(message: string) {
+    await this.toastCtrl.create({ 
+      message: message, 
+      duration: 5000,
+      cssClass: "toastError"  
+    })
+      .then((toastData) => {
+        console.log(toastData);
+        toastData.present();
+      });
   }
 }

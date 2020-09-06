@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { Platform } from '@ionic/angular';
+import { Platform, ToastController } from '@ionic/angular';
 import { File } from '@ionic-native/file/ngx';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { User } from '../../../models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
+import * as firebase from 'firebase';
+
+
 
 
 @Component({
@@ -16,10 +20,16 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ChangePhotoPage implements OnInit {
 
+  user: User;
+  foto: any;
+  pickUrl: string;
+  userRef: AngularFireObject<any>;
+
   public uploadPercent: Observable<number>;
   public downloadUrl: Observable<string>;
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
-  public userInfo = {};
+  userInfo = {};
+
 
 
   constructor(
@@ -28,12 +38,15 @@ export class ChangePhotoPage implements OnInit {
     private platform: Platform,
     private file: File,
     private afStorage: AngularFireStorage,
+    private toastCtrl: ToastController,
+    public db: AngularFireDatabase,
 
   ) { }
 
   ngOnInit() {
     this.fetchUsersByEmail();
   }
+
 
 
   async openGalery() {
@@ -48,7 +61,7 @@ export class ChangePhotoPage implements OnInit {
 
       let file: string;
 
-      if(this.platform.is('ios')) {
+      if (this.platform.is('ios')) {
         file = fileUri.split('/').pop();
       } else {
         file = fileUri.substring(fileUri.lastIndexOf('/') + 1, fileUri.indexOf('?'));
@@ -58,16 +71,17 @@ export class ChangePhotoPage implements OnInit {
 
       const buffer: ArrayBuffer = await this.file.readAsArrayBuffer(path, file);
 
-      const blob: Blob = new Blob([buffer], {type: 'image/jpeg' });
+      const blob: Blob = new Blob([buffer], { type: 'image/jpeg' });
 
       this.uploadPicture(blob);
 
-    } catch(error){
+    } catch (error) {
       console.error(error);
     }
   }
 
-  uploadPicture( blob: Blob ) {
+
+  uploadPicture(blob: Blob) {
     const ref = this.afStorage.ref('users/profile.jpg');
     const task = ref.put(blob);
 
@@ -79,27 +93,40 @@ export class ChangePhotoPage implements OnInit {
 
     task.snapshotChanges().pipe(
       finalize(() => {
-          ref.getDownloadURL().subscribe(foto=> {
-              console.log(`URL: ${foto}`);
-              this.userLocal.foto = this.downloadUrl;
-
-          });
+        ref.getDownloadURL().subscribe(data => {
+          console.log(`URL: ${data}`);
+          this.pickUrl = data;
+          this.userLocal.foto = this.pickUrl;
+          this.showMessage('URL:' + this.userLocal.foto);
+          this.db.database.ref(`/users/${this.user.email}/foto`).set(this.pickUrl);
+        });
       })
-  ).subscribe();
+    ).subscribe();
+
 
   }
+
+  async showMessage(message: string) {
+    await this.toastCtrl.create({
+      message: message,
+      duration: 5000,
+      cssClass: "toastError"
+    })
+      .then((toastData) => {
+        console.log(toastData);
+        toastData.present();
+      });
+  }
+
 
   fetchUsersByEmail() {
     // Pega os valores do caminho os subscreve no 'res'
     this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe(res => {
       this.userInfo = res;
+      console.log(res);
     });
   }
 
-  submitPhoto() {
-    const ref = this.afStorage.ref('users/profile.jpg');
-    this.userLocal.foto = this.downloadUrl;
-  }
 
 
 

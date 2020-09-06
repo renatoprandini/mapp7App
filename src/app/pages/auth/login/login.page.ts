@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
   user: any;
   validations: FormGroup;
   errorMessage = '';
+  userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
 
   validationsMSG = {
     email: [
@@ -92,7 +93,7 @@ export class LoginPage implements OnInit {
         if (error.message === 'Email não verificado<br/>Verifique sua caixa de entrada!') {
           this.logIn(email.value, password.value);
         }
-        this.showMessage('Senha inválida<br/>Verifique se você digitou corretamente!');
+        this.showMessage(error.message);
         console.log(error.message);
       });
   }

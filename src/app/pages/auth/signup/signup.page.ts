@@ -13,6 +13,8 @@ import { ComparacaoValidator } from '../../../validators/comparacao-validator';
 })
 export class SignupPage implements OnInit {
 
+  user: User;
+
   userForm: FormGroup;
   error = '';
   success = '';
@@ -59,7 +61,7 @@ export class SignupPage implements OnInit {
       primeiroNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
       ultimoNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
       tipo: [''],
-      foto: ['assets/profile.png'],
+      foto: ['https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'],
     },
     {
       validator: ComparacaoValidator('password', 'confirm')
@@ -67,6 +69,7 @@ export class SignupPage implements OnInit {
 
     
   }
+
 
   async showMessage(message: string) {
     await this.toastCtrl.create({ 
@@ -89,7 +92,7 @@ export class SignupPage implements OnInit {
     }).catch((error) => {
       const delay = 500;
         setTimeout(() => {
-          this.showMessage('Email não disponível<br/>O email inserido já está em uso!!');
+          this.showMessage(error.message);
         }, delay);
       });
   }
