@@ -20,7 +20,7 @@ export class ChangePhotoPage implements OnInit {
   public downloadUrl: Observable<string>;
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
   public userInfo = {};
-  public userInfo2= {};
+
 
   constructor(
     public authService: AuthService,
@@ -93,7 +93,6 @@ export class ChangePhotoPage implements OnInit {
     // Pega os valores do caminho os subscreve no 'res'
     this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe(res => {
       this.userInfo = res;
-      this.userInfo2 = res;
     });
   }
 
