@@ -9,7 +9,7 @@ import * as firebase from 'firebase';
 import { User } from 'src/app/models/user.model';
 import { ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
-// import { Chat } from 'src/app/models/chat.model';
+import { Chat } from 'src/app/models/chat.model';
 
 
 
@@ -35,7 +35,7 @@ export class Tab1Page implements OnInit {
   Posts = [];
 
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
-  // chat: Chat;
+  chat: Chat;
   public userInfo2 = {};
   public photo = {};
 
