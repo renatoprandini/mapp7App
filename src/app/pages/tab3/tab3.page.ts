@@ -4,6 +4,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import { User } from 'src/app/models/user.model';
+
 
 
 
@@ -15,6 +17,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class Tab3Page implements OnInit {
 
+  user: User;
   public userInfo = {};
   public userInfo2= {};
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
