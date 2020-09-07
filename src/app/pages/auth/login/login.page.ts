@@ -95,6 +95,8 @@ export class LoginPage implements OnInit {
         this.showMessage('Senha inválida<br/>Verifique se você digitou corretamente!');
         console.log(error.message);
       });
+	  
+	 
   }
 
 }

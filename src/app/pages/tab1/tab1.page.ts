@@ -6,7 +6,7 @@ import { Post } from '../../models/post.model';
 
 import * as firebase from 'firebase';
 import { ActivatedRoute } from '@angular/router';
-import { Chat } from 'src/app/models/chat.model';
+
 
 
 @Component({
@@ -23,7 +23,6 @@ export class Tab1Page implements OnInit {
   Posts = [];
 
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
-  chat: Chat;
   public userInfo2 = {};
   public photo = {};
 

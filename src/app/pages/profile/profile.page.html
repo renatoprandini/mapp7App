@@ -8,8 +8,14 @@
 </ion-header>
 
 <ion-content color="cinza">
+  <ion-item lines="none">
+    <ion-input [(ngModel)]="text"></ion-input>
+    <ion-button (click)="send()" color="tertiary">
+      <ion-icon name="send"></ion-icon>
+    </ion-button>
+  </ion-item>
+  
   <div *ngFor="let chat of chatRef | async">
-
     <div *ngIf="chat.chat === teste">
       <div *ngIf="userLocal.email == chat.userId" class="enviada" (click)="chat.options = !chat.options">
         <ion-chip color="vermelho">{{chat.name}}</ion-chip>
@@ -22,6 +28,7 @@
         </div>
       </div>
 
+  
       <div *ngIf="userLocal.email != chat.userId" class="recebida" (click)="chat.options = !chat.options">
         <ion-chip color="success">{{chat.name}}</ion-chip>
         {{chat.message}}
@@ -33,12 +40,9 @@
       </div>
     </div>
   </div>
-
-
-  <ion-item lines="none">
-    <ion-input [(ngModel)]="text"></ion-input>
-    <ion-button (click)="send()" color="tertiary">
-      <ion-icon name="send"></ion-icon>
-    </ion-button>
-  </ion-item>
+     <div class="paginador">
+       <ion-button (click)="adicionarPaginador()" color="vermelho" expand="block">
+        <ion-icon name="chatbox-ellipses-outline"></ion-icon> &nbsp; Ver mais
+       </ion-button>
+	</div>
 </ion-content>

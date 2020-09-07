@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import { AuthService } from '../../services/auth.service';
 import { PostService } from '../../services/post.service';
+
 
 
 
@@ -19,6 +20,8 @@ export class ProfilePage implements OnInit {
   private post = {};
   private id: string = null;
 
+  paginator = 10;
+  public n: number = 0;
   public teste: any;
 
   text: string;
@@ -31,17 +34,15 @@ export class ProfilePage implements OnInit {
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
 
   public userInfo = {};
-
-
   constructor(private activeRoute: ActivatedRoute,
     private pstService: PostService,
     public firestore: AngularFirestore,
     private authService: AuthService) {
 
     this.uid = localStorage.getItem('user');
-    this.chatRef = this.firestore.collection('chats', ref => ref.orderBy('Timestamp')).valueChanges();
 
-  
+    this.chatRef = this.firestore.collection('chats', ref => ref.where("chat", "==", this.id).orderBy('Timestamp', 'desc').limit(this.paginator)).valueChanges();
+
   }
 
   send() {
@@ -81,6 +82,13 @@ export class ProfilePage implements OnInit {
     this.userSubscription = this.pstService.getPost(this.id).valueChanges().subscribe(data => {
       this.post = data;
     });
+  }
+
+  adicionarPaginador() {
+    this.n = this.n + 1;
+    this.paginator = this.paginator + (this.n * 10);
+
+    this.chatRef;
   }
 
   fetchUsersByEmail() {
