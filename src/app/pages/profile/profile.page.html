@@ -16,7 +16,7 @@
   </ion-item>
   
   <div *ngFor="let chat of chatRef | async">
-    <div *ngIf="chat.chat === teste">
+    <div>
       <div *ngIf="userLocal.email == chat.userId" class="enviada" (click)="chat.options = !chat.options">
         <ion-chip color="vermelho">{{chat.name}}</ion-chip>
         {{chat.message}}

@@ -18,11 +18,10 @@ export class ProfilePage implements OnInit {
 
   private userSubscription: Subscription;
   private post = {};
-  private id: string = null;
+  id: string = null;
 
   paginator = 10;
   public n: number = 0;
-  public teste: any;
 
   text: string;
   chatRef: any;
@@ -40,9 +39,6 @@ export class ProfilePage implements OnInit {
     private authService: AuthService) {
 
     this.uid = localStorage.getItem('user');
-
-    this.chatRef = this.firestore.collection('chats', ref => ref.where("chat", "==", this.id).orderBy('Timestamp', 'desc').limit(this.paginator)).valueChanges();
-
   }
 
   send() {
@@ -62,12 +58,12 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
-
     this.fetchUsersByEmail();
     this.id = this.activeRoute.snapshot.params['id'];
 
-    this.teste = this.id;
     if (this.id) this.userProfile();
+	
+	this.chatRef = this.firestore.collection('chats', ref => ref.where("chat", "==", `${this.id}`).orderBy('Timestamp', 'desc').limit(this.paginator)).valueChanges();
   }
 
   ngOnDestroy() {
@@ -88,7 +84,7 @@ export class ProfilePage implements OnInit {
     this.n = this.n + 1;
     this.paginator = this.paginator + (this.n * 10);
 
-    this.chatRef;
+  this.chatRef = this.firestore.collection('chats', ref => ref.where("chat", "==", `${this.id}`).orderBy('Timestamp', 'desc').limit(this.paginator)).valueChanges();
   }
 
   fetchUsersByEmail() {
