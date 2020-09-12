@@ -97,8 +97,7 @@ export class ChangePhotoPage implements OnInit {
           console.log(`URL: ${data}`);
           this.pickUrl = data;
           this.userLocal.foto = this.pickUrl;
-          this.showMessage('URL:' + this.userLocal.foto);
-          this.db.database.ref(`/users/${this.user.email}/foto`).set(this.pickUrl);
+          this.db.database.ref(`/users/${this.userLocal.email}/foto`).set(this.pickUrl);
         });
       })
     ).subscribe();
@@ -126,6 +125,17 @@ export class ChangePhotoPage implements OnInit {
       console.log(res);
     });
   }
+
+//   getFoto(email) {
+//     email = email.replace(/[.#$]+/g, ':');
+//     this.foto = this.db.object(`/users/${email}/foto`);
+//     return this.foto;
+// }
+
+// updateFoto(foto, email) {
+//     email = email.replace(/[.#$]+/g, ':');
+//     this.db.database.ref(`/users/${email}/foto`).set(foto);
+// }
 
 
 

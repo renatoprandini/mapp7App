@@ -31,7 +31,9 @@
             <ion-label>
               <h6>{{post.emailUsuario}}</h6>
               <p class="data">{{post.dataPost}} {{post.timePost}}</p>
+              <ion-buttons slot="end">
               <ion-icon name="ellipsis-horizontal" color="light" (click)="post.options = !post.options"></ion-icon>
+            </ion-buttons>
             </ion-label>
 
           </ion-item>

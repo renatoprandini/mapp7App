@@ -25,6 +25,7 @@ export class Tab1Page implements OnInit {
   chatRef: any;
   uid: string;
   user: User;
+  Users = [];
 
  
 
@@ -71,7 +72,7 @@ export class Tab1Page implements OnInit {
 
   deletePost(id: string) {
     console.log(id);
-    if (window.confirm('Do you really want to delete?')) {
+    if (window.confirm('Tem certeza que deseja excluir o post?')) {
       this.pstService.deletePost(id);
     }
   }
@@ -82,14 +83,12 @@ export class Tab1Page implements OnInit {
       this.userInfo = res;
       this.userInfo2 = res;
       this.photo = res;
-      console.log(res);
     });
   }
 
 
   fetchPosts() {
     this.pstService.getPostList().valueChanges().subscribe(res => {
-      console.log(res);
     });
   }
 
