@@ -29,25 +29,32 @@ ion-card {
     margin: auto;
     text-align: center;
     font-family: 'Roboto', sans-serif;
-    font-size: 15px;
-    font-weight: bolder;
+    font-size: 17px;
     color: #E02041;
+    font-weight: bold;
 }
 
 .textT {
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
-    font-weight: bolder;
-    color: #E02041;
+    color: #FFF;
 }
 
 .inputT {
     font-family: 'Roboto', sans-serif;
-    font-size: 15px;
+    font-size: 17px;
     color: #000;
+    --placeholder-color: #000;
+    font-weight: bold;
 }
 
-.titulo{
-  text-align:center;
-  color: #E02041;
+.titulo {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: #E02041;
+    
+
+    p {
+        font-size: 17px;
+    }
 }
