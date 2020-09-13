@@ -76,8 +76,12 @@ ion-label{
   font-size:14px;
 }
 
-.line{
-  border-bottom: 1px solid red;
+
+ion-skeleton-text{
+--background:#ffffff;
+ padding:10px;
+ width:350px;
+ height:175px;
 }
 
 .options{

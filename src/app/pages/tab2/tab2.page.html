@@ -8,6 +8,23 @@
 </ion-header>
 
 <ion-content color="cinza" [fullscreen]="true">
+ <div *ngIf="!Users.length">
+    <ion-card  *ngFor="let item of [0,1,2,3,4,5,6,7,8,9,10]">
+	 <ion-item> 
+	    <ion-avatar slot="start">
+              <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>	 
+              <ion-skeleton-text animated></ion-skeleton-text>		
+		</ion-label>
+	 </ion-item>
+	</ion-card>
+ 
+ 
+ </div>
+
+
+
   <ion-card *ngFor="let mecanico of Users ; let i = index">
     <span *ngIf="!mecanico.isRate; else elseBlock">
       <ion-item lines="none">
