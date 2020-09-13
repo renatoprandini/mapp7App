@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar color="cinza">
-    <ion-title color="vermelho" class="textT">Criar novo post</ion-title>
+  <ion-toolbar color="vermelho">
+    <ion-title class="textT">Criar novo post</ion-title>
     <ion-buttons slot="end" routerLink="/tabs/tab1">
       <ion-button>
-        <ion-icon slot="icon-only" color="vermelho" name="close"></ion-icon>
+        <ion-icon slot="icon-only" color="light" name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -14,18 +14,21 @@
 
     <ion-card>
       <div class="titulo">
-        <h5>Seu problema pode ser resolvido com poucos cliques :)</h5>
+        <h3>Seu problema pode ser resolvido &nbsp; com poucos cliques...</h3>
+        <p>Descreva ele abaixo e receba ajuda imediatamente!</p>
       </div>
 
       <form [formGroup]="postForm">
+
         <ion-item lines="none">
           <ion-input class="inputT" position="floating" clearInput placeholder="Título" formControlName="titulo"
             minlength="5" maxlength="20" type="text" required></ion-input>
         </ion-item>
 
         <ion-item lines="none">
-          <ion-textarea class="inputT" type="text" clearInput placeholder="Descrição" formControlName="descricao"
-            rows="6" cols="20" minlength="10" maxlength="150" required></ion-textarea>
+          <ion-textarea class="inputT" position="floating" clearInput placeholder="Descrição"
+            formControlName="descricao" rows="6" cols="20" minlength="10" maxlength="150" type="text" required>
+          </ion-textarea>
         </ion-item>
 
         <ion-row>
@@ -53,10 +56,18 @@
         </ion-row>
 
         <ion-row>
+
+        </ion-row>
+        <ion-col>
+          <ion-button color="vermelho" shape="full" expand="block">
+            &nbsp; Carregar foto
+          </ion-button>
+        </ion-col>
+        <ion-row>
           <ion-col>
-            <ion-button color="vermelho" shape="full" fill="outline" expand="block" (click)="formSubmit()"
+            <ion-button color="vermelho" shape="full" expand="block" (click)="formSubmit()"
               [disabled]="!postForm.valid">
-              <ion-icon name="send-outline"></ion-icon> Enviar
+              <ion-icon name="send-outline"></ion-icon> &nbsp; Enviar
             </ion-button>
           </ion-col>
         </ion-row>

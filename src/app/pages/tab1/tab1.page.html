@@ -22,11 +22,11 @@
 <ion-content color="cinza" [fullscreen]="true">
 
   <ion-list *ngIf="!Posts.length" lines="none">
-	 <div *ngFor="let item of [0,1,2,3,4,5]">
-		<ion-card class="skeleton">
-          <ion-skeleton-text animated></ion-skeleton-text>
-        </ion-card>
-      </div>
+    <div *ngFor="let item of [0,1,2,3,4,5]">
+      <ion-card class="skeleton">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-card>
+    </div>
   </ion-list>
 
 
@@ -41,7 +41,9 @@
             <ion-label>
               <h6>{{post.emailUsuario}}</h6>
               <p class="data">{{post.dataPost}} {{post.timePost}}</p>
-              <ion-icon name="ellipsis-horizontal" color="light" (click)="post.options = !post.options"></ion-icon>
+              <ion-buttons slot="end">
+                <ion-icon name="ellipsis-horizontal" color="light" (click)="post.options = !post.options"></ion-icon>
+              </ion-buttons>
             </ion-label>
 
           </ion-item>
@@ -84,9 +86,10 @@
         <ion-card-content>
           <p class="ion-description">{{post.descricao}}</p>
         </ion-card-content>
-        <ion-button color="dark" fill="outline" expand="block" [routerLink]="['/profile/', post.$key]"> Iniciar Conversa
-          &nbsp; <ion-icon name="chatbubbles-outline"></ion-icon>
+        <ion-button color="dark" fill="outline" expand="block" [routerLink]="['/profile/', post.$key]">
+          <ion-icon name="chatbubbles-outline"></ion-icon> &nbsp; Comentários
         </ion-button>
+
       </ion-card>
     </ion-item>
   </ion-list>

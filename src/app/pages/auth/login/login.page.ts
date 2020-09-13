@@ -16,6 +16,7 @@ export class LoginPage implements OnInit {
   validations: FormGroup;
   errorMessage = '';
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
+  userInfo = {};
 
   validationsMSG = {
     email: [
@@ -57,10 +58,11 @@ export class LoginPage implements OnInit {
   private async verifyLogin() {
     this.user = JSON.parse(localStorage.getItem('user'));
     if (this.user !== null && this.user.emailVerified === true) {
-      const loading = await this.loadingCtrl.create({ message: 'Aguarde um momento...' });
-      loading.present();
+      this.presentLoading('Aguarde um momento...');
       this.navCtrl.navigateRoot('tabs/tab1');
-      loading.dismiss();
+    } else {
+      this.showMessage('Não foi possível autenticar!');
+      this.navCtrl.navigateRoot('login');
     }
   }
 
@@ -90,14 +92,33 @@ export class LoginPage implements OnInit {
           return false;
         }
       }).catch((error) => {
-        if (error.message === 'Email não verificado<br/>Verifique sua caixa de entrada!') {
+        if (error.message) {
           this.logIn(email.value, password.value);
         }
-        this.showMessage(error.message);
         console.log(error.message);
       });
 	  
 	 
+  }
+
+  async presentLoading(msg: string) {
+    const loading = await this.loadingCtrl.create({
+      cssClass: 'load',
+      message: msg,
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Autenticação cancelada!');
+  }
+
+  fetchUsersByEmail() {
+    // Pega os valores do caminho os subscreve no 'res'
+    this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe(res => {
+      this.userInfo = res;
+      console.log(res);
+    });
   }
 
 }
