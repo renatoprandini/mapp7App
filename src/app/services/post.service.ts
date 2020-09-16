@@ -55,20 +55,18 @@ export class PostService {
     })
   }
 
-
-  // Get Single
   getPost(id: string) {
     this.postRef = this.db.object('/post/' + id);
     return this.postRef;
   }
 
-  // Get List
+
   getPostList() {
     this.postListRef = this.db.list('/post');
     return this.postListRef;
   }
 
-  // Update
+
   updatePost(id, pst: Post) {
     return this.postRef.update({
       titulo: pst.titulo,
@@ -79,7 +77,7 @@ export class PostService {
     })
   }
 
-  // Delete
+
   deletePost(id: string) {
     this.postRef = this.db.object('/post/' + id);
     this.postRef.remove();
