@@ -52,23 +52,29 @@
   </ion-item>
 
 
-  <ion-item-group>
+  <ion-item-group color="cinza">
 
-    <ion-item color="light" routerLink="/rating">
-      <ion-text class="optionT">
-        Avaliação
-      </ion-text>
-      <ion-buttons slot="end">
-        <ion-icon color="vermelho" name="chevron-forward-outline"></ion-icon>
-      </ion-buttons>
+    <ion-item routerLink="/rating" lines="none">
+     <ion-icon slot="start" color="vermelho" name="star-outline"></ion-icon>
+	  <ion-label color="vermelho">
+          Avaliação 
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-icon slot="start" name="moon" color="vermelho"></ion-icon>
+      <ion-label color="vermelho">
+        Modo Escuro
+      </ion-label>
+      <ion-toggle (ionChange)="onClick($event)" slot="end"></ion-toggle>
     </ion-item>
 
-    <ion-item class="optionT" (click)="authService.SignOut()">
-      Sair
-      <ion-buttons slot="end">
-        <ion-icon color="vermelho" name="log-out-outline"></ion-icon>
-      </ion-buttons>
+    <ion-item class="optionT" (click)="authService.SignOut()" lines="none">
+	 <ion-icon slot="start" color="vermelho" name="log-out-outline"></ion-icon>
+     <ion-label color="vermelho">
+        Sair 
+      </ion-label>
     </ion-item>
+	
 
   </ion-item-group>
 

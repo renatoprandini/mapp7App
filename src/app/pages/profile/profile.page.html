@@ -19,9 +19,9 @@
     <div>
       <div *ngIf="userLocal.email == chat.userId" class="enviada" (click)="chat.options = !chat.options">
         <ion-chip color="vermelho">{{chat.name}}</ion-chip>
-        {{chat.message}}
+        <ion-text color="dark"> {{chat.message}} </ion-text>
 
-        <div *ngIf="chat.options == true" class="details">
+        <div *ngIf="chat.options == true" class="details" color="dark">
           <ion-icon name="calendar-outline"></ion-icon> {{chat.data}} &nbsp;
           <ion-icon name="time-outline"></ion-icon> {{chat.hora}} &nbsp;
           <ion-icon name="trash" (click)="deleteMsg()"></ion-icon> Deletar
@@ -31,8 +31,8 @@
   
       <div *ngIf="userLocal.email != chat.userId" class="recebida" (click)="chat.options = !chat.options">
         <ion-chip color="success">{{chat.name}}</ion-chip>
-        {{chat.message}}
-        <div *ngIf="chat.options == true" class="details">
+          <ion-text color="dark"> {{chat.message}} </ion-text>
+        <div *ngIf="chat.options == true" class="details" color="dark">
           <ion-icon name="calendar-outline"></ion-icon> {{chat.data}} &nbsp;
           <ion-icon name="time-outline"></ion-icon> {{chat.hora}} &nbsp;
           <ion-icon name="trash" (click)="deleteMsg()"></ion-icon>Deletar

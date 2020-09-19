@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { finalize } from 'rxjs/operators';
-import { User } from 'src/app/models/user.model';
+
+import { AuthService } from '../../services/auth.service';
+import { User } from '../../models/user.model';
 
 
 
@@ -19,18 +19,19 @@ export class Tab3Page implements OnInit {
 
   user: User;
   public userInfo = {};
-  public userInfo2= {};
+  public userInfo2 = {};
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
   public photo = {};
 
 
-  
-  
+
+
 
   constructor(
     public authService: AuthService,
     public firestore: AngularFirestore,
     private afStorage: AngularFireStorage,
+    private renderer: Renderer2
   ) { }
 
   ngOnInit() {
@@ -47,24 +48,12 @@ export class Tab3Page implements OnInit {
     });
   }
 
-
-
- 
-
-
-
-
-
-
-
-
-
-
-  
-
+  onClick(event) {
+    if (event.detail.checked) {
+      this.renderer.setAttribute(document.body, 'color-theme', 'dark');
+    } else {
+      this.renderer.setAttribute(document.body, 'color-theme', 'light');
+    }
   }
 
-  
-  
-
-
+}
