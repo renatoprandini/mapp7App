@@ -24,6 +24,7 @@ export class AuthService {
     public firestore: AngularFirestore,
     public db: AngularFireDatabase,
   ) {
+
     this.ngFireAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
@@ -34,6 +35,19 @@ export class AuthService {
         JSON.parse(localStorage.getItem('user'));
       }
     })
+
+  }
+
+  
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return (user !== null && user.emailVerified !== false) ? true : false;
+  }
+
+
+  get isEmailVerified(): boolean {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return (user.emailVerified !== false) ? true : false;
   }
 
 
@@ -56,6 +70,7 @@ export class AuthService {
       });
   }
 
+
   async SendVerificationMail() {
     return (await this.ngFireAuth.currentUser).sendEmailVerification()
       .then(() => {
@@ -67,61 +82,57 @@ export class AuthService {
   PasswordRecover(passwordResetEmail) {
     return this.ngFireAuth.sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
-        window.alert('Password reset email has been sent, please check your inbox.');
-      }).catch((error) => {
-        window.alert(error);
+        return true;
+      }).catch(() => {
+        return false;
       });
   }
 
 
-  get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false) ? true : false;
-  }
-
-
-  get isEmailVerified(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return (user.emailVerified !== false) ? true : false;
-  }
-
-
-  AuthLogin(provider) {
-    return this.ngFireAuth.signInWithPopup(provider)
-      .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
-        })
-        this.SetUserData(result.user);
-      }).catch((error) => {
-        window.alert(error)
-      })
-  }
-
-
-  SetUserData(user) {
-    const userRef: AngularFirestoreDocument<any> = this.afStore.doc(`Usuarios/${user.uid}`);
-    const userData: User = {
-	  id: user.id,
-      email: user.email,
-      emailVerified: user.emailVerified,
-      primeiroNome: user.primeiroNome,
-      ultimoNome: user.ultimoNome,
-      tipo: user.tipo,
-      foto: user.foto,
-      avaliacao: user.avaliacao
-    }
-    return userRef.set(userData, {
-      merge: true
-    })
-  }
-
-
   SignOut() {
-    return this.ngFireAuth.signOut().then(() => {
+    return this.ngFireAuth.signOut()
+    .then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['login']);
     })
+  }
+
+  SetUserData(user) {
+    const userData: User = {
+      id: user.id,
+      email: user.email,
+      emailVerified: user.emailVerified,
+      foto: user.foto,
+      primeiroNome: user.primeiroNome,
+      ultimoNome: user.ultimoNome,
+      tipo: user.tipo,
+      avaliacao: user.avaliacao
+    };
+    const delay = 1000;
+    setTimeout(() => {
+      const userLocal = JSON.parse(localStorage.getItem('user'));
+      userLocal.email = userLocal.email.replace(/[.#$]+/g, ':');
+      this.db.object(`/users/${userLocal.email}/settings`).set(userData);
+    }, delay);
+  }
+
+  SetUserEmail(name) {
+    const userLocal = JSON.parse(localStorage.getItem('user'));
+    const userData: User = {
+      id: userLocal.id,
+      email: userLocal.email,
+      emailVerified: userLocal.emailVerified,
+      foto: userLocal.foto,
+      primeiroNome: userLocal.primeiroNome,
+      ultimoNome: userLocal.ultimoNome,
+      tipo: userLocal.tipo,
+      avaliacao: userLocal.avaliacao
+    };
+    const delay = 1000;
+    setTimeout(() => {
+      userLocal.email = userLocal.email.replace(/[.#$]+/g, ':');
+      this.db.object(`/users/${userLocal.email}/settings`).set(userData);
+    }, delay);
   }
 
 
@@ -130,21 +141,52 @@ export class AuthService {
     return this.userListRef;
   }
 
+
   readUsuarioByEmail(userEmail) {
     this.userRef = this.db.object(`/users/${userEmail}`);
     return this.userRef;
   }
 
+
   readUsuarioById(userId) {
     this.userRef = this.db.object(`/users/${userId}`);
     return this.userRef;
   }
-  
-  updateUsuario(userId, user) {
-    this.firestore.doc(this.collectionName + '/' + userId).update(user);
-  }
 
-  deleteUsuario(userId) {
-    this.firestore.doc(this.collectionName + '/' + userId).delete();
-  }
+  
+  // AuthLogin(provider) {
+  //   return this.ngFireAuth.signInWithPopup(provider)
+  //     .then((result) => {
+  //       this.ngZone.run(() => {
+  //         this.router.navigate(['dashboard']);
+  //       })
+  //       this.SetUserData(result.user);
+  //     }).catch((error) => {
+  //       window.alert(error)
+  //     })
+  // }
+  
+  // SetUserData(user) {
+  //   const userRef: AngularFirestoreDocument<any> = this.afStore.doc(`Usuarios/${user.uid}`);
+  //   const userData: User = {
+	//   id: user.id,
+  //     email: user.email,
+  //     emailVerified: user.emailVerified,
+  //     primeiroNome: user.primeiroNome,
+  //     ultimoNome: user.ultimoNome,
+  //     tipo: user.tipo,
+  //     foto: user.foto,
+  //     avaliacao: user.avaliacao
+  //   }
+  //   return userRef.set(userData, {
+  //     merge: true
+  //   })
+  // }
+  // updateUsuario(userId, user) {
+  //   this.firestore.doc(this.collectionName + '/' + userId).update(user);
+  // }
+
+  // deleteUsuario(userId) {
+  //   this.firestore.doc(this.collectionName + '/' + userId).delete();
+  // }
 }
