@@ -42,8 +42,8 @@
               <img src="{{ post.fotoUsuario }}" alt="">
             </ion-avatar>
             <ion-label>
-              <h6>{{post.emailUsuario}}</h6>
-              <p class="data">{{post.dataPost}} {{post.timePost}}</p>
+              <h6 color="light">{{post.emailUsuario}}</h6>
+              <p class="data" color="light">{{post.dataPost}} {{post.timePost}}</p>
               <ion-buttons slot="end">
                 <ion-icon name="ellipsis-horizontal" color="light" (click)="post.options = !post.options"></ion-icon>
               </ion-buttons>
@@ -87,7 +87,7 @@
         </ion-card-header>
 
         <ion-card-content>
-          <p class="ion-description">{{post.descricao}}</p>
+          <ion-text color="dark"><p class="ion-description">{{post.descricao}}<p></ion-text>
         </ion-card-content>
         <ion-button color="dark" fill="outline" expand="block" [routerLink]="['/profile/', post.$key]">
           <ion-icon name="chatbubbles-outline"></ion-icon> &nbsp; Comentários

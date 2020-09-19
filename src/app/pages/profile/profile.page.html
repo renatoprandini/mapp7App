@@ -14,7 +14,7 @@
       <ion-icon name="send"></ion-icon>
     </ion-button>
   </ion-item>
-  
+
   <div *ngFor="let chat of chatRef | async">
     <div>
       <div *ngIf="userLocal.email == chat.userId" class="enviada" (click)="chat.options = !chat.options">
@@ -28,16 +28,16 @@
           {{chat.name}}
         </ion-chip>
         {{chat.message}}
-
-        <div *ngIf="chat.options == true" class="details">
+        <div *ngIf="chat.options == true" class="details" color="dark">
           <ion-icon name="calendar-outline"></ion-icon> {{chat.data}} &nbsp;
           <ion-icon name="time-outline"></ion-icon> {{chat.hora}} &nbsp;
           <ion-icon name="trash" (click)="deleteMsg()"></ion-icon> Deletar
         </div>
       </div>
 
-  
+
       <div *ngIf="userLocal.email != chat.userId" class="recebida" (click)="chat.options = !chat.options">
+
         <ion-chip color="success">
           <ion-avatar>
             <img [src]="userInfo['foto']">
@@ -49,6 +49,7 @@
         </ion-chip>
         {{chat.message}}
         <div *ngIf="chat.options == true" class="details">
+
           <ion-icon name="calendar-outline"></ion-icon> {{chat.data}} &nbsp;
           <ion-icon name="time-outline"></ion-icon> {{chat.hora}} &nbsp;
           <ion-icon name="trash" (click)="deleteMsg()"></ion-icon>Deletar
@@ -56,9 +57,9 @@
       </div>
     </div>
   </div>
-     <div class="paginador">
-       <ion-button (click)="adicionarPaginador()" color="vermelho" expand="block">
-        <ion-icon name="chatbox-ellipses-outline"></ion-icon> &nbsp; Ver mais
-       </ion-button>
-	</div>
+  <div class="paginador">
+    <ion-button (click)="adicionarPaginador()" color="vermelho" expand="block">
+      <ion-icon name="chatbox-ellipses-outline"></ion-icon> &nbsp; Ver mais
+    </ion-button>
+  </div>
 </ion-content>

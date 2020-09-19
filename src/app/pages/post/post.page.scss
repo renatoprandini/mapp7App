@@ -44,7 +44,7 @@ ion-card {
     font-family: 'Roboto', sans-serif;
     font-size: 17px;
     color: #000;
-    --placeholder-color: #000;
+    --placeholder-color:var(--ion-color-dark);
     font-weight: bold;
 }
 
@@ -58,3 +58,4 @@ ion-card {
         font-size: 17px;
     }
 }
+

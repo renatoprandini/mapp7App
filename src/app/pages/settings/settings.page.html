@@ -9,19 +9,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="graymp">
-  
-
+<ion-content color="cinza">
   <ion-item-group>
-
     <ion-text class="titleT"> Conta </ion-text>
-
-      <ion-item class="optionT" routerLink="/change-photo">
-        Alterar foto
-        <ion-buttons slot="end">
-          <ion-icon color="vermelho" name="chevron-forward-outline"></ion-icon>
-        </ion-buttons>
-      </ion-item>
+    <ion-item class="optionT" routerLink="/change-photo" color="dark">
+      Alterar foto
+      <ion-buttons slot="end">
+        <ion-icon color="vermelho" name="chevron-forward-outline"></ion-icon>
+      </ion-buttons>
+    </ion-item>
 
   </ion-item-group>
 
@@ -29,19 +25,19 @@
 
     <ion-text class="titleT"> Preferências </ion-text>
 
-      <ion-item class="optionT" routerLink="/about">
-        Sobre
-        <ion-buttons slot="end">
-          <ion-icon color="vermelho" name="chevron-forward-outline"></ion-icon>
-        </ion-buttons>
-      </ion-item>
-      
-      <ion-item class="optionT" (click)="authService.SignOut()">
-        Sair
-        <ion-buttons slot="end">
-          <ion-icon color="vermelho" name="log-out-outline"></ion-icon>
-        </ion-buttons>
-      </ion-item>
+    <ion-item class="optionT" routerLink="/about" color="dark">
+      Sobre
+      <ion-buttons slot="end">
+        <ion-icon color="vermelho" name="chevron-forward-outline"></ion-icon>
+      </ion-buttons>
+    </ion-item>
+
+    <ion-item class="optionT" (click)="authService.SignOut()" color="dark">
+      Sair
+      <ion-buttons slot="end">
+        <ion-icon color="vermelho" name="log-out-outline"></ion-icon>
+      </ion-buttons>
+    </ion-item>
 
   </ion-item-group>
 
