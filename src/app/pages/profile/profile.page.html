@@ -18,7 +18,15 @@
   <div *ngFor="let chat of chatRef | async">
     <div>
       <div *ngIf="userLocal.email == chat.userId" class="enviada" (click)="chat.options = !chat.options">
-        <ion-chip color="vermelho">{{chat.name}}</ion-chip>
+        <ion-chip color="vermelho">
+          <ion-avatar>
+            <img [src]="userInfo['foto']">
+          </ion-avatar>
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          {{chat.name}}
+        </ion-chip>
         {{chat.message}}
 
         <div *ngIf="chat.options == true" class="details">
@@ -30,7 +38,15 @@
 
   
       <div *ngIf="userLocal.email != chat.userId" class="recebida" (click)="chat.options = !chat.options">
-        <ion-chip color="success">{{chat.name}}</ion-chip>
+        <ion-chip color="success">
+          <ion-avatar>
+            <img [src]="userInfo['foto']">
+          </ion-avatar>
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          {{chat.name}}
+        </ion-chip>
         {{chat.message}}
         <div *ngIf="chat.options == true" class="details">
           <ion-icon name="calendar-outline"></ion-icon> {{chat.data}} &nbsp;

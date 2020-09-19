@@ -3,6 +3,7 @@
  align-items:right;
  margin:15px;
  padding:15px;
+ font-family: 'Roboto', sans-serif;
 }
 
 .recebida{
@@ -10,12 +11,18 @@
  align-items:left;
  margin:15px;
  padding:15px;
+ font-family: 'Roboto', sans-serif;
+ 
 }
 
 ion-item{
  margin:10px;
  padding:5px;
  --border-radius: 10px;
+}
+
+ion-avatar {
+  --border-radius: 50px;
 }
 
 .details{

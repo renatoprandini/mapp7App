@@ -60,9 +60,6 @@ export class LoginPage implements OnInit {
     if (this.user !== null && this.user.emailVerified === true) {
       this.presentLoading('Aguarde um momento...');
       this.navCtrl.navigateRoot('tabs/tab1');
-    } else {
-      this.showMessage('Não foi possível autenticar!');
-      this.navCtrl.navigateRoot('login');
     }
   }
 
@@ -86,19 +83,20 @@ export class LoginPage implements OnInit {
     this.authService.SignIn(email.value, password.value)
       .then((res) => {
         if (this.authService.isEmailVerified) {
-          this.router.navigate(['/tabs/tab1']);
+          const delay = 500;
+          setTimeout(() => {
+            this.router.navigate(['tabs/tab1']);
+          }, delay);
         } else {
-          this.showMessage('Email não verificado<br/>Verifique sua caixa de entrada!');
+          this.showMessage('Seu email não foi verificado!!!');
           return false;
         }
       }).catch((error) => {
-        if (error.message) {
-          this.logIn(email.value, password.value);
+        if (error.message === 'Cannot read property \'emailVerified\' of null') {
+          this.logIn(email, password);
         }
         console.log(error.message);
       });
-	  
-	 
   }
 
   async presentLoading(msg: string) {

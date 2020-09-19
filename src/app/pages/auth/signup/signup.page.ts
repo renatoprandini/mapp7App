@@ -53,7 +53,6 @@ export class SignupPage implements OnInit {
 
   ngOnInit(){
 
-
     this.userForm = this.fb.group({
       email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
       password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
@@ -61,7 +60,7 @@ export class SignupPage implements OnInit {
       primeiroNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
       ultimoNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
       tipo: [''],
-      foto: ['https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'],
+      photoURL: ['https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'],
     },
     {
       validator: ComparacaoValidator('password', 'confirm')

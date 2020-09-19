@@ -2,17 +2,20 @@
   <ion-toolbar color="cinza" class="ion-padding-horizontal">
     <ion-grid>
       <ion-row>
-        <ion-col size="6">
+
+        <ion-col size="10">
           <ion-thumbnail>
             <img src="../../../assets/logotcc.png" />
           </ion-thumbnail>
-
         </ion-col>
-        <ion-col size="6">
-          <ion-button color="dark" fill="outline" routerLink="/post">
-            <ion-icon name="add-outline"></ion-icon>
-            Criar
+
+        <ion-col size="2" class="colSpace">
+          <ion-buttons>
+          <ion-button  expand="block" color="dark" fill="outline" routerLink="/post" class="buttonAdd">
+            <ion-icon color="dark" name="add-outline"></ion-icon>
+            
           </ion-button>
+        </ion-buttons>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -36,7 +39,7 @@
         <ion-card-header color="vermelho">
           <ion-item class="user-bar">
             <ion-avatar slot="start">
-              <img [src]="userInfo['foto']">
+              <img src="{{ post.fotoUsuario }}" alt="">
             </ion-avatar>
             <ion-label>
               <h6>{{post.emailUsuario}}</h6>

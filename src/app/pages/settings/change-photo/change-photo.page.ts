@@ -21,7 +21,7 @@ import * as firebase from 'firebase';
 export class ChangePhotoPage implements OnInit {
 
   user: User;
-  foto: any;
+  photoURL: any;
   pickUrl: string;
   userRef: AngularFireObject<any>;
 
@@ -96,8 +96,8 @@ export class ChangePhotoPage implements OnInit {
         ref.getDownloadURL().subscribe(data => {
           console.log(`URL: ${data}`);
           this.pickUrl = data;
-          this.userLocal.foto = this.pickUrl;
-          this.db.database.ref(`/users/${this.userLocal.email}/foto`).set(this.pickUrl);
+          this.userLocal.photoURL = this.pickUrl;
+          this.db.database.ref(`/users/${this.userLocal.email}/photoURL`).set(this.pickUrl);
         });
       })
     ).subscribe();
@@ -126,15 +126,15 @@ export class ChangePhotoPage implements OnInit {
     });
   }
 
-//   getFoto(email) {
+//   getphotoURL(email) {
 //     email = email.replace(/[.#$]+/g, ':');
-//     this.foto = this.db.object(`/users/${email}/foto`);
-//     return this.foto;
+//     this.photoURL = this.db.object(`/users/${email}/photoURL`);
+//     return this.photoURL;
 // }
 
-// updateFoto(foto, email) {
+// updatephotoURL(photoURL, email) {
 //     email = email.replace(/[.#$]+/g, ':');
-//     this.db.database.ref(`/users/${email}/foto`).set(foto);
+//     this.db.database.ref(`/users/${email}/photoURL`).set(photoURL);
 // }
 
 

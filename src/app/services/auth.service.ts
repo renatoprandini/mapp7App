@@ -102,7 +102,7 @@ export class AuthService {
       id: user.id,
       email: user.email,
       emailVerified: user.emailVerified,
-      foto: user.foto,
+      photoURL: user.photoURL,
       primeiroNome: user.primeiroNome,
       ultimoNome: user.ultimoNome,
       tipo: user.tipo,
@@ -122,7 +122,7 @@ export class AuthService {
       id: userLocal.id,
       email: userLocal.email,
       emailVerified: userLocal.emailVerified,
-      foto: userLocal.foto,
+      photoURL: userLocal.photoURL,
       primeiroNome: userLocal.primeiroNome,
       ultimoNome: userLocal.ultimoNome,
       tipo: userLocal.tipo,
@@ -175,16 +175,16 @@ export class AuthService {
   //     primeiroNome: user.primeiroNome,
   //     ultimoNome: user.ultimoNome,
   //     tipo: user.tipo,
-  //     foto: user.foto,
+  //     photoURL: user.photoURL,
   //     avaliacao: user.avaliacao
   //   }
   //   return userRef.set(userData, {
   //     merge: true
   //   })
   // }
-  // updateUsuario(userId, user) {
-  //   this.firestore.doc(this.collectionName + '/' + userId).update(user);
-  // }
+  updateUsuario(userId, user) {
+    this.firestore.doc(this.collectionName + '/' + userId).update(user);
+  }
 
   // deleteUsuario(userId) {
   //   this.firestore.doc(this.collectionName + '/' + userId).delete();
