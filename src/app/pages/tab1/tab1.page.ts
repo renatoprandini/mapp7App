@@ -7,7 +7,7 @@ import { Post } from '../../models/post.model';
 import * as firebase from 'firebase';
 
 import { User } from 'src/app/models/user.model';
-import { ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -27,17 +27,22 @@ export class Tab1Page implements OnInit {
   user: User;
   Users = [];
 
- 
+
+
 
 
   public key: any;
   public email: any;
   public userInfo = {};
+  public postInfo = {};
   Posts = [];
-
+  
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
+
   public userInfo2 = {};
   public photo = {};
+
+
 
   @ViewChild('users', { static: true }) test;
   constructor(
@@ -46,17 +51,22 @@ export class Tab1Page implements OnInit {
     public firestore: AngularFirestore,
     private toastCtrl: ToastController,
     private activeRoute: ActivatedRoute,
+    private alertController: AlertController,
 
 
   ) {
-    
+
   }
 
 
   ngOnInit() {
     this.fetchUsersByEmail();
     this.fetchPosts();
+    this.fetchPhoto();
 
+
+
+    
 
     const postRes = this.pstService.getPostList();
     postRes.snapshotChanges().subscribe(res => {
@@ -70,12 +80,11 @@ export class Tab1Page implements OnInit {
   }
 
 
-  deletePost(id: string) {
-    console.log(id);
-    if (window.confirm('Tem certeza que deseja excluir o post?')) {
-      this.pstService.deletePost(id);
-    }
-  }
+  // deletePost(id: string) {
+  //   if (this.showAlert) {
+  //     this.pstService.deletePost(id);
+  //   }
+  // }
 
   fetchUsersByEmail() {
     // Pega os valores do caminho os subscreve no 'res'
@@ -83,24 +92,59 @@ export class Tab1Page implements OnInit {
       this.userInfo = res;
       this.userInfo2 = res;
       this.photo = res;
+      console.log(res);
     });
   }
 
 
   fetchPosts() {
     this.pstService.getPostList().valueChanges().subscribe(res => {
+      this.postInfo = res;
+      console.log(res);
     });
   }
 
+  fetchPhoto() {
+
+    const pickUrl = {
+      photoURL: this.userLocal.photoURL,
+  }
+
+  localStorage.setItem('photoURL', JSON.stringify(pickUrl));
+  console.log(this.userLocal.photoURL);
+
+
+  }
+
   async showMessage(message: string) {
-    await this.toastCtrl.create({ 
-      message: message, 
+    await this.toastCtrl.create({
+      message: message,
       duration: 5000,
-      cssClass: "toastError"  
+      cssClass: "toastError"
     })
       .then((toastData) => {
         console.log(toastData);
         toastData.present();
       });
+  }
+
+  async showAlertDeletePost(id: string) {
+    const alert = await this.alertController.create({
+      header: 'Atenção',
+      message: 'Você tem certeza que deseja excluir o post?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        }, {
+          text: 'Ok',
+          handler: () => {
+            this.pstService.deletePost(id);
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
   }
 }

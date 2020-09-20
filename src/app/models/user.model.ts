@@ -3,7 +3,7 @@ export class User {
         public id: string,
         public email: string = '',
         public emailVerified: boolean,
-        public foto: string = '',
+        public photoURL: string = '',
         public primeiroNome: string = '',
         public ultimoNome: string = '',
         public tipo: string = '',

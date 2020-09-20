@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from '../../models/user.model';
 import sortBy from 'sortBy';
+import { database } from 'firebase';
 
 @Component({
   selector: 'app-tab2',
@@ -14,6 +15,7 @@ export class Tab2Page implements OnInit {
   public userInfo = {};
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
   Users = [];
+  listaUsers = [];
 
   constructor(
     public authService: AuthService,
@@ -51,7 +53,7 @@ export class Tab2Page implements OnInit {
 
   fetchUsers() {
     this.authService.readUsuarioList().valueChanges().subscribe(res => {
-      console.log(res);
+      this.listaUsers = res;
     });
   }
 

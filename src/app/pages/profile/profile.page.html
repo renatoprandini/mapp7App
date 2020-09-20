@@ -14,40 +14,46 @@
       <ion-icon name="send"></ion-icon>
     </ion-button>
   </ion-item>
-  
+
   <div *ngFor="let chat of chatRef | async">
     <div>
-      <div *ngIf="userLocal.email == chat.userId"  (click)="chat.options = !chat.options">
-		   <ion-card color="dark">
-		   <div class="chat">
-               <img [src]="chat.img"  height="50px" width="50px">
-               <h6 color="light">{{chat.name}}</h6>
-               <ion-text color="vermelho"><p >{{chat.data}} {{chat.hora}}</p></ion-text>
-               <ion-text color="light"><p class="ion-description">{{chat.message}} </p></ion-text>
-			</div>
-			</ion-card>
-			
+      <div *ngIf="userLocal.email == chat.userId" (click)="chat.options = !chat.options">
+        <ion-card color="dark">
+          <div class="chat">
+            <img [src]="chat.img" height="50px" width="50px">
+            <h6 color="light">{{chat.name}}</h6>
+            <ion-text color="vermelho">
+              <p>{{chat.data}} {{chat.hora}}</p>
+            </ion-text>
+            <ion-text color="light">
+              <p class="ion-description">{{chat.message}} </p>
+            </ion-text>
+          </div>
+        </ion-card>
       </div>
 
-  
+
       <div *ngIf="userLocal.email != chat.userId" class="chat" (click)="chat.options = !chat.options">
-        
-		    <ion-card color="light">
-			<div class="chat">
-                <img [src]="chat.img" height="50px" width="50px">
-              <h6 color="light">{{chat.name}}</h6>
-              <ion-text><p>{{chat.data}} {{chat.hora}}</p></ion-text>
-              <ion-text color="dark"><p class="ion-description">{{chat.message}} </p></ion-text>
-             </div>
-			</ion-card>
-       
+
+        <ion-card color="light">
+          <div class="chat">
+            <img [src]="chat.img" height="50px" width="50px">
+            <h6 color="light">{{chat.name}}</h6>
+            <ion-text>
+              <p>{{chat.data}} {{chat.hora}}</p>
+            </ion-text>
+            <ion-text color="dark">
+              <p class="ion-description">{{chat.message}} </p>
+            </ion-text>
+          </div>
+        </ion-card>
       </div>
     </div>
-	
   </div>
-     <div class="paginador">
-       <ion-button (click)="adicionarPaginador()" color="vermelho" expand="block">
-        <ion-icon name="chatbox-ellipses-outline"></ion-icon> &nbsp; Ver mais
-       </ion-button>
-	</div>
+
+  <div class="paginador">
+    <ion-button (click)="adicionarPaginador()" color="vermelho" expand="block">
+      <ion-icon name="chatbox-ellipses-outline"></ion-icon> &nbsp; Ver mais
+    </ion-button>
+  </div>
 </ion-content>

@@ -158,3 +158,19 @@ ion-title {
     transform: scale(1.0);
   }
 }
+
+ion-toggle {
+  --background: #e02041;
+  --background-checked: #e02041;
+
+  --handle-background: #e02041;
+  --handle-background-checked: #e02041;
+}
+
+.item-native {
+  border: none;
+}
+
+.item-inner {
+  border: none;
+}

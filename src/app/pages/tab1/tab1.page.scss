@@ -42,11 +42,11 @@ ion-list {
 }
 
 ion-card {
-  min-width: 350px;
-  max-width: 350px;
-  ::first-letter {
-    text-transform: capitalize !important;
-  }
+  min-width: 275px;
+  width: auto;
+  margin: 0 auto;
+  margin-top: 15px;
+
 }
 
 .showMore {
@@ -92,4 +92,23 @@ ion-skeleton-text{
   border:1px solid black;
   box-shadow:2px;
   margin-left:10px;
+}
+
+.buttonAdd{
+  border-radius: 50px;
+  margin-left: 10px !important;
+  margin: 0 auto;
+}
+
+.colSpace {
+  justify-content: space-between;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.configI {
+  font-size: 35px;
+  font-weight: bold;
+  color: #E02041;
+  margin: 0 auto;
 }
