@@ -47,6 +47,7 @@ export class ProfilePage implements OnInit {
         chat: this.id,
         name: this.userInfo['primeiroNome'],
         message: this.text,
+		img: this.userInfo['foto'],
         data: new Date().toLocaleDateString(),
         hora: new Date().toLocaleTimeString(),
         userId: this.userLocal.email,

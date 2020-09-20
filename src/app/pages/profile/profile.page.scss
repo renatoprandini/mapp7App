@@ -1,36 +1,27 @@
-.enviada{
- text-align:right;
- align-items:right;
- margin:15px;
- padding:15px;
-}
-
-.recebida{
- text-align:left;
- align-items:left;
- margin:15px;
- padding:15px;
-}
 
 ion-item{
- margin:10px;
- padding:5px;
+ padding:10px;
  --border-radius: 10px;
 }
 
-.details{
-  margin-top:2px;
-  background-color:white;
-  display:flex;
-  
-  ion-icon{
-   margin:1px;
-  }
+ion-textarea{
+  padding:3px;
 }
 
 .paginador{
   bottom:0;
-  position:absolute;
+  position:fixed;
   width:100%;
   text-align:center;
+  z-index:99999;
+}
+
+.ion-description{
+  padding:5px;
+  font-size:14px;
+}
+
+.chat{
+    padding:7px;
+	margin:5px;
 }

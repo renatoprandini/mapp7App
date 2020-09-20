@@ -13,7 +13,6 @@ ion-input {
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     font-weight: bolder;
-    color: #000;
     --placeholder-font-style: 'Roboto', sans-serif;
 }
 
@@ -43,8 +42,8 @@ ion-card {
 .inputT {
     font-family: 'Roboto', sans-serif;
     font-size: 17px;
-    color: #000;
     --placeholder-color:var(--ion-color-dark);
+	--color:var(--ion-color-dark);
     font-weight: bold;
 }
 

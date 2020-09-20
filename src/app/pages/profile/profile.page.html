@@ -9,7 +9,7 @@
 
 <ion-content color="cinza">
   <ion-item lines="none" color="graymp" class="itemChat">
-    <ion-input [(ngModel)]="text"></ion-input>
+    <ion-textarea [(ngModel)]="text"></ion-textarea>
     <ion-button (click)="send()" color="vermelho">
       <ion-icon name="send"></ion-icon>
     </ion-button>
@@ -17,28 +17,33 @@
   
   <div *ngFor="let chat of chatRef | async">
     <div>
-      <div *ngIf="userLocal.email == chat.userId" class="enviada" (click)="chat.options = !chat.options">
-        <ion-chip color="vermelho">{{chat.name}}</ion-chip>
-        <ion-text color="dark"> {{chat.message}} </ion-text>
-
-        <div *ngIf="chat.options == true" class="details" color="dark">
-          <ion-icon name="calendar-outline"></ion-icon> {{chat.data}} &nbsp;
-          <ion-icon name="time-outline"></ion-icon> {{chat.hora}} &nbsp;
-          <ion-icon name="trash" (click)="deleteMsg()"></ion-icon> Deletar
-        </div>
+      <div *ngIf="userLocal.email == chat.userId"  (click)="chat.options = !chat.options">
+		   <ion-card color="dark">
+		   <div class="chat">
+               <img [src]="chat.img"  height="50px" width="50px">
+               <h6 color="light">{{chat.name}}</h6>
+               <ion-text color="vermelho"><p >{{chat.data}} {{chat.hora}}</p></ion-text>
+               <ion-text color="light"><p class="ion-description">{{chat.message}} </p></ion-text>
+			</div>
+			</ion-card>
+			
       </div>
 
   
-      <div *ngIf="userLocal.email != chat.userId" class="recebida" (click)="chat.options = !chat.options">
-        <ion-chip color="success">{{chat.name}}</ion-chip>
-          <ion-text color="dark"> {{chat.message}} </ion-text>
-        <div *ngIf="chat.options == true" class="details" color="dark">
-          <ion-icon name="calendar-outline"></ion-icon> {{chat.data}} &nbsp;
-          <ion-icon name="time-outline"></ion-icon> {{chat.hora}} &nbsp;
-          <ion-icon name="trash" (click)="deleteMsg()"></ion-icon>Deletar
-        </div>
+      <div *ngIf="userLocal.email != chat.userId" class="chat" (click)="chat.options = !chat.options">
+        
+		    <ion-card color="light">
+			<div class="chat">
+                <img [src]="chat.img" height="50px" width="50px">
+              <h6 color="light">{{chat.name}}</h6>
+              <ion-text><p>{{chat.data}} {{chat.hora}}</p></ion-text>
+              <ion-text color="dark"><p class="ion-description">{{chat.message}} </p></ion-text>
+             </div>
+			</ion-card>
+       
       </div>
     </div>
+	
   </div>
      <div class="paginador">
        <ion-button (click)="adicionarPaginador()" color="vermelho" expand="block">
