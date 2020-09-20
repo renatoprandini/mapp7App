@@ -7,7 +7,7 @@ import { Post } from '../../models/post.model';
 import * as firebase from 'firebase';
 
 import { User } from 'src/app/models/user.model';
-import { ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -51,6 +51,7 @@ export class Tab1Page implements OnInit {
     public firestore: AngularFirestore,
     private toastCtrl: ToastController,
     private activeRoute: ActivatedRoute,
+    private alertController: AlertController,
 
 
   ) {
@@ -79,12 +80,11 @@ export class Tab1Page implements OnInit {
   }
 
 
-  deletePost(id: string) {
-    console.log(id);
-    if (window.confirm('Tem certeza que deseja excluir o post?')) {
-      this.pstService.deletePost(id);
-    }
-  }
+  // deletePost(id: string) {
+  //   if (this.showAlert) {
+  //     this.pstService.deletePost(id);
+  //   }
+  // }
 
   fetchUsersByEmail() {
     // Pega os valores do caminho os subscreve no 'res'
@@ -126,5 +126,25 @@ export class Tab1Page implements OnInit {
         console.log(toastData);
         toastData.present();
       });
+  }
+
+  async showAlertDeletePost(id: string) {
+    const alert = await this.alertController.create({
+      header: 'Atenção',
+      message: 'Você tem certeza que deseja excluir o post?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        }, {
+          text: 'Ok',
+          handler: () => {
+            this.pstService.deletePost(id);
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
   }
 }

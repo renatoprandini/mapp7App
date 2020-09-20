@@ -91,8 +91,18 @@ ion-icon {
     font-family: 'Roboto', sans-serif;
     text-align: center !important;
 }
+
+
 .nomeU {
     font-size: 13px;
+    font-weight: bolder;
+    color: #E02041;
+    font-family: 'Roboto', sans-serif;
+    text-align: center !important;
+}
+
+.email {
+    font-size: 10px;
     font-weight: bolder;
     color: #E02041;
     font-family: 'Roboto', sans-serif;
@@ -119,14 +129,20 @@ ion-icon {
 ion-item {
     --border-color: #fff;
 }
-ion-content ion-item {
-    border: 1px solid #BDBFC1;
-}
+
+// ion-content ion-item {
+//     border: 1px solid #BDBFC1;
+// }
 
 .borderNone {
-    --border-color: #fff;
+    border: none;
 }
 
 .imgAuto {
     margin: 0 auto !important;
+  }
+
+
+  .colAlign{
+    margin: 0 auto;
   }

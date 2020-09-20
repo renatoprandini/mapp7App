@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="cinza">
+  <ion-toolbar>
     <ion-title color="vermelho" class="textT">Editar post</ion-title>
     <ion-buttons slot="start" class="red">
       <ion-back-button>
@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="cinza">
+<ion-content>
   <ion-card>
   <ion-list lines="full">
     <form [formGroup]="updatePostForm">
@@ -20,9 +20,9 @@
       </ion-item>
 
       <ion-item lines="none">
-        <ion-input class="inputT" position="floating" clearInput placeholder="Descrição" formControlName="descricao"
-          type="text" required>
-        </ion-input>
+        <ion-textarea class="inputT" position="floating" clearInput placeholder="Descrição"
+          formControlName="descricao" rows="6" cols="20" minlength="10" maxlength="150" type="text" required>
+        </ion-textarea>
       </ion-item>
 
 
@@ -53,8 +53,9 @@
 
       <ion-row>
         <ion-col>
-          <ion-button class="textT" color="vermelho" type="submit" shape="full" fill="outline" expand="block" (click)="updatePosts()">
+          <ion-button class="textT" color="vermelho" type="submit" fill="clear" expand="block" (click)="updatePosts()">
             <ion-icon name="save-outline"></ion-icon>
+            &nbsp; Salvar
           </ion-button>
         </ion-col>
       </ion-row>
