@@ -5,7 +5,9 @@ export class Post {
         public imagem: string = '',
         public descricao: string = '',
         public urgente: string = '',
-        public emailUsuario: string = '',
+        public emailUsuario: string,
+        public displayName: string,
+        public fotoUsuario: string,
         public dataPost: any = null,
         public timePost: any = null,
 		public options: boolean = false

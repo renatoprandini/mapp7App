@@ -103,6 +103,17 @@
           </ng-container>
         </ion-item>
 
+        <ion-item>
+          <ion-input position="floating" placeholder="Apelido" type="text" #displayName required
+            formControlName="displayName"></ion-input>
+          <ng-container *ngFor="let validation of validationsMSG.displayName">
+            <div class="errorMSG"
+              *ngIf="userForm.get('displayName').hasError(validation.type) && (userForm.get('displayName').dirty || userForm.get('displayName').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </ion-item>
+
         <ion-grid>
           <p class="magicT"> Tipo de Conta: </p>
 

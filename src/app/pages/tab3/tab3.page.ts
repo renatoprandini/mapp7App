@@ -45,6 +45,8 @@ export class Tab3Page implements OnInit {
       this.userInfo = res;
       this.userInfo2 = res;
       this.photo = res;
+
+      
     });
   }
 

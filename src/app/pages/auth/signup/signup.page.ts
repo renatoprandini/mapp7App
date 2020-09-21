@@ -40,6 +40,10 @@ export class SignupPage implements OnInit {
     ultimoNome: [
       { type: 'required', message: '* Obrigatório' },
       { type: 'maxlength', message: 'O sobrenome pode ter no máximo 15 caracteres.' }
+    ],
+    displayName: [
+      { type: 'required', message: '* Obrigatório' },
+      { type: 'maxlength', message: 'O nome de usuário pode ter no máximo 30 caracteres.' }
     ]
   };
 
@@ -59,6 +63,7 @@ export class SignupPage implements OnInit {
       confirm: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
       primeiroNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
       ultimoNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
+      displayName: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
       tipo: [''],
       photoURL: ['https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'],
     },
@@ -77,7 +82,6 @@ export class SignupPage implements OnInit {
       cssClass: "toastError"  
     })
       .then((toastData) => {
-        console.log(toastData);
         toastData.present();
       });
   }

@@ -57,18 +57,16 @@ export class AuthService {
 
 
   RegisterUser(email, password, user) {
+
     return this.ngFireAuth.createUserWithEmailAndPassword(email, password)
       .then(() => {
-        const userInfo = JSON.parse(localStorage.getItem('user'));
-        userInfo.email = userInfo.email.replace(/[.#$]+/g, ':');
-        this.db.object(`/users/${userInfo.email}`).set(user);
+        this.SetUserData(user);
       })
-      .catch(() => {
-        const userInfo = JSON.parse(localStorage.getItem('user'));
-        userInfo.email = userInfo.email.replace(/[.#$]+/g, ':');
-        this.db.object(`/users/${userInfo.email}`).set(user);
+      .catch((err) => {
+        console.log(err);
       });
   }
+
 
 
   async SendVerificationMail() {
@@ -105,35 +103,37 @@ export class AuthService {
       photoURL: user.photoURL,
       primeiroNome: user.primeiroNome,
       ultimoNome: user.ultimoNome,
+      displayName: user.displayName,
       tipo: user.tipo,
       avaliacao: user.avaliacao
     };
     const delay = 1000;
     setTimeout(() => {
-      const userLocal = JSON.parse(localStorage.getItem('user'));
-      userLocal.email = userLocal.email.replace(/[.#$]+/g, ':');
-      this.db.object(`/users/${userLocal.email}/settings`).set(userData);
+      const userInfo = JSON.parse(localStorage.getItem('user'));
+      userInfo.email = userInfo.email.replace(/[.#$]+/g, ':');
+      this.db.object(`/users/${userInfo.email}`).set(user);
     }, delay);
   }
 
-  SetUserEmail(name) {
-    const userLocal = JSON.parse(localStorage.getItem('user'));
-    const userData: User = {
-      id: userLocal.id,
-      email: userLocal.email,
-      emailVerified: userLocal.emailVerified,
-      photoURL: userLocal.photoURL,
-      primeiroNome: userLocal.primeiroNome,
-      ultimoNome: userLocal.ultimoNome,
-      tipo: userLocal.tipo,
-      avaliacao: userLocal.avaliacao
-    };
-    const delay = 1000;
-    setTimeout(() => {
-      userLocal.email = userLocal.email.replace(/[.#$]+/g, ':');
-      this.db.object(`/users/${userLocal.email}/settings`).set(userData);
-    }, delay);
-  }
+  // SetUserEmail() {
+  //   const userLocal = JSON.parse(localStorage.getItem('user'));
+  //   const userData: User = {
+  //     id: userLocal.id,
+  //     email: userLocal.email,
+  //     emailVerified: userLocal.emailVerified,
+  //     photoURL: userLocal.photoURL,
+  //     primeiroNome: userLocal.primeiroNome,
+  //     ultimoNome: userLocal.ultimoNome,
+  //     displayName: userLocal.displayName,
+  //     tipo: userLocal.tipo,
+  //     avaliacao: userLocal.avaliacao
+  //   };
+  //   const delay = 1000;
+  //   setTimeout(() => {
+  //     userLocal.email = userLocal.email.replace(/[.#$]+/g, ':');
+  //     this.db.object(`/users/${userLocal.email}`).set(userData);
+  //   }, delay);
+  // }
 
 
   readUsuarioList() {

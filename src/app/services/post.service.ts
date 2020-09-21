@@ -48,7 +48,9 @@ export class PostService {
       descricao: pst.descricao,
       imagem: pst.imagem,
       urgente: pst.urgente,
+      displayName: pst.displayName,
       emailUsuario: pst.emailUsuario,
+      fotoUsuario: pst.fotoUsuario,
       dataPost: pst.dataPost,
       timePost: pst.timePost,
       options: pst.options

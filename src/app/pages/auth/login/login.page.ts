@@ -82,6 +82,7 @@ export class LoginPage implements OnInit {
   logIn(email, password) {
     this.authService.SignIn(email.value, password.value)
       .then((res) => {
+        console.log('Login: ' , res);
         if (this.authService.isEmailVerified) {
           const delay = 500;
           setTimeout(() => {

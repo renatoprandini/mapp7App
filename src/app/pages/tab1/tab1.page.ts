@@ -62,7 +62,6 @@ export class Tab1Page implements OnInit {
   ngOnInit() {
     this.fetchUsersByEmail();
     this.fetchPosts();
-    this.fetchPhoto();
 
 
 
@@ -86,13 +85,16 @@ export class Tab1Page implements OnInit {
   //   }
   // }
 
-  fetchUsersByEmail() {
+  async fetchUsersByEmail() {
     // Pega os valores do caminho os subscreve no 'res'
-    this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe(res => {
+      await this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe( async res => {
       this.userInfo = res;
       this.userInfo2 = res;
       this.photo = res;
+
       console.log(res);
+
+      localStorage.setItem('user', JSON.stringify(res));
     });
   }
 
@@ -104,17 +106,6 @@ export class Tab1Page implements OnInit {
     });
   }
 
-  fetchPhoto() {
-
-    const pickUrl = {
-      photoURL: this.userLocal.photoURL,
-  }
-
-  localStorage.setItem('photoURL', JSON.stringify(pickUrl));
-  console.log(this.userLocal.photoURL);
-
-
-  }
 
   async showMessage(message: string) {
     await this.toastCtrl.create({

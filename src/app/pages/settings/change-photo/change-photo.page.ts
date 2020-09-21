@@ -98,6 +98,7 @@ export class ChangePhotoPage implements OnInit {
           this.pickUrl = data;
           this.userLocal.photoURL = this.pickUrl;
           this.db.database.ref(`/users/${this.userLocal.email}/photoURL`).set(this.pickUrl);
+          this.authService.SetUserData(this.user);
         });
       })
     ).subscribe();
