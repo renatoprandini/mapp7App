@@ -45,16 +45,12 @@ export class PasswordRecoverPage implements OnInit {
     this.navCtrl.navigateForward('login');
   }
 
-   async passwordRecover(email) {
+   async passwordRecover() {
     this.emailValue = this.emailForm.value.email;
-    console.log(this.emailValue);
-
     if(this.emailValue === null) {
       this.showMessage('Este email é inválido.')
-      console.log(this.emailValue);
     } else {
       this.authService.PasswordRecover(this.emailValue);
-      console.log(this.emailValue);
     }
 
 }
