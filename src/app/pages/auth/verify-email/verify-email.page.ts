@@ -18,7 +18,6 @@ export class VerifyEmailPage implements OnInit {
   }
 
   async goToLogin() {
-    // Navega para a página 'singup'
     this.navCtrl.navigateForward('login');
   }
 

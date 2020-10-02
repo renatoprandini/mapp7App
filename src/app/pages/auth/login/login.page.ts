@@ -96,8 +96,15 @@ export class LoginPage implements OnInit {
         if (error.message === 'Cannot read property \'emailVerified\' of null') {
           this.logIn(email, password);
         }
+        if(error.message === 'The password is invalid or the user does not have a password.') {
+          this.showMessage('A senha inserida está incorreta.')
+        }
         console.log(error.message);
       });
+  }
+
+  async goToPasswordRecover() {
+    this.router.navigate(['password-recover']);
   }
 
   async presentLoading(msg: string) {
