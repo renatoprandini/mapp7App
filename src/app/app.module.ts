@@ -42,7 +42,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
     File,
     Keyboard,
     AngularFireDatabase,
-    ScreenOrientation,
+    ScreenOrientation
   ],
   bootstrap: [AppComponent]
 })
