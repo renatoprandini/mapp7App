@@ -21,6 +21,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

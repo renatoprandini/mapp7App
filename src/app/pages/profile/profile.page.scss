@@ -24,3 +24,74 @@ ion-textarea {
   padding: 7px;
   margin: 5px;
 }
+
+.chat2 {
+  padding: 7px;
+  margin: 5px;
+  background: #CCCCCC;
+}
+
+ion-card {
+  background: #CCCCCC;
+}
+
+
+ion-avatar {
+  height: 60px;
+  width: 60px;
+  margin: 0 auto;
+}
+
+.itemChat {
+  height: 75px;
+  display: flex;
+    margin: auto;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #000;
+    --placeholder-font-style: 'Roboto', sans-serif;
+    --background: #CCCCCC;
+}
+
+.buttonSend {
+  --background: #e02041;
+}
+
+.flex { 
+  display: flex;
+}
+
+.nome {
+  display: flex;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #000;
+    text-align: center;
+}
+
+.dataHora {
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  font-weight: bolder;
+  color: #000;
+  text-align: center;
+}
+
+.msg {
+  display: flex;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: bolder;
+  color: #000;
+}
+
+p {
+  text-align: center;
+  margin: 0 auto;
+  margin-left: 10px;
+  margin-right: 10px;
+}

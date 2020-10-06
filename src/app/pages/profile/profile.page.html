@@ -7,53 +7,96 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="cinza">
-  <ion-item lines="none" color="graymp" class="itemChat">
-    <ion-textarea [(ngModel)]="text"></ion-textarea>
-    <ion-button (click)="send()" color="vermelho">
-      <ion-icon name="send"></ion-icon>
+<ion-content>
+
+
+  <ion-item lines="none" class="itemChat">
+    <ion-input [(ngModel)]="text"></ion-input>
+    <ion-buttons slot="end">
+    <ion-button (click)="send()" class="buttonSend">
+      <ion-icon color="graychat" name="send"></ion-icon>
     </ion-button>
+  </ion-buttons>
   </ion-item>
 
+  <br>
+
   <div *ngFor="let chat of chatRef | async">
-    <div>
+
       <div *ngIf="userLocal.email == chat.userId" (click)="chat.options = !chat.options">
-        <ion-card color="dark">
-          <div class="chat">
-            <img [src]="chat.img" height="50px" width="50px">
-            <h6 color="light">{{chat.name}}</h6>
-            <ion-text color="vermelho">
-              <p>{{chat.data}} {{chat.hora}}</p>
+
+        <ion-card>
+          <ion-row>
+
+          <ion-col size="4">
+
+            <ion-avatar>
+              <img [src]="chat.img">
+              </ion-avatar>
+
+              <ion-text class="ion-text-center">
+                <p  class="nome">{{chat.name}}</p>
+                </ion-text>
+
+              <ion-text class="ion-text-center">
+                <p class="dataHora">{{chat.data}} {{chat.hora}}</p>
+              </ion-text>
+
+
+          </ion-col>
+          <ion-col size="7" class="chat2">
+            
+            <ion-text>
+              <p class="ion-description msg">{{chat.message}}</p>
             </ion-text>
-            <ion-text color="light">
-              <p class="ion-description">{{chat.message}} </p>
-            </ion-text>
-          </div>
+            
+          </ion-col>
+
+          <ion-col size="1">
+
+          </ion-col>
+        </ion-row>
         </ion-card>
+
       </div>
 
 
       <div *ngIf="userLocal.email != chat.userId" class="chat" (click)="chat.options = !chat.options">
 
-        <ion-card color="light">
-          <div class="chat">
-            <img [src]="chat.img" height="50px" width="50px">
-            <h6 color="light">{{chat.name}}</h6>
+
+        <ion-card>
+          <ion-row>
+
+          <ion-col size="4">
+            <ion-avatar>
+              <img [src]="chat.img">
+              </ion-avatar>
+
+              <ion-text class="ion-text-center">
+                <p  class="nome">{{chat.name}}</p>
+                </ion-text>
+
+              <ion-text class="ion-text-center">
+                <p class="dataHora">{{chat.data}} {{chat.hora}}</p>
+              </ion-text>
+
+
+          </ion-col>
+          <ion-col size="7" class="chat2">
+            
             <ion-text>
-              <p>{{chat.data}} {{chat.hora}}</p>
+              <p class="ion-description msg">{{chat.message}}</p>
             </ion-text>
-            <ion-text color="dark">
-              <p class="ion-description">{{chat.message}} </p>
-            </ion-text>
-          </div>
+            
+          </ion-col>
+
+          <ion-col size="1">
+
+          </ion-col>
+        </ion-row>
         </ion-card>
       </div>
-    </div>
+
   </div>
 
-  <div class="paginador">
-    <ion-button (click)="adicionarPaginador()" color="vermelho" expand="block">
-      <ion-icon name="chatbox-ellipses-outline"></ion-icon> &nbsp; Ver mais
-    </ion-button>
-  </div>
 </ion-content>

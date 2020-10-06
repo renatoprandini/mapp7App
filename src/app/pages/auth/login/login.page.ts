@@ -93,7 +93,7 @@ export class LoginPage implements OnInit {
           return false;
         }
       }).catch((error) => {
-        if (error.message === 'Cannot read property \'emailVerified\' of null') {
+        if (error.message === "Cannot read property 'emailVerified' of null") {
           this.logIn(email, password);
         }
         if(error.message === 'The password is invalid or the user does not have a password.') {
