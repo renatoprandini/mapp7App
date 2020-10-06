@@ -9,36 +9,46 @@ import { PostService } from '../../services/post.service';
 
 
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
 })
+
+
 export class ProfilePage implements OnInit {
 
   private userSubscription: Subscription;
   private post = {};
   id: string = null;
+  text: string;
+  uid: string;
+  dados: any;
+  userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
+  public userInfo = {};
+  chatRef: any = [];
 
   paginator = 10;
   public n: number = 0;
+  public msgN: number = 0;
 
-  text: string;
-  chatRef: any;
-  uid: string;
-
-  dados: any;
-
-
-  userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
-
-  public userInfo = {};
   constructor(private activeRoute: ActivatedRoute,
     private pstService: PostService,
     public firestore: AngularFirestore,
     private authService: AuthService) {
 
     this.uid = localStorage.getItem('user');
+
+  }
+
+  ngOnInit() {
+    this.fetchUsersByEmail();
+    this.id = this.activeRoute.snapshot.params['id'];
+
+    if (this.id) this.userProfile();
+	
+  this.chatRef = this.firestore.collection('chats', ref => ref.where("chat", "==", `${this.id}`).orderBy('Timestamp', 'desc').limit(this.paginator)).valueChanges();
   }
 
   send() {
@@ -56,16 +66,10 @@ export class ProfilePage implements OnInit {
       });
     }
     this.text = '';
+    this.msgN = this.msgN + 1;
   }
 
-  ngOnInit() {
-    this.fetchUsersByEmail();
-    this.id = this.activeRoute.snapshot.params['id'];
 
-    if (this.id) this.userProfile();
-	
-	this.chatRef = this.firestore.collection('chats', ref => ref.where("chat", "==", `${this.id}`).orderBy('Timestamp', 'desc').limit(this.paginator)).valueChanges();
-  }
 
   ngOnDestroy() {
     if (this.userSubscription) this.userSubscription.unsubscribe();
@@ -93,5 +97,17 @@ export class ProfilePage implements OnInit {
       this.userInfo = res;
     });
   }
+
+   loadData(event) {
+    setTimeout(() => {
+    this.adicionarPaginador();
+    event.target.complete();
+
+    if(this.paginator === this.msgN || this.paginator > this.msgN) {
+      event.target.disabled = true;
+    }
+  }, 800);
+
+}
 
 }

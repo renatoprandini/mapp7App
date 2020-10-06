@@ -25,15 +25,21 @@ ion-textarea {
   margin: 5px;
 }
 
-.chat2 {
+.msgEnviada {
   padding: 7px;
   margin: 5px;
-  background: #CCCCCC;
+  background: #cccccc;
 }
 
-ion-card {
-  background: #CCCCCC;
+.msgRecebida {
+  padding: 7px;
+  margin: 5px;
+  background: #e02041;
 }
+
+// ion-card {
+//   background: #CCCCCC;
+// }
 
 
 ion-avatar {
@@ -62,7 +68,7 @@ ion-avatar {
   display: flex;
 }
 
-.nome {
+.nomeE {
   display: flex;
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
@@ -71,7 +77,16 @@ ion-avatar {
     text-align: center;
 }
 
-.dataHora {
+.nomeR {
+  display: flex;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #FFF;
+    text-align: center;
+}
+
+.dataHoraE {
   display: flex;
   font-family: 'Roboto', sans-serif;
   font-size: 10px;
@@ -80,7 +95,16 @@ ion-avatar {
   text-align: center;
 }
 
-.msg {
+.dataHoraR {
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  font-weight: bolder;
+  color: #FFF;
+  text-align: center;
+}
+
+.msgE {
   display: flex;
   margin: 0 auto;
   font-family: 'Roboto', sans-serif;
@@ -89,9 +113,25 @@ ion-avatar {
   color: #000;
 }
 
+.msgR {
+  display: flex;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: bolder;
+  color: #FFF;
+}
+
 p {
   text-align: center;
   margin: 0 auto;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.enviada {
+  --background: #cccccc;
+}
+.recebida {
+  --background: #e02041;
 }
