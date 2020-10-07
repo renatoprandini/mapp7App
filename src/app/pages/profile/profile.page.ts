@@ -48,7 +48,13 @@ export class ProfilePage implements OnInit {
 
     if (this.id) this.userProfile();
 	
-  this.chatRef = this.firestore.collection('chats', ref => ref.where("chat", "==", `${this.id}`).orderBy('Timestamp', 'desc').limit(this.paginator)).valueChanges();
+  this.firestore.collection('chats', ref => ref.where('chat', '==', `${this.id}`)
+      .orderBy('Timestamp', 'desc')
+      .limit(this.paginator))
+      .valueChanges()
+      .subscribe(data => {
+        this.chatRef = data;
+      });
   }
 
   send() {
@@ -89,7 +95,13 @@ export class ProfilePage implements OnInit {
     this.n = this.n + 1;
     this.paginator = this.paginator + (this.n * 10);
 
-  this.chatRef = this.firestore.collection('chats', ref => ref.where("chat", "==", `${this.id}`).orderBy('Timestamp', 'desc').limit(this.paginator)).valueChanges();
+  this.firestore.collection('chats', ref => ref.where('chat', '==', `${this.id}`)
+      .orderBy('Timestamp', 'desc')
+      .limit(this.paginator))
+      .valueChanges()
+      .subscribe(data => {
+        this.chatRef = data;
+      });
   }
 
   fetchUsersByEmail() {
