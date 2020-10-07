@@ -21,7 +21,7 @@
 
   <br>
 
-  <div *ngFor="let chat of chatRef | async">
+  <div *ngFor="let chat of chatRef">
 
       <div *ngIf="userLocal.email == chat.userId" (click)="chat.options = !chat.options">
 

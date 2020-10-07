@@ -48,7 +48,7 @@ export class ProfilePage implements OnInit {
 
     if (this.id) this.userProfile();
 	
-  this.firestore.collection('chats', ref => ref.where('chat', '==', `${this.id}`)
+      this.firestore.collection('chats', ref => ref.where('chat', '==', `${this.id}`)
       .orderBy('Timestamp', 'desc')
       .limit(this.paginator))
       .valueChanges()
@@ -93,9 +93,9 @@ export class ProfilePage implements OnInit {
 
   adicionarPaginador() {
     this.n = this.n + 1;
-    this.paginator = this.paginator + (this.n * 10);
+    this.paginator = this.paginator + (this.n * 50);
 
-  this.firestore.collection('chats', ref => ref.where('chat', '==', `${this.id}`)
+      this.firestore.collection('chats', ref => ref.where('chat', '==', `${this.id}`)
       .orderBy('Timestamp', 'desc')
       .limit(this.paginator))
       .valueChanges()
