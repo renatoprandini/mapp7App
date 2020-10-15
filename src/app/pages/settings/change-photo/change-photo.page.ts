@@ -82,14 +82,10 @@ export class ChangePhotoPage implements OnInit {
 
 
   uploadPicture(blob: Blob) {
-    const ref = this.afStorage.ref('users/profile.jpg');
+    const ref = this.afStorage.ref(`users/${this.userLocal.email}`);
     const task = ref.put(blob);
 
     this.uploadPercent = task.percentageChanges();
-
-    // task.snapshotChanges().pipe(
-    //   finalize(() => this.downloadUrl = ref.getDownloadURL())
-    // ).subscribe();
 
     task.snapshotChanges().pipe(
       finalize(() => {
@@ -126,20 +122,5 @@ export class ChangePhotoPage implements OnInit {
       console.log(res);
     });
   }
-
-//   getphotoURL(email) {
-//     email = email.replace(/[.#$]+/g, ':');
-//     this.photoURL = this.db.object(`/users/${email}/photoURL`);
-//     return this.photoURL;
-// }
-
-// updatephotoURL(photoURL, email) {
-//     email = email.replace(/[.#$]+/g, ':');
-//     this.db.database.ref(`/users/${email}/photoURL`).set(photoURL);
-// }
-
-
-
-
-
+  
 }
