@@ -15,8 +15,6 @@ export class LoginPage implements OnInit {
   user: any;
   validations: FormGroup;
   errorMessage = '';
-  userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
-  userInfo = {};
 
   validationsMSG = {
     email: [
@@ -39,8 +37,7 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder
   ) { }
 
-  ngOnInit(
-  ) {
+  ngOnInit() {
 
     this.validations = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
@@ -52,16 +49,19 @@ export class LoginPage implements OnInit {
       ])),
     });
 
-    this.verifyLogin();
+    // this.verifyLogin();
   }
 
-  private async verifyLogin() {
-    this.user = JSON.parse(localStorage.getItem('user'));
-    if (this.user !== null && this.user.emailVerified === true) {
-      this.presentLoading('Aguarde um momento...');
-      this.navCtrl.navigateRoot('tabs/tab1');
-    }
-  }
+  // Não remover nada daqui
+  // private async verifyLogin() {
+  //   this.user = JSON.parse(localStorage.getItem('user'));
+  //   if (this.user !== null && this.user.emailVerified === true) {
+  //     this.presentLoading('Aguarde um momento...');
+  //     this.navCtrl.navigateRoot('tabs/tab1');
+  //   } else {
+  //     this.showMessage('Algo deu errado, tente novamente mais tarde...');
+  //   }
+  // }
 
   async showMessage(message: string) {
     await this.toastCtrl.create({
@@ -82,7 +82,7 @@ export class LoginPage implements OnInit {
   logIn(email, password) {
     this.authService.SignIn(email.value, password.value)
       .then((res) => {
-        console.log('Login: ' , res);
+        // console.log('Login: ' , res);
         if (this.authService.isEmailVerified) {
           const delay = 500;
           setTimeout(() => {
@@ -99,7 +99,6 @@ export class LoginPage implements OnInit {
         if(error.message === 'The password is invalid or the user does not have a password.') {
           this.showMessage('A senha inserida está incorreta.')
         }
-        console.log(error.message);
       });
   }
 
@@ -107,25 +106,18 @@ export class LoginPage implements OnInit {
     this.router.navigate(['password-recover']);
   }
 
-  async presentLoading(msg: string) {
-    const loading = await this.loadingCtrl.create({
-      cssClass: 'load',
-      message: msg,
-      duration: 2000
-    });
-    await loading.present();
+  
+  // async presentLoading(msg: string) {
+  //   const loading = await this.loadingCtrl.create({
+  //     cssClass: 'load',
+  //     message: msg,
+  //     duration: 2000
+  //   });
+  //   await loading.present();
 
-    const { role, data } = await loading.onDidDismiss();
-    console.log('Autenticação cancelada!');
-  }
-
-  fetchUsersByEmail() {
-    // Pega os valores do caminho os subscreve no 'res'
-    this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe(res => {
-      this.userInfo = res;
-      console.log(res);
-    });
-  }
+  //   const { role, data } = await loading.onDidDismiss();
+  //   console.log('Autenticação cancelada!');
+  // }
 
 }
 

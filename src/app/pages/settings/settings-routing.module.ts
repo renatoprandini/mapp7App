@@ -15,6 +15,14 @@ const routes: Routes = [
   {
     path: 'change-photo',
     loadChildren: () => import('./change-photo/change-photo.module').then( m => m.ChangePhotoPageModule)
+  },
+  {
+    path: 'change-name',
+    loadChildren: () => import('./change-name/change-name.module').then( m => m.ChangeNamePageModule)
+  },
+  {
+    path: 'change-displayname',
+    loadChildren: () => import('./change-displayname/change-displayname.module').then( m => m.ChangeDisplaynamePageModule)
   }
 ];
 

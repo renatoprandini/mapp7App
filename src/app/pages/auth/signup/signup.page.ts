@@ -43,7 +43,7 @@ export class SignupPage implements OnInit {
     ],
     displayName: [
       { type: 'required', message: '* Obrigatório' },
-      { type: 'maxlength', message: 'O nome de usuário pode ter no máximo 30 caracteres.' }
+      { type: 'maxlength', message: 'O nome de usuário pode ter no máximo 15 caracteres.' }
     ]
   };
 
@@ -63,7 +63,7 @@ export class SignupPage implements OnInit {
       confirm: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
       primeiroNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
       ultimoNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
-      displayName: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
+      displayName: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
       tipo: [''],
       photoURL: ['https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'],
     },

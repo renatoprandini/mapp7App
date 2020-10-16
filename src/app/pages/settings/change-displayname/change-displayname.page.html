@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="vermelho">
+    <ion-title>Alterar apelido</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button>
+
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card color="light">
+  
+    <br>
+  
+    <ion-text class="textCard">
+      <p>Insira nos campos abaixo</p>
+      <p>o novo apelido...</p>
+    </ion-text>
+  
+    <br>
+    <form class="form" [formGroup]="dpForm">
+
+      <ion-item>
+        <ion-input position="floating" formControlName="displayName" placeholder="Nome" type="text" #displayName required></ion-input>
+        <ng-container *ngFor="let validation of validationsMSG.displayName">
+          <div class="errorMSG"
+            *ngIf="dpForm.get('displayName').hasError(validation.type) && (dpForm.get('displayName').dirty || dpForm.get('displayName').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </ion-item>
+
+    </form>
+    <br>
+  
+    <ion-button class="textButton2" shape="round" color="vermelho" expand="block" (click)="changeDP()">
+      Enviar
+    </ion-button>
+  
+    <br>
+  
+  </ion-card>
+
+  
+
+</ion-content>

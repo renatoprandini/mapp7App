@@ -5,6 +5,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user.model';
+import { Router } from '@angular/router';
 
 
 
@@ -22,6 +23,7 @@ export class Tab3Page implements OnInit {
   public userInfo2 = {};
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
   public photo = {};
+  Users = [];
 
 
 
@@ -31,7 +33,8 @@ export class Tab3Page implements OnInit {
     public authService: AuthService,
     public firestore: AngularFirestore,
     private afStorage: AngularFireStorage,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    public router: Router,
   ) { }
 
   ngOnInit() {
@@ -48,6 +51,10 @@ export class Tab3Page implements OnInit {
 
       
     });
+  }
+
+  SignOut() {
+    this.authService.SignOut();
   }
 
   onClick(event) {

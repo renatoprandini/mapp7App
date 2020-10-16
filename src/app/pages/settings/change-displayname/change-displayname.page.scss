@@ -1,0 +1,45 @@
+ion-card {
+    -webkit-box-shadow: 2px 27px 44px 27px rgba(189, 191, 193, 0.79);
+    -moz-box-shadow: 2px 27px 44px 27px rgba(189, 191, 193, 0.79);
+    box-shadow: 2px 27px 44px 27px rgba(189, 191, 193, 0.79);
+}
+
+.titleCard {
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    font-weight: bolder;
+    text-align: center;
+    color: #E02041;
+}
+
+.textCard {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+    text-align: center;
+    color: #000;
+}
+
+.textButton {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #E02041;
+}
+
+.textButton2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #fff;
+}
+
+ion-input {
+    display: flex;
+    margin: auto;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #000;
+    --placeholder-font-style: 'Roboto', sans-serif;
+}

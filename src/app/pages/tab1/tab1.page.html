@@ -102,14 +102,29 @@
               </ion-grid>
             </ion-card-header>
 
-            <ion-item lines="none">
+            <ion-item lines="full">
               <ion-text color="dark">
-                <p class="ion-description">{{post.descricao}}<p>
+                <p class="ion-description textP">{{post.descricao}}<p>
               </ion-text>
             </ion-item>
-            <ion-button color="dark" fill="outline" expand="block" [routerLink]="['/profile/', post.$key]">
-              <ion-icon name="chatbubbles-outline"></ion-icon> &nbsp; Comentários
+
+            <ion-item lines="none">
+              <ion-text class="textP">
+                <ion-icon name="location-sharp" class="configILocal"></ion-icon>
+                {{post.endereco}}
+              </ion-text>
+            </ion-item>
+            
+            <ion-item color="vermelho" lines="none">
+              <ion-col size="12">
+            <ion-button fill="clear" expand="full" [routerLink]="['/profile/', post.$key]">
+              <ion-text class="textPW ion-text-center">
+                <ion-icon name="chatbubbles-outline"></ion-icon>
+              Comentários
+            </ion-text>
             </ion-button>
+          </ion-col>
+          </ion-item>
 
           </ion-card>
         </ion-item>

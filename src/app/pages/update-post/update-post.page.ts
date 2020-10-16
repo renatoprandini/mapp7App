@@ -39,6 +39,7 @@ export class UpdatePostPage implements OnInit {
     this.updatePostForm = this.fb.group({
       titulo: [''],
       descricao: [''],
+      endereco: [''],
       urgente: [''],
       dataPost: new Date().toLocaleDateString(),
       timePost: new Date().toLocaleTimeString()
@@ -57,7 +58,7 @@ export class UpdatePostPage implements OnInit {
   updatePosts() {
     this.pstService.updatePost(this.postId, this.updatePostForm.value)
       .then(() => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/tabs/tab1']);
       })
       .catch(error => console.log(error));
   }

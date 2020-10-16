@@ -53,13 +53,22 @@ const routes: Routes = [
     loadChildren: () => import('./pages/settings/change-photo/change-photo.module').then(m => m.ChangePhotoPageModule)
   },
   {
+    path: 'change-name',
+    loadChildren: () => import('./pages/settings/change-name/change-name.module').then( m => m.ChangeNamePageModule)
+  },
+  {
+    path: 'change-displayname',
+    loadChildren: () => import('./pages/settings/change-displayname/change-displayname.module').then( m => m.ChangeDisplaynamePageModule)
+  },
+  {
     path: 'profile/:id',
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule)
   },
   {
     path: 'verify-email',
     loadChildren: () => import('./pages/auth/verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
-  },  {
+  },
+  {
     path: 'password-recover',
     loadChildren: () => import('./password-recover/password-recover.module').then( m => m.PasswordRecoverPageModule)
   }

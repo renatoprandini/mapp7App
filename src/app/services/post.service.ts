@@ -18,35 +18,11 @@ export class PostService {
     public db: AngularFireDatabase
   ) { }
 
-
-  /*createProblema(post) {
-    return this.firestore.collection(this.collectionName).add(post);
-  }
-
-  readProblema() {
-    return this.firestore.collection(this.collectionName).snapshotChanges();
-  }
-
-  readProblemaById(postId) {
-    return this.firestore.collection(this.collectionName + '/' + postId).snapshotChanges();
-  }
-
-  updateProblema(postId, post) {
-    this.firestore.doc(this.collectionName + '/' + postId).update(post);
-  }
-
-  deleteProblema(postId) {
-    this.firestore.doc(this.collectionName + '/' + postId).delete();
-  } */
-
-
-  // Create
-
   createPost(pst: Post) {
     return this.postListRef.push({
       titulo: pst.titulo,
       descricao: pst.descricao,
-      imagem: pst.imagem,
+      endereco: pst.endereco,
       urgente: pst.urgente,
       displayName: pst.displayName,
       emailUsuario: pst.emailUsuario,
@@ -73,6 +49,7 @@ export class PostService {
     return this.postRef.update({
       titulo: pst.titulo,
       descricao: pst.descricao,
+      endereco: pst.endereco,
       urgente: pst.urgente,
       dataPost: pst.dataPost,
       timePost: pst.timePost
@@ -86,3 +63,26 @@ export class PostService {
   }
 
 }
+
+  /*createProblema(post) {
+    return this.firestore.collection(this.collectionName).add(post);
+  }
+
+  readProblema() {
+    return this.firestore.collection(this.collectionName).snapshotChanges();
+  }
+
+  readProblemaById(postId) {
+    return this.firestore.collection(this.collectionName + '/' + postId).snapshotChanges();
+  }
+
+  updateProblema(postId, post) {
+    this.firestore.doc(this.collectionName + '/' + postId).update(post);
+  }
+
+  deleteProblema(postId) {
+    this.firestore.doc(this.collectionName + '/' + postId).delete();
+  } */
+
+
+  // Create

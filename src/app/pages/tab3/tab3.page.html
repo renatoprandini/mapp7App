@@ -19,18 +19,14 @@
 
 <ion-content class="alignContent">
 
+  <ion-card class="cardPerfil">
 
-  <ion-item lines="none">
-    
         <ion-col size="1">
-          <div></div>
         </ion-col>
 
         <ion-col size="10">
 
-          <div class="ion-text-center">
-            <ion-avatar class="photoUser colAlign">
-              <!-- {{userInfo['photoURL']}} -->
+            <ion-avatar class="photoUser imgAuto">
               <img [src]="userInfo['photoURL']">
             </ion-avatar>
 
@@ -38,6 +34,7 @@
             <br>
             <br>
 
+            <div class="ion-text-center distancia">
             <ion-text class="nomeN">
               {{userInfo['primeiroNome']}}
               {{userInfo2['ultimoNome']}}
@@ -45,56 +42,39 @@
 
             <br>
 
-            <ion-text class="email">
-              {{userInfo['email']}}
+            <ion-text class="nomeN">
+              @{{userInfo['displayName']}}
             </ion-text>
-
-            <br>
-            <br>
-
           </div>
+            <br>
+
+
 
         </ion-col>
 
 
-        <ion-col>
-          <div></div>
+        <ion-col size="1">
         </ion-col>
 
-      
-
-  </ion-item>
+      </ion-card>
 
 
   <ion-item-group lines="none">
 
-    <ion-item class="optionT" routerLink="/rating" lines="none">
-      <ion-icon slot="start" color="vermelho" name="star"></ion-icon>
-      <ion-label color="vermelho">
-        Avaliação
-      </ion-label>
-    </ion-item>
-    
     <ion-item class="optionT" lines="none">
       <ion-icon slot="start" name="moon" color="vermelho"></ion-icon>
-      <ion-label color="vermelho">
         Modo Escuro
-      </ion-label>
       <ion-toggle (ionChange)="onClick($event)" slot="end" class="toggle-large"></ion-toggle>
     </ion-item>
 
     <ion-item class="optionT" routerLink="/settings" lines="none">
       <ion-icon slot="start" color="vermelho" name="settings-outline"></ion-icon>
-      <ion-label color="vermelho">
         Configurações
-      </ion-label>
     </ion-item>
 
-    <ion-item class="optionT" (click)="authService.SignOut()" lines="none">
+    <ion-item class="optionT" (click)="SignOut()" lines="none">
       <ion-icon slot="start" color="vermelho" name="log-out-outline"></ion-icon>
-      <ion-label color="vermelho">
         Sair
-      </ion-label>
     </ion-item>
 
   </ion-item-group>

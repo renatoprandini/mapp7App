@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="vermelho">
+    <ion-title>Alterar nome</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button>
+
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card color="light">
+  
+    <br>
+  
+    <ion-text class="textCard">
+      <p>Insira nos campos abaixo</p>
+      <p>o novo nome e sobrenome...</p>
+    </ion-text>
+  
+    <br>
+    <form class="form" [formGroup]="nomeForm">
+
+      <ion-item>
+        <ion-input position="floating" formControlName="primeiroNome" placeholder="Nome" type="text" #primeiroNome required></ion-input>
+        <ng-container *ngFor="let validation of validationsMSG.primeiroNome">
+          <div class="errorMSG"
+            *ngIf="nomeForm.get('primeiroNome').hasError(validation.type) && (nomeForm.get('primeiroNome').dirty || nomeForm.get('primeiroNome').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </ion-item>
+
+      <ion-item>
+        <ion-input position="floating" formControlName="ultimoNome" placeholder="Sobrenome" type="text" #ultimoNome required></ion-input>
+        <ng-container *ngFor="let validation of validationsMSG.ultimoNome">
+          <div class="errorMSG"
+            *ngIf="nomeForm.get('ultimoNome').hasError(validation.type) && (nomeForm.get('ultimoNome').dirty || nomeForm.get('ultimoNome').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </ion-item>
+
+    </form>
+    <br>
+  
+    <ion-button class="textButton2" shape="round" color="vermelho" expand="block" (click)="changeName()">
+      Enviar
+    </ion-button>
+  
+    <br>
+  
+  </ion-card>
+
+</ion-content>

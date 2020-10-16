@@ -48,7 +48,7 @@ export class PostPage implements OnInit {
     this.postForm = this.fb.group({
       titulo: [''],
       descricao: [''],
-      imagem: [''],
+      endereco: [''],
       urgente: [''],
       displayName: this.userLocal.displayName,
       emailUsuario: this.userLocal.email,
@@ -75,11 +75,8 @@ export class PostPage implements OnInit {
   }
 
   fetchUsersByEmail() {
-    // Pega os valores do caminho os subscreve no 'res'
     this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe(res => {
       this.userInfo = res;
-
-      
     });
   }
 

@@ -7,7 +7,7 @@ import { Post } from '../../models/post.model';
 import * as firebase from 'firebase';
 
 import { User } from 'src/app/models/user.model';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, NavController, ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -52,7 +52,8 @@ export class Tab1Page implements OnInit {
     private toastCtrl: ToastController,
     private activeRoute: ActivatedRoute,
     private alertController: AlertController,
-
+    private navCtrl: NavController,
+    private loadingCtrl: LoadingController,
 
   ) {
 
@@ -62,7 +63,7 @@ export class Tab1Page implements OnInit {
   ngOnInit() {
     this.fetchUsersByEmail();
     this.fetchPosts();
-
+    this.verifyLogin();
 
 
     
@@ -76,6 +77,16 @@ export class Tab1Page implements OnInit {
         this.Posts.push(a as Post);
       });
     });
+  }
+
+  private async verifyLogin() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    if (this.user !== null && this.user.emailVerified === true) {
+      this.presentLoading('Aguarde um momento...');
+      this.navCtrl.navigateRoot('tabs/tab1');
+    } else {
+      this.showMessage('Algo deu errado, tente novamente mais tarde...');
+    }
   }
 
 
@@ -137,5 +148,17 @@ export class Tab1Page implements OnInit {
     });
   
     await alert.present();
+  }
+
+  
+  async presentLoading(msg: string) {
+    const loading = await this.loadingCtrl.create({
+      cssClass: 'load',
+      message: msg,
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
   }
 }

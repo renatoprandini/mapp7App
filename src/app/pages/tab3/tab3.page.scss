@@ -3,8 +3,9 @@
     height: 100%;
 }
 .photoUser {
-    max-width: 125px;
-    max-height: 75px;
+    margin-top: 10px;
+    max-width: 100px !important;
+    max-height: 60px;
     width: auto;
     height: auto;
 }
@@ -86,32 +87,14 @@ ion-icon {
 
 .nomeN {
     font-size: 15px;
-    font-weight: bolder;
-    color: #E02041;
-    font-family: 'Roboto', sans-serif;
-    text-align: center !important;
-}
-
-
-.nomeU {
-    font-size: 13px;
-    font-weight: bolder;
-    color: #E02041;
-    font-family: 'Roboto', sans-serif;
-    text-align: center !important;
-}
-
-.email {
-    font-size: 10px;
-    font-weight: bolder;
-    color: #E02041;
+    font-weight: bold;
+    color: #fff;
     font-family: 'Roboto', sans-serif;
     text-align: center !important;
 }
 
 .optionT {
     font-size: 15px;
-    color: #E02041;
     font-family: 'Roboto', sans-serif;
     text-align: left;
 }
@@ -142,7 +125,14 @@ ion-item {
     margin: 0 auto !important;
   }
 
+.cardPerfil {
+    background: rgb(255,182,182);
+    background: radial-gradient(circle, rgba(255,182,182,1) 0%, rgba(224,32,65,1) 100%);
+    -webkit-box-shadow: 2px 18px 150px 17px rgba(179,179,179,0.75);
+    -moz-box-shadow: 2px 18px 150px 17px rgba(179,179,179,0.75);
+    box-shadow: 2px 18px 150px 17px rgba(179,179,179,0.75);
+}
 
-  .colAlign{
-    margin: 0 auto;
-  }
+.distancia {
+    margin-top: 10px;
+}
