@@ -119,7 +119,7 @@ export class ChangePhotoPage implements OnInit {
     // Pega os valores do caminho os subscreve no 'res'
     this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe(res => {
       this.userInfo = res;
-      console.log(res);
+      // console.log(res);
     });
   }
   

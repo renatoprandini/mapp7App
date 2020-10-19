@@ -1,22 +1,23 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title color="vermelho" class="textT">Editar post</ion-title>
-    <ion-buttons slot="start" class="red">
-      <ion-back-button>
-
-      </ion-back-button>
+  <ion-toolbar color="vermelho">
+    <ion-title class="textT">Editar post</ion-title>
+    <ion-buttons slot="end" routerLink="/tabs/tab1">
+      <ion-button>
+        <ion-icon slot="icon-only" color="light" name="close"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card>
+    
   <ion-list lines="full">
     <form [formGroup]="updatePostForm">
 
       <ion-item lines="none">
         <ion-input class="inputT" position="floating" clearInput placeholder="Título" formControlName="titulo"
-          type="text" required></ion-input>
+          type="text" required minlength="10" maxlength="50"></ion-input>
       </ion-item>
 
       <ion-item lines="none">
@@ -26,8 +27,9 @@
       </ion-item>
 
       <ion-item lines="none">
+        <ion-icon name="location-sharp" color="vermelho"></ion-icon>
         <ion-input class="inputT" position="floating" clearInput placeholder="Endereço" formControlName="endereco"
-          type="text" required></ion-input>
+          minlength="5" maxlength="50" type="text" required></ion-input>
       </ion-item>
       
       <ion-row>
@@ -56,10 +58,11 @@
 
       <ion-row>
         <ion-col>
-          <ion-button class="textT" color="vermelho" type="submit" fill="clear" expand="block" (click)="updatePosts()">
-            <ion-icon name="save-outline"></ion-icon>
-            &nbsp; Salvar
-          </ion-button>
+
+          <ion-button color="vermelho" shape="full" type="submit" expand="block" (click)="updatePosts()">
+          <ion-icon name="send-outline"></ion-icon> &nbsp; Enviar
+        </ion-button>
+
         </ion-col>
       </ion-row>
     </form>

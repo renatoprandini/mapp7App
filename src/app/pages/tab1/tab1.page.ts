@@ -103,7 +103,7 @@ export class Tab1Page implements OnInit {
       this.userInfo2 = res;
       this.photo = res;
 
-      console.log(res);
+      // console.log(res);
 
       localStorage.setItem('user', JSON.stringify(res));
     });
@@ -113,7 +113,7 @@ export class Tab1Page implements OnInit {
   fetchPosts() {
     this.pstService.getPostList().valueChanges().subscribe(res => {
       this.postInfo = res;
-      console.log(res);
+      // console.log(res);
     });
   }
 

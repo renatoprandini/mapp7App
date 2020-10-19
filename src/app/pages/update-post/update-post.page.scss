@@ -32,7 +32,7 @@ ion-input {
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     font-weight: bolder;
-    color: #E02041;
+    color: #fff;
 }
 
 .inputT {
@@ -45,4 +45,21 @@ ion-input {
 
 .red {
     color: #E02041;
+}
+
+ion-card {
+    -webkit-box-shadow: 2px 27px 44px 27px rgba(189, 191, 193, 0.79);
+    -moz-box-shadow: 2px 27px 44px 27px rgba(189, 191, 193, 0.79);
+    box-shadow: 2px 27px 44px 27px rgba(189, 191, 193, 0.79);
+}
+
+.titulo {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: #E02041;
+    
+
+    p {
+        font-size: 17px;
+    }
 }

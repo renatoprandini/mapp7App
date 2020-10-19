@@ -16,19 +16,26 @@ ion-title {
     font-size: 15px;
     font-weight: bolder;
     color: #E02041;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .photo {
-    border: 5px solid #E02041;
+    border: 5px solid #fff;
     border-radius: 10px;
-    border-style: groove;
     display: flex;
     position: relative;
     max-width: 340px;
     max-height: 225px;
     width: auto;
     height: auto;
-    margin-left: 10px;
-    margin-top: 25px;
-    margin-right: 25px;
+    margin: 0 auto;
+}
+
+.cardFoto {
+    background: rgb(255,182,182);
+    background: radial-gradient(circle, rgba(255,182,182,1) 0%, rgba(224,32,65,1) 100%);
+    -webkit-box-shadow: 2px 18px 150px 17px rgba(179,179,179,0.75);
+    -moz-box-shadow: 2px 18px 150px 17px rgba(179,179,179,0.75);
+    box-shadow: 2px 18px 150px 17px rgba(179,179,179,0.75);
 }
