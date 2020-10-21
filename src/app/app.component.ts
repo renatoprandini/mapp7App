@@ -4,8 +4,6 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { timer } from 'rxjs';
-
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
@@ -30,7 +28,9 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      timer(3000).subscribe(() => this.showSplash = false)
+      setTimeout(() => {
+        this.showSplash = false;
+      }, 3000);
 
     });
     this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
