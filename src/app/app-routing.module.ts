@@ -70,7 +70,7 @@ const routes: Routes = [
   },
   {
     path: 'password-recover',
-    loadChildren: () => import('./password-recover/password-recover.module').then( m => m.PasswordRecoverPageModule)
+    loadChildren: () => import('./pages/password-recover/password-recover.module').then( m => m.PasswordRecoverPageModule)
   }
 
 
