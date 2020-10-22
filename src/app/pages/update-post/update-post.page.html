@@ -59,7 +59,7 @@
       <ion-row>
         <ion-col>
 
-          <ion-button color="vermelho" shape="full" type="submit" expand="block" (click)="updatePosts()">
+          <ion-button color="vermelho" shape="full" type="submit" expand="block" (click)="updatePosts()" [disabled]="!updatePostForm.valid">
           <ion-icon name="send-outline"></ion-icon> &nbsp; Enviar
         </ion-button>
 
