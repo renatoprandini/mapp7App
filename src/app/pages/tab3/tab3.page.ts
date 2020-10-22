@@ -6,6 +6,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 
 
@@ -35,6 +36,7 @@ export class Tab3Page implements OnInit {
     private afStorage: AngularFireStorage,
     private renderer: Renderer2,
     public router: Router,
+    public alertController: AlertController
   ) { }
 
   ngOnInit() {
@@ -51,6 +53,26 @@ export class Tab3Page implements OnInit {
 
       
     });
+  }
+
+  async showAlertSignOut(id: string) {
+    const alert = await this.alertController.create({
+      header: 'Atenção',
+      message: 'Você tem certeza que deseja sair?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        }, {
+          text: 'Ok',
+          handler: () => {
+            this.SignOut();
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
   }
 
   SignOut() {
