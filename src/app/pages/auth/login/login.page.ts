@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-import { User } from '../../../models/user.model';
 import { LoadingController, ToastController, NavController, AlertController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
@@ -11,7 +10,6 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  private loading: any;
   user: any;
   validations: FormGroup;
   errorMessage = '';
