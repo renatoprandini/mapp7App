@@ -12,7 +12,6 @@ ion-title {
 
 .optionT {
     font-size: 15px;
-    color: #000;
     font-family: 'Roboto', sans-serif;
     text-align: left;
 }
@@ -38,14 +37,13 @@ ion-title {
 
 .optionT {
     font-size: 15px;
-    color: #E02041;
+    color: var(--ion-color-dark);
     font-family: 'Roboto', sans-serif;
     text-align: left;
 }
 
 .answerT {
     font-size: 13px;
-    color: #000;
     font-family: 'Roboto', sans-serif;
     text-align: left;
 }

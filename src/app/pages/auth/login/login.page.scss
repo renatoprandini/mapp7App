@@ -22,15 +22,9 @@ ion-input {
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     font-weight: bolder;
-    color: #000;
     --placeholder-font-style: 'Roboto', sans-serif;
 }
 
-ion-card {
-    -webkit-box-shadow: 2px 27px 44px 27px rgba(189, 191, 193, 0.79);
-    -moz-box-shadow: 2px 27px 44px 27px rgba(189, 191, 193, 0.79);
-    box-shadow: 2px 27px 44px 27px rgba(189, 191, 193, 0.79);
-}
 
 
 .magicT {
@@ -63,4 +57,13 @@ ion-card {
     font-weight: bolder;
     color: #fff;
 }
+
+ion-card {
+    -webkit-box-shadow: -2px 3px 56px -7px rgba(224,32,64,1);
+    -moz-box-shadow: -2px 3px 56px -7px rgba(224,32,64,1);
+    box-shadow: -2px 3px 56px -7px rgba(224,32,64,1);
+}
+
+
+
 

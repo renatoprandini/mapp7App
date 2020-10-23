@@ -47,7 +47,7 @@
       <form class="form" [formGroup]="userForm">
 
         <ion-item>
-          <ion-input position="floating" formControlName="email" placeholder="Email" type="text" #email
+          <ion-input class="textInput" position="floating" formControlName="email" placeholder="Email" type="text" #email
             required></ion-input>
           <ng-container *ngFor="let validation of validationsMSG.email">
             <div class="errorMSG"
@@ -58,7 +58,7 @@
         </ion-item>
 
         <ion-item>
-          <ion-input position="floating" formControlName="password" placeholder="Senha" type="password" #password
+          <ion-input class="textInput" position="floating" formControlName="password" placeholder="Senha" type="password" #password
             required minlength="5"></ion-input>
           <ng-container *ngFor="let validation of validationsMSG.password">
             <div class="errorMSG"
@@ -69,7 +69,7 @@
         </ion-item>
 
         <ion-item>
-          <ion-input position="floating" formControlName="confirm" placeholder="Confirme a senha" type="password"
+          <ion-input class="textInput" position="floating" formControlName="confirm" placeholder="Confirme a senha" type="password"
             #confirm required minlength="5"></ion-input>
           <ng-container *ngFor="let validation of validationsMSG.confirm">
             <div class="errorMSG"
@@ -81,7 +81,7 @@
 
 
         <ion-item>
-          <ion-input position="floating" placeholder="Nome" type="text" #primeiroNome required
+          <ion-input class="textInput" position="floating" placeholder="Nome" type="text" #primeiroNome required
             formControlName="primeiroNome"></ion-input>
           <ng-container *ngFor="let validation of validationsMSG.primeiroNome">
             <div class="errorMSG"
@@ -93,7 +93,7 @@
 
 
         <ion-item>
-          <ion-input position="floating" placeholder="Sobrenome" type="text" #ultimoNome required
+          <ion-input class="textInput" position="floating" placeholder="Sobrenome" type="text" #ultimoNome required
             formControlName="ultimoNome"></ion-input>
           <ng-container *ngFor="let validation of validationsMSG.ultimoNome">
             <div class="errorMSG"
@@ -104,7 +104,7 @@
         </ion-item>
 
         <ion-item>
-          <ion-input position="floating" placeholder="Apelido" type="text" #displayName required
+          <ion-input class="textInput" position="floating" placeholder="Apelido" type="text" #displayName required
             formControlName="displayName"></ion-input>
           <ng-container *ngFor="let validation of validationsMSG.displayName">
             <div class="errorMSG"

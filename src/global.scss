@@ -174,3 +174,46 @@ ion-toggle {
 .item-inner {
   border: none;
 }
+
+
+.textInput {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: bolder;
+  --placeholder-color:var(--ion-color-dark);
+	--color:var(--ion-color-dark);
+}
+
+.native-input.sc-ion-input-md {
+  border-radius: var(--border-radius);
+  padding-left: var(--padding-start);
+  padding-right: var(--padding-end);
+  padding-top: var(--padding-top);
+  padding-bottom: var(--padding-bottom);
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-decoration: inherit;
+  text-indent: inherit;
+  text-overflow: inherit;
+  text-transform: inherit;
+  text-align: inherit;
+  white-space: inherit;
+	color:var(--ion-color-dark);
+  display: inline-block;
+  -ms-flex: 1;
+  flex: 1;
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
