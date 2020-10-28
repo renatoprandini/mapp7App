@@ -53,11 +53,11 @@ export class ChangeNamePage implements OnInit {
     this.PnomeValue = this.nomeForm.value.primeiroNome;
     this.UnomeValue = this.nomeForm.value.ultimoNome;
     if(this.PnomeValue === null && this.UnomeValue === null) {
-      this.showMessage('Os campos inseridos são inválidos.')
+      this.showMessage('Os campos inseridos são inválidos.');
     } else {
       this.db.database.ref(`/users/${this.userLocal.email}/primeiroNome`).set(this.PnomeValue);
       this.db.database.ref(`/users/${this.userLocal.email}/ultimoNome`).set(this.UnomeValue);
-      this.showMessage('Campos atualizados com sucesso!!!')
+      this.showMessage('Campos atualizados com sucesso!!!');
     }
 
 }

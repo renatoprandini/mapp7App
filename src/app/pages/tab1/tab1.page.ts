@@ -20,29 +20,22 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class Tab1Page implements OnInit {
 
-
   text: string;
   chatRef: any;
   uid: string;
   user: User;
   Users = [];
 
-
-
-
-
   public key: any;
   public email: any;
   public userInfo = {};
   public postInfo = {};
   Posts = [];
-  
-  userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
-
+  PostsId = [];
   public userInfo2 = {};
   public photo = {};
 
-
+  userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
 
   @ViewChild('users', { static: true }) test;
   constructor(
@@ -54,10 +47,7 @@ export class Tab1Page implements OnInit {
     private alertController: AlertController,
     private navCtrl: NavController,
     private loadingCtrl: LoadingController,
-
-  ) {
-
-  }
+  ) {}
 
 
   ngOnInit() {
@@ -65,15 +55,13 @@ export class Tab1Page implements OnInit {
     this.fetchPosts();
     this.verifyLogin();
 
-
-    
-
     const postRes = this.pstService.getPostList();
     postRes.snapshotChanges().subscribe(res => {
       this.Posts = [];
       res.forEach(item => {
         let a = item.payload.toJSON();
         a['$key'] = item.key;
+        // console.log(a);
         this.Posts.push(a as Post);
       });
     });
@@ -89,13 +77,6 @@ export class Tab1Page implements OnInit {
     }
   }
 
-
-  // deletePost(id: string) {
-  //   if (this.showAlert) {
-  //     this.pstService.deletePost(id);
-  //   }
-  // }
-
   async fetchUsersByEmail() {
     // Pega os valores do caminho os subscreve no 'res'
       await this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe( async res => {
@@ -109,14 +90,12 @@ export class Tab1Page implements OnInit {
     });
   }
 
-
   fetchPosts() {
     this.pstService.getPostList().valueChanges().subscribe(res => {
       this.postInfo = res;
       console.log(res);
     });
   }
-
 
   async showMessage(message: string) {
     await this.toastCtrl.create({
@@ -150,7 +129,6 @@ export class Tab1Page implements OnInit {
     await alert.present();
   }
 
-  
   async presentLoading(msg: string) {
     const loading = await this.loadingCtrl.create({
       cssClass: 'load',
@@ -161,4 +139,10 @@ export class Tab1Page implements OnInit {
 
     const { role, data } = await loading.onDidDismiss();
   }
+
+  // deletePost(id: string) {
+  //   if (this.showAlert) {
+  //     this.pstService.deletePost(id);
+  //   }
+  // }
 }

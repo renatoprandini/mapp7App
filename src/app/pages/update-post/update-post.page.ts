@@ -13,12 +13,9 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./update-post.page.scss'],
 })
 export class UpdatePostPage implements OnInit {
+
   updatePostForm: FormGroup;
   id: any;
-
-
-
-
   postId: string;
 
   constructor(
@@ -29,10 +26,7 @@ export class UpdatePostPage implements OnInit {
     private router: Router,
     private activeRoute: ActivatedRoute
   ) {
-
-    this.postId = this.activeRoute.snapshot.params['$key'];
-  
-
+    this.postId = this.activeRoute.snapshot.params['id'];
   }
 
   ngOnInit() {
@@ -43,23 +37,24 @@ export class UpdatePostPage implements OnInit {
       urgente: [''],
       dataPost: new Date().toLocaleDateString(),
       timePost: new Date().toLocaleTimeString()
-    })
-    console.log(this.updatePostForm.value);
-	
-  }
+    });
 
-  deleteProblema(id) {
-    console.log(id);
-    if (window.confirm('Do you really want to delete?')) {
-      this.pstService.deletePost(this.postId);
-    }
   }
 
   updatePosts() {
+
     this.pstService.updatePost(this.postId, this.updatePostForm.value)
       .then(() => {
         this.router.navigate(['/tabs/tab1']);
       })
       .catch(error => console.log(error));
   }
+
+  
+  // deleteProblema(id) {
+  //   console.log(id);
+  //   if (window.confirm('Do you really want to delete?')) {
+  //     this.pstService.deletePost(this.postId);
+  //   }
+  // }
 }

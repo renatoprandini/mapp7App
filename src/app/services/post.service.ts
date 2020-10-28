@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Post } from '../models/post.model';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Injectable({
@@ -10,13 +11,18 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class PostService {
   postListRef: AngularFireList<any>;
   postRef: AngularFireObject<any>;
+  postId: String;
 
   collectionName = 'Problemas';
 
   constructor(
     public firestore: AngularFirestore,
-    public db: AngularFireDatabase
-  ) { }
+    public db: AngularFireDatabase,
+    private activeRoute: ActivatedRoute
+  ) { 
+
+    this.postId = this.activeRoute.snapshot.params['id'];
+  }
 
   createPost(pst: Post) {
     return this.postListRef.push({
@@ -46,6 +52,8 @@ export class PostService {
 
 
   updatePost(id, pst: Post) {
+
+    this.postRef = this.db.object('/post/' + id);
     return this.postRef.update({
       titulo: pst.titulo,
       descricao: pst.descricao,
@@ -53,7 +61,7 @@ export class PostService {
       urgente: pst.urgente,
       dataPost: pst.dataPost,
       timePost: pst.timePost
-    })
+    });
   }
 
 
@@ -62,7 +70,41 @@ export class PostService {
     this.postRef.remove();
   }
 
+
+
+
+
+
+  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   /*createProblema(post) {
     return this.firestore.collection(this.collectionName).add(post);
