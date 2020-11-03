@@ -43,7 +43,7 @@
     <ion-col size="12">
 
       <ion-list lines="none">
-        <ion-item *ngFor="let post of Posts" #users lines="none">
+        <ion-item *ngFor="let post of Posts; let i = index;" #users lines="none">
           <ion-card class="cardResponsive">
             <ion-card-header color="vermelho">
               <ion-item class="user-bar" lines="none">
@@ -52,7 +52,7 @@
                   <img *ngIf="!post['fotoUsuario']" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png">
                 </ion-avatar>
                 <ion-label>
-                  <h6 color="light"> {{post.displayName}} </h6>
+                  <h6 color="light"> {{ i + 1 }} {{post.displayName}} </h6>
                   <h6 class="data" color="light">{{post.emailUsuario}}</h6>
                   <p class="data" color="light">{{post.dataPost}} {{post.timePost}}</p>
                   <ion-buttons slot="end">
@@ -140,5 +140,12 @@
     </ion-col>
 
   </ion-row>
+
+  <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      loadingText="Carregando publicações...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>
