@@ -3,12 +3,9 @@ import { PostService } from '../../services/post.service';
 import { AuthService } from '../../services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Post } from '../../models/post.model';
-
-import * as firebase from 'firebase';
-
 import { User } from 'src/app/models/user.model';
 import { AlertController, LoadingController, NavController, ToastController } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 
 
@@ -29,11 +26,18 @@ export class Tab1Page implements OnInit {
   public key: any;
   public email: any;
   public userInfo = {};
-  public postInfo = {};
-  Posts = [];
+  public postInfo = [];
   PostsId = [];
   public userInfo2 = {};
   public photo = {};
+
+  Posts: any = [];
+  postRef: any = [];
+
+  public paginator: number = 10;
+  public page: number = 0;
+  public pstN: number = 0;
+  public postTest: any = [];
 
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
 
@@ -43,29 +47,68 @@ export class Tab1Page implements OnInit {
     private authService: AuthService,
     public firestore: AngularFirestore,
     private toastCtrl: ToastController,
-    private activeRoute: ActivatedRoute,
     private alertController: AlertController,
     private navCtrl: NavController,
     private loadingCtrl: LoadingController,
-  ) {}
+    public db: AngularFireDatabase,
+  ) {
+
+  }
 
 
   ngOnInit() {
     this.fetchUsersByEmail();
-    this.fetchPosts();
     this.verifyLogin();
+    this.carregarPosts();
 
+  }
+
+  ionViewDidEnter() {
+    this.fetchPosts();
+  }
+
+  carregarPosts() {
     const postRes = this.pstService.getPostList();
     postRes.snapshotChanges().subscribe(res => {
       this.Posts = [];
       res.forEach(item => {
         let a = item.payload.toJSON();
+        
         a['$key'] = item.key;
-        // console.log(a);
         this.Posts.push(a as Post);
+        
       });
     });
   }
+
+  fetchPosts() {
+    this.pstService.getPostList().valueChanges().subscribe(res => {
+      this.postInfo = res;
+      this.pstN = res.length;
+      console.log(this.pstN);
+    });
+  }
+
+
+
+  loadData(event) {
+
+    setTimeout(() => {
+
+      console.log(event);
+      this.page++;
+      this.carregarPosts();
+
+      
+
+      if(this.page === this.paginator || this.page > this.paginator) {
+      event.target.disabled = true;
+    }
+
+    }, 2500);
+  }
+
+
 
   private async verifyLogin() {
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -90,12 +133,7 @@ export class Tab1Page implements OnInit {
     });
   }
 
-  fetchPosts() {
-    this.pstService.getPostList().valueChanges().subscribe(res => {
-      this.postInfo = res;
-      console.log(res);
-    });
-  }
+
 
   async showMessage(message: string) {
     await this.toastCtrl.create({
@@ -139,6 +177,8 @@ export class Tab1Page implements OnInit {
 
     const { role, data } = await loading.onDidDismiss();
   }
+
+
 
   // deletePost(id: string) {
   //   if (this.showAlert) {

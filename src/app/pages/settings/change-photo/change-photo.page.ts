@@ -8,7 +8,6 @@ import { finalize } from 'rxjs/operators';
 import { User } from '../../../models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
-import * as firebase from 'firebase';
 
 
 
@@ -24,6 +23,7 @@ export class ChangePhotoPage implements OnInit {
   photoURL: any;
   pickUrl: string;
   userRef: AngularFireObject<any>;
+  teste: string;
 
   public uploadPercent: Observable<number>;
   public downloadUrl: Observable<string>;

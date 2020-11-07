@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
-import * as firebase from 'firebase';
 import { AuthService } from '../../services/auth.service';
 import { PostService } from '../../services/post.service';
 
@@ -63,11 +62,11 @@ export class ProfilePage implements OnInit {
         chat: this.id,
         name: this.userInfo['primeiroNome'],
         message: this.text,
-		img: this.userInfo['photoURL'],
+	    	img: this.userInfo['photoURL'],
         data: new Date().toLocaleDateString(),
         hora: new Date().toLocaleTimeString(),
         userId: this.userLocal.email,
-        Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        Timestamp: new Date().toLocaleTimeString(),
         options: false
       });
     }
