@@ -8,7 +8,9 @@ export class User {
         public primeiroNome: string,
         public ultimoNome: string,
         public tipo: string = '',
-        public avaliacao: number = 0
+        public avaliacao: number = 0,
+		public qtde: number = 0,
+		public media: number = 0
     ) {
 
     }

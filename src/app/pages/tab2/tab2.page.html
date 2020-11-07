@@ -1,6 +1,5 @@
 <ion-header>
   <ion-toolbar class="ion-padding-horizontal">
-
     <ion-row>
       <ion-col size="2">
         <div></div>
@@ -14,28 +13,22 @@
         <div></div>
       </ion-col>
     </ion-row>
-
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
- <div *ngIf="!Users.length">
-    <ion-card  *ngFor="let item of [0,1,2,3,4,5,6,7,8,9,10]">
-	 <ion-item> 
-	    <ion-avatar slot="start">
-              <ion-skeleton-text animated></ion-skeleton-text>
+  <div *ngIf="!Users.length">
+    <ion-card *ngFor="let item of [0,1,2,3,4,5,6,7,8,9,10]">
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
         </ion-avatar>
-        <ion-label>	 
-              <ion-skeleton-text animated></ion-skeleton-text>		
-		</ion-label>
-	 </ion-item>
-	</ion-card>
- 
- 
- </div>
-
-
-
+        <ion-label>
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+  </div>
   <ion-card *ngFor="let mecanico of Users ; let i = index">
     <span *ngIf="!mecanico.isRate; else elseBlock">
       <ion-item lines="none">
@@ -50,36 +43,29 @@
             <div *ngIf="i+1 === 1">
               <ion-icon name="trophy" color="gold" size="small"></ion-icon>
             </div>
-
             <div *ngIf="i+1 === 2">
               <ion-icon name="trophy" color="silver" size="small"></ion-icon>
             </div>
-
             <div *ngIf="i+1 === 3">
               <ion-icon name="trophy" color="bronze" size="small"></ion-icon>
             </div>
-
             <div *ngIf="i+1 > 3">
               <ion-icon name="medal-outline" color="vermelho" size="small"></ion-icon>
             </div>
-
-            <ion-label>&nbsp;{{mecanico.avaliacao}}</ion-label>
+            <ion-label>
+              &nbsp;{{mecanico.media | number:'1.1-1'}}
+            </ion-label>
           </ion-chip>
         </ion-label>
 
-        <div *ngIf="userInfo['tipo'] === 'cliente'">
+        <div>
           <ion-button shape="round" color="vermelho" size="small" (click)="initAvaliacao(mecanico)">
             <ion-icon size="small" slot="icon-only" name="star"></ion-icon>
           </ion-button>
         </div>
-
       </ion-item>
-
-
-
-
-
     </span>
+
     <ng-template #elseBlock>
       <ion-card-header>
         <ion-card-title>
@@ -92,20 +78,15 @@
             <input type="radio" checked id="cm_wrench-empty" name="fb" />
             <label for="cm_wrench-1"><i class="fa"></i></label>
             <input type="radio" id="cm_wrench-1" name="fb" class="valor" (click)="adicionarValor(1)" />
-
             <label for="cm_wrench-2"><i class="fa"></i></label>
             <input type="radio" id="cm_wrench-2" name="fb" class="valor" (click)="adicionarValor(2)" />
-
             <label for="cm_wrench-3"><i class="fa"></i></label>
             <input type="radio" id="cm_wrench-3" name="fb" class="valor" (click)="adicionarValor(3)" />
-
             <label for="cm_wrench-4"><i class="fa"></i></label>
             <input type="radio" id="cm_wrench-4" name="fb" class="valor" (click)="adicionarValor(4)" />
-
             <label for="cm_wrench-5"><i class="fa"></i></label>
             <input type="radio" id="cm_wrench-5" name="fb" (click)="adicionarValor(5)" />
           </div>
-
         </ion-item>
         <ion-button fill="solid" color="medium" size="small" (click)="mecanico.isRate = false">
           <ion-icon name="close-outline"></ion-icon>

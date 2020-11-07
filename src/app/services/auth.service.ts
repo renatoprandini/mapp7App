@@ -14,7 +14,7 @@ export class AuthService {
   userListRef: AngularFireList<any>;
   user: any;
   userData: any;
-  collectionName = 'Usuarios';
+  collectionName = '/users';
 
   constructor(
     public afStore: AngularFirestore,
@@ -38,23 +38,19 @@ export class AuthService {
 
   }
 
-  
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
     return (user !== null && user.emailVerified !== false) ? true : false;
   }
-
 
   get isEmailVerified(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
     return (user.emailVerified !== false) ? true : false;
   }
 
-
   SignIn(email, password) {
     return this.ngFireAuth.signInWithEmailAndPassword(email, password);
   }
-
 
   RegisterUser(email, password, user) {
 
@@ -67,15 +63,12 @@ export class AuthService {
       });
   }
 
-
-
   async SendVerificationMail() {
     return (await this.ngFireAuth.currentUser).sendEmailVerification()
       .then(() => {
         this.router.navigate(['verify-email']);
       });
   }
-
 
   PasswordRecover(passwordResetEmail) {
     return this.ngFireAuth.sendPasswordResetEmail(passwordResetEmail)
@@ -85,7 +78,6 @@ export class AuthService {
         return false;
       });
   }
-
 
   SignOut() {
     return this.ngFireAuth.signOut()
@@ -107,7 +99,9 @@ export class AuthService {
       ultimoNome: user.ultimoNome,
       displayName: user.displayName,
       tipo: user.tipo,
-      avaliacao: user.avaliacao
+      avaliacao: user.avaliacao,
+	  qtde: user.qtde,
+	  media: user.media
     };
     const delay = 1000;
     setTimeout(() => {
@@ -117,78 +111,23 @@ export class AuthService {
     }, delay);
   }
 
-  // SetUserEmail() {
-  //   const userLocal = JSON.parse(localStorage.getItem('user'));
-  //   const userData: User = {
-  //     id: userLocal.id,
-  //     email: userLocal.email,
-  //     emailVerified: userLocal.emailVerified,
-  //     photoURL: userLocal.photoURL,
-  //     primeiroNome: userLocal.primeiroNome,
-  //     ultimoNome: userLocal.ultimoNome,
-  //     displayName: userLocal.displayName,
-  //     tipo: userLocal.tipo,
-  //     avaliacao: userLocal.avaliacao
-  //   };
-  //   const delay = 1000;
-  //   setTimeout(() => {
-  //     userLocal.email = userLocal.email.replace(/[.#$]+/g, ':');
-  //     this.db.object(`/users/${userLocal.email}`).set(userData);
-  //   }, delay);
-  // }
-
-
   readUsuarioList() {
     this.userListRef = this.db.list(`/users`);
     return this.userListRef;
   }
-
 
   readUsuarioByEmail(userEmail) {
     this.userRef = this.db.object(`/users/${userEmail}`);
     return this.userRef;
   }
 
-
   readUsuarioById(userId) {
     this.userRef = this.db.object(`/users/${userId}`);
     return this.userRef;
   }
 
-  
-  // AuthLogin(provider) {
-  //   return this.ngFireAuth.signInWithPopup(provider)
-  //     .then((result) => {
-  //       this.ngZone.run(() => {
-  //         this.router.navigate(['dashboard']);
-  //       })
-  //       this.SetUserData(result.user);
-  //     }).catch((error) => {
-  //       window.alert(error)
-  //     })
-  // }
-  
-  // SetUserData(user) {
-  //   const userRef: AngularFirestoreDocument<any> = this.afStore.doc(`Usuarios/${user.uid}`);
-  //   const userData: User = {
-	//   id: user.id,
-  //     email: user.email,
-  //     emailVerified: user.emailVerified,
-  //     primeiroNome: user.primeiroNome,
-  //     ultimoNome: user.ultimoNome,
-  //     tipo: user.tipo,
-  //     photoURL: user.photoURL,
-  //     avaliacao: user.avaliacao
-  //   }
-  //   return userRef.set(userData, {
-  //     merge: true
-  //   })
-  // }
   updateUsuario(userId, user) {
-    this.firestore.doc(this.collectionName + '/' + userId).update(user);
+	console.log(this.collectionName);
+    this.db.database.ref(`${this.collectionName}/${userId}`).update(user);
   }
-
-  // deleteUsuario(userId) {
-  //   this.firestore.doc(this.collectionName + '/' + userId).delete();
-  // }
 }
