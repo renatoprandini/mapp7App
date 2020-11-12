@@ -85,7 +85,6 @@ export class Tab1Page implements OnInit {
     this.pstService.getPostList().valueChanges().subscribe(res => {
       this.postInfo = res;
       this.pstN = res.length;
-      console.log(this.pstN);
     });
   }
 
