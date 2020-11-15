@@ -35,7 +35,8 @@ export class PostService {
       fotoUsuario: pst.fotoUsuario,
       dataPost: pst.dataPost,
       timePost: pst.timePost,
-      options: pst.options
+      options: pst.options,
+	  avaliado:pst.avaliado
     })
   }
 
@@ -69,62 +70,4 @@ export class PostService {
     this.postRef = this.db.object('/post/' + id);
     this.postRef.remove();
   }
-
-
-
-
-
-
-  
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /*createProblema(post) {
-    return this.firestore.collection(this.collectionName).add(post);
-  }
-
-  readProblema() {
-    return this.firestore.collection(this.collectionName).snapshotChanges();
-  }
-
-  readProblemaById(postId) {
-    return this.firestore.collection(this.collectionName + '/' + postId).snapshotChanges();
-  }
-
-  updateProblema(postId, post) {
-    this.firestore.doc(this.collectionName + '/' + postId).update(post);
-  }
-
-  deleteProblema(postId) {
-    this.firestore.doc(this.collectionName + '/' + postId).delete();
-  } */
-
-
-  // Create

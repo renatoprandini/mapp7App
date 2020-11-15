@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="vermelho">
+  <ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mecânico</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header color="vermelho" class="ion-text-center">
+      <ion-avatar>
+        <img [src]="user['photoURL']">
+      </ion-avatar>
+      <br>
+     <p> <ion-icon name="people-outline"></ion-icon> {{user['primeiroNome']}} {{user['ultimoNome']}} </p>
+     <p><ion-icon name="trophy"></ion-icon> {{user['media'] | number:'1.1-1'}} </p>
+	  </ion-card-header>
+      <ion-card-content>
+	    <span *ngIf="!user['isRate']; else elseBlock">
+        <div *ngIf="post['avaliado'] === false">
+          <ion-button shape="round" color="vermelho" size="small" (click)="initAvaliacao(user)">
+            <ion-icon size="small" name="star"></ion-icon>
+          </ion-button>
+        </div>
+		</span>
+        <ng-template #elseBlock>
+          <ion-card-header>
+            <ion-card-title>
+              Avalie agora mesmo
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <div class="estrelas" id="icones">
+                <input type="radio" checked id="cm_wrench-empty" name="fb" />
+                <label for="cm_wrench-1"><i class="fa"></i></label>
+                <input type="radio" id="cm_wrench-1" name="fb" class="valor" (click)="adicionarValor(1)" />
+                <label for="cm_wrench-2"><i class="fa"></i></label>
+                <input type="radio" id="cm_wrench-2" name="fb" class="valor" (click)="adicionarValor(2)" />
+                <label for="cm_wrench-3"><i class="fa"></i></label>
+                <input type="radio" id="cm_wrench-3" name="fb" class="valor" (click)="adicionarValor(3)" />
+                <label for="cm_wrench-4"><i class="fa"></i></label>
+                <input type="radio" id="cm_wrench-4" name="fb" class="valor" (click)="adicionarValor(4)" />
+                <label for="cm_wrench-5"><i class="fa"></i></label>
+                <input type="radio" id="cm_wrench-5" name="fb" (click)="adicionarValor(5)" />
+              </div>
+            </ion-item>
+            <ion-button fill="solid" color="medium" size="small" (click)="user['isRate'] = false">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+            <ion-button fill="solid" color="success" size="small" (click)="alertAvaliacao(user)">
+              <ion-icon name="star-outline"></ion-icon>
+            </ion-button>
+          </ion-card-content>
+        </ng-template>
+      </ion-card-content>
+  </ion-card>
+
+</ion-content>

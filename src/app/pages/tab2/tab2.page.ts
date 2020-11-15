@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from '../../models/user.model';
-import sortBy from 'sort-by';
-import { database } from 'firebase';
-import { AngularFireDatabase } from '@angular/fire/database';
+
 
 @Component({
   selector: 'app-tab2',
@@ -13,18 +10,13 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 
 export class Tab2Page implements OnInit {
-  
-  public avaliar: number = 0;
-  public userInfo = {};
-  public media: number = 0;
+  userInfo:any;
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
   Users = [];
   listaUsers = [];
 
   constructor(
     public authService: AuthService,
-    public firestore: AngularFirestore,
-    public db: AngularFireDatabase,
   ) { }
 
   ngOnInit() {
@@ -56,11 +48,6 @@ export class Tab2Page implements OnInit {
 
   }
 
-  /*  
-    *ngIf="userInfo['tipo'] === 'cliente'"
-
-  */
-
   fetchUsersByEmail() {
     // Pega os valores do caminho os subscreve no 'res'
     this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe(res => {
@@ -74,31 +61,5 @@ export class Tab2Page implements OnInit {
     this.authService.readUsuarioList().valueChanges().subscribe(res => {
       this.listaUsers = res;
     });
-  }
-
-  initAvaliacao(user) {
-    user.isRate = true;
-  }
-
-  adicionarValor(valor: number) {
-    this.avaliar = valor;
-  }
-
-  avaliarMecanico(userId) {
-    userId.avaliacao += this.avaliar;
-    userId.email = userId.email.replace(/[.#$]+/g, ':') as String;
-
-    userId.avaliacao as Number;
-    userId.qtde++ as Number;
-    userId.media as Number;
-    userId.media = userId.avaliacao / userId.qtde;
-
-    this.db.database.ref(`/users/${userId.email}/avaliacao`).set(userId.avaliacao);
-    this.db.database.ref(`/users/${userId.email}/qtde`).set(userId.qtde);
-    this.db.database.ref(`/users/${userId.email}/media`).set(userId.media);
-
-    userId.isRate = false;
-
-
   }
 }

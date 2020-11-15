@@ -10,7 +10,8 @@ export class Post {
         public fotoUsuario: string,
         public dataPost: any = null,
         public timePost: any = null,
-		public options: boolean = false
+		public options: boolean = false,
+		public avaliado: boolean = false
     ) {
 
     }

@@ -1,0 +1,51 @@
+.estrelas{
+  padding:5px;
+}
+
+.estrelas input[type=radio] {
+  display: none;
+}
+.estrelas label i.fa{
+  font-size: 2em
+}
+
+.estrelas label i.fa:before {
+  content:'\f0ad';
+  color: #FC0;
+}
+
+.estrelas input[type=radio]:checked ~ label i.fa:before {
+  color: #CCC;
+}
+
+ion-item-options{
+  display:flex;
+  margin-top:7px;
+  align-items:center;
+  margin-right:3px;
+}
+
+.alignT {
+    font-size: 15px;
+    font-weight: bolder;
+    color: #E02041;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+
+.imgAuto {
+  margin: 0 auto !important;
+}
+
+.rankingP {
+  font-size: 17px;
+  color: #E02041;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: bolder;
+}
+
+.nomeM {
+  font-size: 17px;
+  font-family: 'Roboto', sans-serif;
+}

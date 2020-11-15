@@ -61,17 +61,22 @@ const routes: Routes = [
     loadChildren: () => import('./pages/settings/change-displayname/change-displayname.module').then( m => m.ChangeDisplaynamePageModule)
   },
   {
-    path: 'profile/:id',
-    loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule)
-  },
-  {
     path: 'verify-email',
     loadChildren: () => import('./pages/auth/verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
   },
   {
     path: 'password-recover',
     loadChildren: () => import('./pages/password-recover/password-recover.module').then( m => m.PasswordRecoverPageModule)
+  },
+  {
+    path: 'view-post/:id/:mecanico',
+    loadChildren: () => import('./pages/view-post/view-post.module').then( m => m.ViewPostPageModule)
+  },
+  {
+    path: 'comments/:id',
+    loadChildren: () => import('./pages/comments/comments.module').then( m => m.CommentsPageModule)
   }
+
 
 
 ];

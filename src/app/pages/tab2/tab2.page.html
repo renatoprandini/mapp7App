@@ -29,14 +29,15 @@
       </ion-item>
     </ion-card>
   </div>
+  
   <ion-card *ngFor="let mecanico of Users ; let i = index">
-    <span *ngIf="!mecanico.isRate; else elseBlock">
+    <span>
       <ion-item lines="none">
         <ion-avatar slot="start">
           <img [src]="mecanico.photoURL">
         </ion-avatar>
         <ion-label>
-          <h2 id="titulo" color="light" class="nomeM">{{mecanico.primeiroNome}} {{mecanico.ultimoNome }}</h2>
+          <h2 id="titulo" color="light" class="nomeM">{{mecanico.primeiroNome}} {{ mecanico.ultimoNome }}</h2>
           <ion-chip outline color="dark">
             <ion-label class="rankingP">{{i + 1}}º</ion-label>
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -57,44 +58,7 @@
             </ion-label>
           </ion-chip>
         </ion-label>
-
-        <div>
-          <ion-button shape="round" color="vermelho" size="small" (click)="initAvaliacao(mecanico)">
-            <ion-icon size="small" slot="icon-only" name="star"></ion-icon>
-          </ion-button>
-        </div>
       </ion-item>
     </span>
-
-    <ng-template #elseBlock>
-      <ion-card-header>
-        <ion-card-title>
-          Avalie agora mesmo
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-item>
-          <div class="estrelas" id="icones">
-            <input type="radio" checked id="cm_wrench-empty" name="fb" />
-            <label for="cm_wrench-1"><i class="fa"></i></label>
-            <input type="radio" id="cm_wrench-1" name="fb" class="valor" (click)="adicionarValor(1)" />
-            <label for="cm_wrench-2"><i class="fa"></i></label>
-            <input type="radio" id="cm_wrench-2" name="fb" class="valor" (click)="adicionarValor(2)" />
-            <label for="cm_wrench-3"><i class="fa"></i></label>
-            <input type="radio" id="cm_wrench-3" name="fb" class="valor" (click)="adicionarValor(3)" />
-            <label for="cm_wrench-4"><i class="fa"></i></label>
-            <input type="radio" id="cm_wrench-4" name="fb" class="valor" (click)="adicionarValor(4)" />
-            <label for="cm_wrench-5"><i class="fa"></i></label>
-            <input type="radio" id="cm_wrench-5" name="fb" (click)="adicionarValor(5)" />
-          </div>
-        </ion-item>
-        <ion-button fill="solid" color="medium" size="small" (click)="mecanico.isRate = false">
-          <ion-icon name="close-outline"></ion-icon>
-        </ion-button>
-        <ion-button fill="solid" color="success" size="small" (click)="avaliarMecanico(mecanico)">
-          <ion-icon name="star-outline"></ion-icon>
-        </ion-button>
-      </ion-card-content>
-    </ng-template>
   </ion-card>
 </ion-content>

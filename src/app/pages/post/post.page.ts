@@ -25,9 +25,9 @@ export class PostPage implements OnInit {
   userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
   userFoto = JSON.parse(localStorage.getItem('user'));
   public userInfo = {};
-    pickNome: string;
-    pickSobrenome: string;
-  
+  pickNome: string;
+  pickSobrenome: string;
+
   constructor(
     private pstService: PostService,
     private router: Router,
@@ -55,7 +55,8 @@ export class PostPage implements OnInit {
       fotoUsuario: this.userFoto.photoURL,
       dataPost: new Date().toLocaleDateString(),
       timePost: new Date().toLocaleTimeString(),
-	    options: null
+      options: null,
+      avaliado: false
     });
 
 
@@ -80,7 +81,7 @@ export class PostPage implements OnInit {
     });
   }
 
-  
+
 
 
 
