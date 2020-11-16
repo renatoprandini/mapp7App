@@ -21,35 +21,24 @@ export class SettingsPage implements OnInit {
   ngOnInit() {
   }
 
-
-  async removerConta() {
-    await this.presentAlertConfirm();
-  }
-
-  async presentAlertConfirm() {
+  async showAlertDeleteAccount() {
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Confirm!',
-      message: 'Message <strong>text</strong>!!!',
+      header: 'Atenção',
+      message: 'Você tem certeza que deseja excluir sua conta?',
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Cancelar',
           role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
         }, {
-          text: 'Okay',
+          text: 'Ok',
           handler: () => {
             this.authService.deleteUsuario(this.userLocal.email);
           }
         }
       ]
     });
-
+  
     await alert.present();
-
   }
 
 }

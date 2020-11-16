@@ -65,6 +65,9 @@ export class SignupPage implements OnInit {
       ultimoNome: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
       displayName: ['', Validators.compose([Validators.required, Validators.maxLength(15)])],
       tipo: [''],
+      avaliacao: [0],
+      media: [0],
+      qtde: [0],
       photoURL: ['https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'],
     },
     {

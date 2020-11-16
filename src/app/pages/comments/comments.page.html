@@ -69,11 +69,6 @@
               <img [src]="chat.img">
             </ion-avatar>
 
-            <div class="avaliar" *ngIf="post.avaliado == false && chat.tipo === 'mecanico'"
-              [routerLink]="['/view-post/' + chat.chat + '/' + chat.userId]">
-              Finalizar e Avaliar
-            </div>
-
 
             <ion-text class="ion-text-center">
               <p class="nomeR">{{chat.name}}</p>
@@ -82,6 +77,13 @@
             <ion-text class="ion-text-center">
               <p class="dataHoraR">{{chat.data}} {{chat.hora}}</p>
             </ion-text>
+
+            <div class="avaliar" *ngIf="post.avaliado == false && chat.tipo === 'mecanico'"
+            [routerLink]="['/view-post/' + chat.chat + '/' + chat.userId]">
+            <ion-button expand="block" color="graychat" class="ion-text-center">
+            Avaliar
+          </ion-button>
+          </div>
           </ion-col>
 
           <ion-col size="7" class="msgRecebida">
