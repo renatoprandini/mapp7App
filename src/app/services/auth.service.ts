@@ -81,12 +81,12 @@ export class AuthService {
 
   SignOut() {
     return this.ngFireAuth.signOut()
-    .then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['login']);
-    }).catch(() => {
-      this.router.navigate(['login']);
-    });
+      .then(() => {
+        localStorage.removeItem('user');
+        this.router.navigate(['login']);
+      }).catch(() => {
+        this.router.navigate(['login']);
+      });
   }
 
   SetUserData(user) {
@@ -100,8 +100,8 @@ export class AuthService {
       displayName: user.displayName,
       tipo: user.tipo,
       avaliacao: user.avaliacao,
-	  qtde: user.qtde,
-	  media: user.media
+      qtde: user.qtde,
+      media: user.media
     };
     const delay = 1000;
     setTimeout(() => {
@@ -127,7 +127,17 @@ export class AuthService {
   }
 
   updateUsuario(userId, user) {
-	console.log(this.collectionName);
+    console.log(this.collectionName);
     this.db.database.ref(`${this.collectionName}/${userId}`).update(user);
   }
+
+  async deleteUsuario(userEmail) {
+    this.db.database.ref(`${this.collectionName}/${userEmail}`).remove();
+    return (await this.ngFireAuth.currentUser).delete()
+      .then(() => {
+        console.log('Usuário excluído com sucesso');
+        this.router.navigate(['login']);
+      });
+  }
+
 }

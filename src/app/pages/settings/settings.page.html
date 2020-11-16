@@ -2,9 +2,7 @@
   <ion-toolbar color="vermelho">
     <ion-title>Configurações</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button>
-
-      </ion-back-button>
+      <ion-back-button> </ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -28,17 +26,19 @@
       &nbsp; Alterar apelido
     </ion-item>
 
+    <ion-item class="optionT" (click)="removerConta()">
+      <ion-icon color="vermelho" name="remove-circle-outline"></ion-icon>
+      &nbsp; Remover Conta
+    </ion-item>
+
   </ion-item-group>
 
   <ion-item-group>
-
     <ion-text class="titleT"> Preferências </ion-text>
 
     <ion-item class="optionT" routerLink="/about">
       <ion-icon color="vermelho" name="information-circle"></ion-icon>
       &nbsp; Sobre
     </ion-item>
-
   </ion-item-group>
-
 </ion-content>
