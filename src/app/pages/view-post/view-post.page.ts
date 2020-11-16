@@ -22,6 +22,9 @@ export class ViewPostPage implements OnInit {
 
   public avaliar: number = 0;
   public media: number = 0;
+
+  public userInfo = {};
+  userLocal = JSON.parse(localStorage.getItem('user').replace(/[.#$]+/g, ':'));
  
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -32,6 +35,7 @@ export class ViewPostPage implements OnInit {
     public alertController: AlertController) { }
 
   ngOnInit() {
+    this.fetchUsersByEmail();
     this.id = this.activatedRoute.snapshot.params['id'];
     this.mecanico = this.activatedRoute.snapshot.params['mecanico'];
 
@@ -66,7 +70,13 @@ export class ViewPostPage implements OnInit {
 
   avaliarMecanico(userId) {
     userId.avaliacao += this.avaliar;
-    userId.email = userId.email.replace(/[.#$]+/g, ':') as String;
+
+    //! Léo: Eu testei colocar o exemplo abaixo da linha comentada e deu certo... 
+    //! Então acredito que seja essa linha!!!
+    //! Só não sei como consertar, porque tirando ela, o avaliar para de funcionar :(
+    // userId.email = userId.email.replace(/[.#$]+/g, ':') as String;
+
+    userId.email = this.userLocal.email;
 
     userId.avaliacao as Number;
     userId.qtde++ as Number;
@@ -101,5 +111,11 @@ export class ViewPostPage implements OnInit {
       ]
     });
     await alert.present();
+  }
+
+  fetchUsersByEmail() {
+    this.authService.readUsuarioByEmail(this.userLocal.email).valueChanges().subscribe(res => {
+      this.userInfo = res;
+    });
   }
 }
