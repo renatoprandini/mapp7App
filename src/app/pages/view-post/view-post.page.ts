@@ -70,14 +70,6 @@ export class ViewPostPage implements OnInit {
 
   avaliarMecanico(userId) {
     userId.avaliacao += this.avaliar;
-
-    //! Léo: Eu testei colocar o exemplo abaixo da linha comentada e deu certo... 
-    //! Então acredito que seja essa linha!!!
-    //! Só não sei como consertar, porque tirando ela, o avaliar para de funcionar :(
-    // userId.email = userId.email.replace(/[.#$]+/g, ':') as String;
-
-    userId.email = this.userLocal.email;
-
     userId.avaliacao as Number;
     userId.qtde++ as Number;
     userId.media as Number;
@@ -85,9 +77,9 @@ export class ViewPostPage implements OnInit {
 	
     let teste = true;
 
-    this.db.database.ref(`/users/${userId.email}/avaliacao`).set(userId.avaliacao);
-    this.db.database.ref(`/users/${userId.email}/qtde`).set(userId.qtde);
-    this.db.database.ref(`/users/${userId.email}/media`).set(userId.media);
+    this.db.database.ref(`/users/${this.mecanico}/avaliacao`).set(userId.avaliacao);
+    this.db.database.ref(`/users/${this.mecanico}/qtde`).set(userId.qtde);
+    this.db.database.ref(`/users/${this.mecanico}/media`).set(userId.media);
     this.db.database.ref(`/post/${this.id}/avaliado`).set(teste);
     
     userId['isRate'] = false;
