@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path: 'change-displayname',
     loadChildren: () => import('./change-displayname/change-displayname.module').then( m => m.ChangeDisplaynamePageModule)
+  },
+  {
+    path: 'aboutapp',
+    loadChildren: () => import('./aboutapp/aboutapp.module').then( m => m.AboutappPageModule)
   }
 ];
 

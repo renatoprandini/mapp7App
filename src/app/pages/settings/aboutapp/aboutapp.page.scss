@@ -1,0 +1,211 @@
+ion-title {
+    font-family: 'Roboto', sans-serif;
+}
+
+.titleT {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    font-weight: bolder;
+    color: #E02041;
+    margin-left: 10px;
+}
+
+.optionT {
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+}
+
+.alignContent{
+    width: 100%;
+    height: 100%;
+}
+.photoUser {
+    max-width: 150px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+}
+
+.div-center {
+    display: block;
+    position: relative;
+    margin-left: 50px;
+    width: 50%;
+    height: auto;
+}
+
+.optionT {
+    font-size: 15px;
+    color: var(--ion-color-dark);
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+}
+
+.answerT {
+    font-size: 13px;
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+}
+
+.itemAlign {
+    align-items: center;
+}
+
+.borderNone {
+    --border-color: #fff;
+}
+
+ion-item {
+    padding: 10px;
+    --border-radius: 10px;
+  }
+  
+  ion-textarea {
+    padding: 3px;
+  }
+  
+  .paginador {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    z-index: 99999;
+  }
+  
+  .ion-description {
+    padding: 5px;
+    font-size: 14px;
+  }
+  
+  .chat {
+    padding: 7px;
+    margin: 5px;
+  }
+  
+  .msgEnviada {
+    padding: 7px;
+    margin: 5px;
+    background: #cccccc;
+  }
+  
+  .msgRecebida {
+    padding: 7px;
+    margin: 5px;
+    background: #e02041;
+  }
+  
+  // ion-card {
+  //   background: #CCCCCC;
+  // }
+  
+  
+  ion-avatar {
+    height: 60px;
+    width: 60px;
+    margin: 0 auto;
+  }
+  
+  .itemChat {
+    height: 75px;
+    display: flex;
+      margin: auto;
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      font-weight: bolder;
+      color: #000;
+      --placeholder-font-style: 'Roboto', sans-serif;
+      --background: #CCCCCC;
+  }
+  
+  .buttonSend {
+    --background: #e02041;
+  }
+  
+  .flex { 
+    display: flex;
+  }
+  
+  .nomeE {
+    display: flex;
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      font-weight: bolder;
+      color: #000;
+      text-align: center;
+  }
+  
+  .nomeR {
+    display: flex;
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      font-weight: bolder;
+      color: #FFF;
+      text-align: center;
+  }
+  
+  .dataHoraE {
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    font-weight: bolder;
+    color: #000;
+    text-align: center;
+  }
+  
+  .dataHoraR {
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    font-weight: bolder;
+    color: #FFF;
+    text-align: center;
+  }
+  
+  .msgE {
+    display: flex;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: bolder;
+    color: #000;
+  }
+  
+  .msgR {
+    display: flex;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: bolder;
+    color: #FFF;
+  }
+  
+  p {
+    text-align: center;
+    margin: 0 auto;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  .enviada {
+    --background: #cccccc;
+  }
+  .recebida {
+    --background: #e02041;
+  }
+  
+  .avaliar{
+   padding:10px;
+   font-weight:bolder;
+  }
+
+  .whiteIcon {
+      color: #FFF;
+      font-weight: bolder;
+      font-size: 20px;
+  }
+
+  .aT{
+      text-decoration: none !important;
+      color: #FFF;
+  }
